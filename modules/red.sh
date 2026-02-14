@@ -6,9 +6,9 @@ while true; do
 	print_title "CONFIGURACION DE RED"
 
 	if ping -c 1 google.com > /dev/null 2>&1; then
-		printf "${green}[!] ¡Ya tienes conexion a Internet!${end}\n"
+		printf "\n${green}[!] ¡Ya tienes conexion a Internet!${end}\n"
 	else
-		printf "${red}[!] No hay conexion detectada.${end}\n"
+		printf "\n${red}[!] No hay conexion detectada.${end}\n"
 	fi
 
 	printf "${blue}    Estado actual de las interfaces:${end}\n"
@@ -17,14 +17,14 @@ while true; do
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
 
-	printf "Selecciona como configurar el WiFi:\n"
+	printf "Selecciona como configurar el wifi:\n"
 	if [ -z "$WIFI_DEVICES" ]; then
-		printf " ${red}1) Modo Asistido (No se detectan tarjetas WiFi)${end}\n"
+		printf " ${red}1) Modo Asistido (No se detectan tarjetas wifi)${end}\n"
 	else
 		printf " 1) Modo Asistido\n"
 	fi
 	printf " 2) Modo Manual\n"
-	printf " 3) Saltar / Ya tengo internet (Ethernet)\n"
+	printf " 3) Saltar / Ya tengo internet\n"
 	printf "Elige una opcion [1-3]: "
 	read wifi_opt
 

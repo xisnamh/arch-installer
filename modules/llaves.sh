@@ -11,7 +11,7 @@ pausa
 
 printf "${yellow}[*] Cargando llaves maestras de Arch Linux...${end}\n"
 sudo pacman-key --populate archlinux
-printf "${green}[+] Llaves maestras Arch Linux cargadas correctamente.${end}\n"
+printf "${green}[+] Llaves maestras de Arch Linux cargadas correctamente.${end}\n"
 pausa
 
 printf "${yellow}[*] Actualizando el llavero de Arch Linux...${end}\n"

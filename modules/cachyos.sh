@@ -45,8 +45,6 @@ if [ "$SKIP_CACHY" = false ]; then
 	menu_header
 	print_title "CONFIGURACION DE CACHYOS"
 
-	printf "\n\n"
-	
 	printf "${yellow}[*] Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n"
 	printf "${cyan}INSTRUCCIONES DE CONFIGURACION:${end}\n"

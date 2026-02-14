@@ -26,7 +26,7 @@ pausa
 menu_header
 print_title "PRE-CONFIGURANDO EL SISTEMA"
 
-printf "\n${yellow}[*] Verificando modo de arranque...${end}\n"
+printf "${yellow}[*] Verificando modo de arranque...${end}\n"
 if [ -d "/sys/firmware/efi" ]; then
 	printf "${green}[+] Sistema en modo UEFI.${end}\n"
 else

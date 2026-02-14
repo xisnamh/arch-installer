@@ -20,3 +20,5 @@ source ./modules/reflector.sh
 source ./modules/cachyos.sh
 
 source ./modules/llaves.sh
+
+source ./modules/discos_particiones.sh
