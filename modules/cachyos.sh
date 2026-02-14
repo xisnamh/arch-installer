@@ -70,6 +70,6 @@ if [ "$SKIP_CACHY" = false ]; then
 	pausa
 else
 	# Opcion si se responde que NO
-	printf "\n${green}[+] Repositorios de CachyOS no configurados (omitido por el usuario).${end}\n"
+	printf "\n${green}[+] Configuracion de CachyOS omitida por el usuario.${end}\n"
 	pausa
 fi
