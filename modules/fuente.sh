@@ -4,8 +4,7 @@
 while true; do
 	clear
 	menu_header
-	printf "${cyan}      CONFIGURACION DE FUENTE (TTY)       ${end}\n"
-	printf "${cyan}==========================================${end}\n"
+	print_title "CONFIGURACION DE FUENTE (TTY)"
 	printf "Selecciona un tamano de letra para la consola:\n"
 	printf " 1) Normal   (Tamano estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"

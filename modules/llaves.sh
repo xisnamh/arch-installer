@@ -2,8 +2,7 @@
 
 # 8. CONFIGURACION DE LLAVEROS Y LLAVES MAESTRAS
 menu_header
-printf "${cyan}           CONFIGURACION DE LLAVEROS          ${end}\n"
-printf "${cyan}==========================================${end}\n"
+print_title "CONFIGURACION DE LLAVEROS"
 
 printf "${yellow}[*] Iniciando el llavero local...${end}\n"
 sudo pacman-key --init

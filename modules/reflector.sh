@@ -2,8 +2,7 @@
 
 # 6. OPTIMIZACION DE ESPEJOS (REFLECTOR)
 menu_header
-printf "${cyan}          OPTIMIZACION DE ESPEJOS         ${end}\n"
-printf "${cyan}==========================================${end}\n"
+print_title "OPTIMIZACION DE ESPEJOS"
 printf "${yellow}[*] Iniciando Reflector en modo detallado...${end}\n"
 
 if reflector --verbose --country France --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; then

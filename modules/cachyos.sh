@@ -2,8 +2,7 @@
 
 # 7. INSTALACION DE REPOSITORIOS CACHYOS
 menu_header
-printf "${cyan}           CONFIGURACION DE CACHYOS           ${end}\n"
-printf "${cyan}==========================================${end}\n"
+print_title "CONFIGURACION DE CACHYOS"
 
 # Bucle estricto para la pregunta inicial
 SKIP_CACHY=false
@@ -35,7 +34,7 @@ if [ "$SKIP_CACHY" = false ]; then
 	printf "${cyan}- No instalar los paquetes, todavia estamos fuera del entorno chroot.${end}\n"
 	printf "\n"
 
-	printf "${white}[!] A continuacion se ejecutara el script oficial de CahyOS.${end}\n"
+	printf "${white}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
 	pausa
 
 	sudo ./cachyos-repo.sh
