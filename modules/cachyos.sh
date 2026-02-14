@@ -43,6 +43,7 @@ if [ "$SKIP_CACHY" = false ]; then
 	# Instrucciones de edicion post-script
 	printf "\n${yellow}[*] Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "${cyan}INSTRUCCIONES DE CONFIGURACION:${end}\n"
+	printf "${white}- Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
 	printf "${white}- Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
 	printf "${white}- Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
 	pausa
