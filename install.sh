@@ -8,16 +8,18 @@ source ./config.sh
 
 # EJECUTAR MODULOS EN ORDEN
 menu_header
-source ./modules/font.sh
+source ./modules/fuente.sh
 
 menu_header
-source ./modules/system.sh
+source ./modules/sistema.sh
 
-source ./modules/network.sh
+source ./modules/red.sh
 
-source ./modules/mirrors.sh
+source ./modules/reflector.sh
 
 source ./modules/cachyos.sh
+
+source ./modules/llaves.sh
 
 printf "${green}##########################################${end}\n"
 printf "${green}#    FASE DE PRE-INSTALACION COMPLETA    #${end}\n"
