@@ -2,7 +2,7 @@
 
 # 8. CONFIGURACION DE LLAVEROS Y LLAVES MAESTRAS
 menu_header
-printf "${cyan}          CONFIGURACION DE LLAVEROS          ${end}\n"
+printf "${cyan}           CONFIGURACION DE LLAVEROS          ${end}\n"
 printf "${cyan}==========================================${end}\n"
 
 printf "${yellow}[*] Iniciando el llavero local...${end}\n"

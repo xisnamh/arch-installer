@@ -20,7 +20,3 @@ source ./modules/reflector.sh
 source ./modules/cachyos.sh
 
 source ./modules/llaves.sh
-
-printf "${green}##########################################${end}\n"
-printf "${green}#    FASE DE PRE-INSTALACION COMPLETA    #${end}\n"
-printf "${green}##########################################${end}\n"
