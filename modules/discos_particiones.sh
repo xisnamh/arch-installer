@@ -42,11 +42,11 @@ while true; do
 	case $disco_opt in
 		1)
 			if [[ "$DISCO" == *"nvme"* ]]; then
-				sudo pacman -S --needed nvme-cli --noconfirm
-				sudo nvme smart-log "$DISCO"
+				pacman -S --needed nvme-cli --noconfirm
+				nvme smart-log "$DISCO"
 			else
-				sudo pacman -S --needed smartmontools --noconfirm
-				sudo smartctl -a "$DISCO"
+				pacman -S --needed smartmontools --noconfirm
+				smartctl -a "$DISCO"
 			fi
 			pausa
 			;;
@@ -56,8 +56,8 @@ while true; do
 				printf "¿Estas ABSOLUTAMENTE seguro? (escribe 'BORRAR'): "
 				read confirm
 				if [ "$confirm" == "BORRAR" ]; then
-					sudo pacman -S --needed nvme-cli --noconfirm
-					sudo nvme sanitize "$DISCO" --sanact=3
+					pacman -S --needed nvme-cli --noconfirm
+					nvme sanitize "$DISCO" --sanact=3
 					printf "${yellow}[*] Sanitize iniciado. Revisa progreso con: nvme sanitize-log $DISCO${end}\n"
 				fi
 			else
@@ -70,15 +70,15 @@ while true; do
 			printf "¿Continuar? (s/n): "
 			read confirm
 			if [[ "$confirm" == [Ss] ]]; then
-				sudo pacman -S --needed gptfdisk --noconfirm
-				sudo wipefs -a "$DISCO"
-				sudo sgdisk --zap-all "$DISCO"
+				pacman -S --needed gptfdisk --noconfirm
+				wipefs -a "$DISCO"
+				sgdisk --zap-all "$DISCO"
 				printf "${green}[+] Disco limpio.${end}\n"
 			fi
 			pausa
 			;;
 		4)
-			sudo cfdisk "$DISCO"
+			cfdisk "$DISCO"
 			menu_header
 			print_title "NUEVO ESQUEMA DE PARTICIONES"
 			lsblk "$DISCO"

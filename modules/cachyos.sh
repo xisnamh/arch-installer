@@ -37,7 +37,7 @@ if [ "$SKIP_CACHY" = false ]; then
 	printf "${white}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
 	pausa
 
-	sudo ./cachyos-repo.sh
+	./cachyos-repo.sh
 
 	printf "\n${green}[+] El script oficial de CachyOS ha finalizado correctamente.${end}\n"
 	pausa
@@ -55,7 +55,7 @@ if [ "$SKIP_CACHY" = false ]; then
 
 	# Bucle de edicion manual con validacion estricta
 	while true; do
-		sudo nano /etc/pacman.conf
+		nano /etc/pacman.conf
 
 		printf "${yellow}¿Has terminado de modificar el archivo correctamente? (s/n): ${end}"
 		read confirmacion

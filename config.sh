@@ -10,10 +10,11 @@ cyan="\e[36m"
 white="\e[37m"
 end="\e[0m"
 
-# UTILIDAD AUXILIAR DEL SCRIPT
+# UTILIDAD AUXILIAR
 pausa() {
-	printf "\n${blue}>>> Presiona [Intro] para continuar con el siguiente paso...${end}\n"
-	read
+	# Usar -r en read es buena practica para evitar que escape caracteres
+	printf "\n${blue}>>> Presiona [Intro] para continuar...${end}\n"
+	read -r
 }
 
 # FUNCION ENCABEZADO
@@ -21,21 +22,25 @@ menu_header() {
 	clear
 	printf "${purple}==========================================${end}\n"
 	printf "${purple}         INSTALADOR INTERACTIVO ARCH        ${end}\n"
-	printf "${purple}==========================================${end}\n\n\n\n"
+	printf "${purple}==========================================${end}\n\n"
 }
 
-# FUNCION PARA TITULOS CENTRADOS AUTOMATICOS
-# Uso: print_title "TU TITULO"
+# FUNCION PARA TITULOS CENTRADOS
 print_title() {
 	local texto="$1"
 	local ancho=42
-	local total_espacios=$(( ancho - ${#texto} ))
-	local esp_izq=$(( total_espacios / 2 ))
-	local esp_der=$(( total_espacios - esp_izq ))
-
-	# Imprime el texto con los espacios calculados
-	printf "${cyan}%${esp_izq}s%s%${esp_der}s${end}\n" "" "$texto" ""
+	local len=${#texto}
+	
+	# Si el texto es mas largo que el ancho, lo recortamos o ajustamos
+	if [ "$len" -ge "$ancho" ]; then
+		printf "${cyan}%s${end}\n" "$texto"
+	else
+		local total_espacios=$(( ancho - len ))
+		local esp_izq=$(( total_espacios / 2 ))
+		# Generamos los espacios dinamicamente con tabs para la indentacion
+		printf "${cyan}%*s%s%*s${end}\n" "$esp_izq" "" "$texto" "$((ancho - len - esp_izq))" ""
+	fi
 	printf "${cyan}==========================================${end}\n"
 }
 
-prompt_info="\n${yellow}Elige una opcion${end}"
+prompt_info="\n${yellow}Elige una opcion:${end} "
