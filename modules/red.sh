@@ -6,12 +6,12 @@ while true; do
 	print_title "CONFIGURACION DE RED"
 
 	if ping -c 1 google.com > /dev/null 2>&1; then
-		printf "\n${green}[!] ¡Ya tienes conexion a Internet!${end}\n"
+		printf "${green}[!] ¡Ya tienes conexion a Internet!${end}\n"
 	else
-		printf "\n${red}[!] No hay conexion detectada.${end}\n"
+		printf "${red}[!] No hay conexion detectada.${end}\n"
 	fi
 
-	printf "${blue}    Estado actual de las interfaces:${end}\n"
+	printf "\n${blue}    Estado actual de las interfaces:${end}\n"
 	ip -brief address show scope global
 	printf "\n"
 

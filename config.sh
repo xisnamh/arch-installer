@@ -37,3 +37,5 @@ print_title() {
 	printf "${cyan}%${esp_izq}s%s%${esp_der}s${end}\n" "" "$texto" ""
 	printf "${cyan}==========================================${end}\n"
 }
+
+prompt_info="\n${yellow}Elige una opcion${end}"
