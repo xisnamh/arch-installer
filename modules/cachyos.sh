@@ -66,12 +66,11 @@ if [ "$SKIP_CACHY" = false ]; then
 		esac
 	done
 
-	printf "${green}[+] Configuracion de CachyOS finalizada.${end}\n"
+	printf "\n${green}[+] Configuracion de CachyOS finalizada con exito.${end}\n"
 	cd ..
 	pausa
 else
 	# Opcion si se responde que NO
-	printf "\n${blue}[!] Saltando configuracion de CachyOS.${end}\n"
-	printf "${blue}[!] Continuando con el siguiente bloque de instalacion de Arch Linux...${end}\n"
-	sleep 2
+	printf "\n${green}[+] Repositorios de CachyOS no configurados (omitido por el usuario).${end}\n"
+	pausa
 fi
