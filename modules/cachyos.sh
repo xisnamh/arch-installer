@@ -34,7 +34,7 @@ if [ "$SKIP_CACHY" = false ]; then
 	printf "${cyan}- No instalar los paquetes, todavia estamos fuera del entorno chroot.${end}\n"
 	printf "\n"
 
-	printf "${white}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
+	printf "${yellow}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
 	pausa
 
 	./cachyos-repo.sh

@@ -11,7 +11,7 @@ while true; do
 		printf "${red}[!] No hay conexion detectada.${end}\n"
 	fi
 
-	printf "\n${blue}    Estado actual de las interfaces:${end}\n"
+	printf "\n${blue}Estado actual de las interfaces:${end}\n"
 	ip -brief address show scope global
 	printf "\n"
 

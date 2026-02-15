@@ -19,7 +19,7 @@ pausa() {
 
 # FUNCION PARA PEDIR OPCIONES
 pregunta() {
-	printf "\n${yellow}Elige una opcion:${end} "
+	printf "\n${white}Elige una opcion:${end} "
 }
 
 # FUNCION ENCABEZADO

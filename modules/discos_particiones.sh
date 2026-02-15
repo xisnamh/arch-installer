@@ -15,14 +15,14 @@ while true; do
 
 	if [ -z "$DISCO" ]; then
 		printf "${red}[!] No has escrito nada.${end}"
-		sleep 1.5
+		sleep 1
 	elif [ -b "$DISCO" ]; then
 		printf "${green}[+] Disco seleccionado: $(lsblk -dn -o MODEL $DISCO)${end}\n"
-		sleep 1
+		sleep 4
 		break
 	else
 		printf "${red}[!] El dispositivo '$DISCO' no existe o no es valido.${end}"
-		sleep 1.5
+		sleep 1
 	fi
 done
 
