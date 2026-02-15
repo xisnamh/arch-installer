@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 0. LOCALES DEL SISTEMA
+# 0. LOCALES PARA LA SESION ACTUAL
 # Soporte para caracteres utf-8
 echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen
 locale-gen > /dev/null 2>&1
@@ -8,11 +8,6 @@ locale-gen > /dev/null 2>&1
 # Establecer idioma español a la terminal
 export LANG=es_ES.UTF-8
 export LC_ALL=es_ES.UTF-8
-
-menu_header
-print_title "CONFIGURACION DE IDIOMA"
-printf "${green}[+] Locales configuradas en español.${end}\n"
-pausa
 
 # 1. CONFIGURACION DE FUENTE (TTY)
 while true; do
