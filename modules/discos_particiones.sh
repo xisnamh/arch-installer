@@ -36,7 +36,8 @@ while true; do
 	printf " 3) Limpiar firmas y tablas (wipefs/zap-all)\n"
 	printf " 4) Particionar con cfdisk (Recomendado)\n"
 	printf " 5) Finalizar y continuar con la instalacion\n"
-	printf "Elige una opcion [1-5]: "
+
+	pregunta
 	read disco_opt
 
 	case $disco_opt in

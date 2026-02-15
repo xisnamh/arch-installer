@@ -17,6 +17,11 @@ pausa() {
 	read -r
 }
 
+# FUNCION PARA PEDIR OPCIONES
+pregunta() {
+	printf "\n${yellow}Elige una opcion:${end} "
+}
+
 # FUNCION ENCABEZADO
 menu_header() {
 	clear
@@ -42,5 +47,3 @@ print_title() {
 	fi
 	printf "${cyan}==========================================${end}\n"
 }
-
-prompt_info="\n${yellow}Elige una opcion:${end} "

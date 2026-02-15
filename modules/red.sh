@@ -25,7 +25,8 @@ while true; do
 	fi
 	printf " 2) Modo Manual\n"
 	printf " 3) Saltar / Ya tengo internet\n"
-	printf "Elige una opcion [1-3]: "
+
+	pregunta
 	read wifi_opt
 
 	case $wifi_opt in
@@ -105,7 +106,8 @@ while true; do
 				printf " 3) Volver al menu de seleccion\n"
 				printf " 4) Salir y continuar con el script de instalacion\n"
 				printf "${yellow}================================================================${end}\n"
-				printf "Elige una opcion [1-4]: "
+
+				pregunta
 				read manual_opt
 
 				case $manual_opt in

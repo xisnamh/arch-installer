@@ -10,7 +10,8 @@ while true; do
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
 	printf " 4) Saltar / No cambiar\n"
-	printf "Elige una opcion [1-4]: "
+
+	pregunta
 	read font_opt
 
 	case $font_opt in
