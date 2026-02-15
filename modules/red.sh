@@ -33,7 +33,7 @@ while true; do
 		1)
 			if [ -z "$WIFI_DEVICES" ]; then
 				printf "${red}[!] Error: No se detecto hardware WiFi.${end}\n"
-				sleep 2
+				sleep $T_INFO
 				continue
 			fi
 			menu_header
@@ -41,7 +41,7 @@ while true; do
 			iwctl device list
 			printf "\n"
 
-			# --- BUCLE ADAPTADOR ---
+			# BUCLE ADAPTADOR
 			while true; do
 				printf "Escribe tu adaptador (ej: wlan0) o 'q' para volver: "
 				read ADAPTADOR
@@ -50,16 +50,16 @@ while true; do
 					break
 				else
 					printf "${red}[!] Adaptador no valido.${end}\n"
-					sleep 0.5
+					sleep $T_ERR
 				fi
 			done
 			[[ "$ADAPTADOR" == "q" ]] && continue
 
-			# --- BUCLE CONEXION ---
+			# BUCLE CONEXION
 			while true; do
 				printf "${blue}Escaneando redes...${end}\n"
 				iwctl station "$ADAPTADOR" scan
-				sleep 2
+				sleep $T_INFO
 				iwctl station "$ADAPTADOR" get-networks
 				printf "\nSSID ('r' re-escanear, 'q' volver): "
 				read SSID
@@ -72,14 +72,14 @@ while true; do
 				iwctl station "$ADAPTADOR" connect "$SSID"
 
 				printf "${blue}Verificando estado y conectividad...${end}\n"
-				sleep 5 # Tiempo para handshake y DHCP
+				sleep $T_WAIT # Tiempo para handshake y DHCP
 
 				WIFI_STATE=$(iwctl station "$ADAPTADOR" show | grep State | awk '{print $2}')
 
 				if [[ "$WIFI_STATE" == "connected" ]]; then
 					if ping -I "$ADAPTADOR" -c 1 8.8.8.8 > /dev/null 2>&1; then
 						printf "${green}[+] ¡Conectado y con internet real en $ADAPTADOR!${end}\n"
-						sleep 1
+						sleep $T_INFO
 						break 2
 					else
 						printf "${red}[!] Conectado al WiFi, pero sin internet (Fallo DHCP).${end}\n"
@@ -124,7 +124,7 @@ while true; do
 						printf "   station <wlan> scan                             - Buscar (Obligatorio)\n"
 						printf "   station <wlan> get-networks                     - Ver SSIDs\n"
 						printf "   station <wlan> connect <SSID>                   - Conectar\n"
-						printf "   station <wlan> show                             - Ver IP y Senal\n\n"
+						printf "   station <wlan> show                             - Ver IP y Señal\n\n"
 						printf "${yellow}3. Gestion de Redes Conocidas${end}\n"
 						printf "   known-networks list                             - Listar guardadas\n"
 						printf "   known-networks <SSID> forget                    - Borrar guardada\n\n"
@@ -146,7 +146,7 @@ while true; do
 						;;
 					*)
 						printf "${red}[!] Opcion no valida.${end}\n"
-						sleep 1
+						sleep $T_ERR
 						;;
 				esac
 			done
@@ -156,7 +156,7 @@ while true; do
 			;;
 		*)
 			printf "${red}[!] Elige 1, 2 o 3.${end}\n"
-			sleep 1
+			sleep $T_ERR
 			;;
 	esac
 done

@@ -4,21 +4,7 @@
 menu_header
 print_title "CONFIGURACION DE CACHYOS"
 
-# Bucle estricto para la pregunta inicial
-SKIP_CACHY=false
-while true; do
-	printf "${yellow}¿Deseas descargar e instalar los repositorios de CachyOS? (s/n): ${end}"
-	read respuesta_cachy
-	case $respuesta_cachy in
-		[Ss]) break ;;
-		[Nn]) SKIP_CACHY=true; break ;;
-		*)
-			printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"; sleep 1; printf "\r\e[K"
-			;;
-	esac
-done
-
-if [ "$SKIP_CACHY" = false ]; then
+if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "${yellow}[*] Descargando instalador de CachyOS...${end}\n"
 	curl -L https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
 	tar xvf cachyos-repo.tar.xz
@@ -53,22 +39,16 @@ if [ "$SKIP_CACHY" = false ]; then
 	printf "${white}- Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
 	pausa
 
-	# Bucle de edicion manual con validacion estricta
+	# Bucle de edicion manual con validacion mediante la nueva funcion
 	while true; do
 		nano /etc/pacman.conf
 
-		printf "${yellow}¿Has terminado de modificar el archivo correctamente? (s/n): ${end}"
-		read confirmacion
-		case $confirmacion in
-			[Ss]) break ;;
-			[Nn])
-				printf "${blue}[!] Reabriendo el archivo para correcciones...${end}\n"
-				sleep 1
-				;;
-			*)
-				printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"; sleep 1; printf "\r\e[K"
-				;;
-		esac
+		if confirmar "Has terminado de modificar el archivo correctamente?"; then
+			break
+		else
+			printf "${blue}[!] Reabriendo el archivo para correcciones...${end}\n"
+			sleep $T_INFO
+		fi
 	done
 
 	printf "\n${green}[+] Configuracion de CachyOS finalizada con exito.${end}\n"

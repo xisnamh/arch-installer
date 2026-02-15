@@ -1,18 +1,32 @@
 #!/bin/bash
 
+# 0. LOCALES DEL SISTEMA
+# Soporte para caracteres utf-8
+echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen
+locale-gen > /dev/null 2>&1
+
+# Establecer idioma español a la terminal
+export LANG=es_ES.UTF-8
+export LC_ALL=es_ES.UTF-8
+
+menu_header
+print_title "CONFIGURACION DE IDIOMA"
+printf "${green}[+] Locales configuradas en español.${end}\n"
+pausa
+
 # 1. CONFIGURACION DE FUENTE (TTY)
 while true; do
 	clear
 	menu_header
 	print_title "CONFIGURACION DE FUENTE (TTY)"
-	printf "Selecciona un tamano de letra para la consola:\n"
-	printf " 1) Normal   (Tamano estandar)\n"
+	printf "Selecciona un tamaño de letra para la consola:\n"
+	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
 	printf " 4) Saltar / No cambiar\n"
 
 	pregunta
-	read font_opt
+	read -r font_opt
 
 	case $font_opt in
 		1) FONT="ter-v18b" ;;
@@ -21,25 +35,21 @@ while true; do
 		4) break ;;
 		*)
 			printf "${red}[!] Opcion no valida.${end}\n"
-			sleep 1
+			sleep $T_ERR
 			continue
 			;;
 	esac
 
 	# Aplicamos la fuente para que el usuario vea el cambio
-	setfont $FONT 2>/dev/null
+	setfont "$FONT" 2>/dev/null
 
-	while true; do
-		printf "${yellow}¿Te gusta este tamano? (s/n):${end} "
-		read confirm_font
-
-		case $confirm_font in
-			[Ss]) printf "${green}[+] Fuente configurada.${end}\n"; sleep 1; break 2 ;;
-			[Nn]) setfont lat9w-16 2>/dev/null; break ;;
-			*)
-				# Sube, borra la linea escrita, muestra error, espera y borra el error
-				printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"; sleep 1; printf "\r\e[K"
-				;;
-		esac
-	done
+	# Usamos la nueva funcion de confirmacion
+	if confirmar "Te gusta este tamaño?"; then
+		printf "${green}[+] Fuente configurada.${end}\n"
+		sleep $T_ERR
+		break
+	else
+		# Si no le gusta, restauramos la fuente por defecto y vuelve al inicio del bucle
+		setfont lat9w-16 2>/dev/null
+	fi
 done

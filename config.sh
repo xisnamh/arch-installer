@@ -10,17 +10,10 @@ cyan="\e[36m"
 white="\e[37m"
 end="\e[0m"
 
-# UTILIDAD AUXILIAR
-pausa() {
-	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}>>> Presiona [Intro] para continuar...${end}\n"
-	read -r
-}
-
-# FUNCION PARA PEDIR OPCIONES
-pregunta() {
-	printf "\n${white}Elige una opcion:${end} "
-}
+# VARIABLES TIEMPO
+T_ERR=1 	# Tiempo para errores (Opcion no valida)
+T_INFO=2	# Tiempo para mensajes informativos o de exito
+T_WAIT=5	# Tiempo para esperas de red/sincronizacion
 
 # FUNCION ENCABEZADO
 menu_header() {
@@ -30,7 +23,7 @@ menu_header() {
 	printf "${purple}==========================================${end}\n\n"
 }
 
-# FUNCION PARA TITULOS CENTRADOS
+# FUNCION TITULOS CENTRADOS
 print_title() {
 	local texto="$1"
 	local ancho=42
@@ -47,3 +40,36 @@ print_title() {
 	fi
 	printf "${cyan}==========================================${end}\n"
 }
+
+# FUNCION PEDIR OPCIONES
+pregunta() {
+	printf "\n${white}Elige una opcion:${end} "
+}
+
+# FUNCION VALIDACION
+confirmar() {
+	local pregunta="$1"
+	local respuesta
+	while true; do
+		printf "${yellow}$pregunta (s/n): ${end}"
+		read -r respuesta
+		case "$respuesta" in
+			[Ss]) return 0 ;;
+			[Nn]) return 1 ;;
+			*)
+				# Sube una linea, borra el error y permite reintentar (Igual que antes)
+				printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"
+				sleep 1; printf "\r\e[K"
+				;;
+		esac
+	done
+}
+
+# UTILIDAD AUXILIAR
+pausa() {
+	# Usar -r en read es buena practica para evitar que escape caracteres
+	printf "\n${blue}>>> Presiona [Intro] para continuar...${end}\n"
+	read -r
+}
+
+

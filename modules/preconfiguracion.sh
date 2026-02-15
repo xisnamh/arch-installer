@@ -6,7 +6,7 @@ print_title "PRE-CONFIGURANDO EL SISTEMA"
 
 printf "${yellow}[*] Configurando teclado...${end}\n"
 loadkeys es
-printf "${green}[+] Teclado configurado en espanol.${end}\n"
+printf "${green}[+] Teclado configurado en español.${end}\n"
 pausa
 
 # 3. SERVICIO NTP
@@ -15,7 +15,7 @@ print_title "PRE-CONFIGURANDO EL SISTEMA"
 
 printf "${yellow}[*] Sincronizando la hora del sistema (NTP)...${end}\n"
 timedatectl set-ntp true
-sleep 2
+sleep $T_INFO
 printf "${green}[+] Hora del sistema sincronizada.${end}\n\n"
 printf "${blue}Estado actual del tiempo:${end}\n"
 timedatectl status | grep -E "Local time|Universal time|RTC time|System clock synchronized|NTP service"
@@ -31,19 +31,9 @@ if [ -d "/sys/firmware/efi" ]; then
 	printf "${green}[+] Sistema en modo UEFI.${end}\n"
 else
 	printf "${red}[!] Estas en modo BIOS/Legacy.${end}\n"
-	while true; do
-		printf "¿Deseas continuar de todas formas? (s/n): "
-		read cont_bios
-		case $cont_bios in
-			[Ss]) break ;;
-			[Nn])
-				printf "${red}Abortando por eleccion del usuario.${end}\n"
-				exit 1
-				;;
-			*)
-				printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"; sleep 1; printf "\r\e[K"
-				;;
-		esac
-	done
+	if ! confirmar "Deseas continuar de todas formas?"; then
+		printf "${red}Abortando por eleccion del usuario.${end}\n"
+		exit 1
+	fi
 fi
 pausa
