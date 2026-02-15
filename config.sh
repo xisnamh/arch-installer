@@ -18,9 +18,13 @@ T_WAIT=5	# Tiempo para esperas de red/sincronizacion
 # FUNCION ENCABEZADO
 menu_header() {
 	clear
+	printf "\n"
+	printf "\n"
 	printf "${purple}==========================================${end}\n"
 	printf "${purple}         INSTALADOR INTERACTIVO ARCH        ${end}\n"
-	printf "${purple}==========================================${end}\n\n"
+	printf "${purple}==========================================${end}\n"
+	printf "\n"
+	printf "\n"
 }
 
 # FUNCION TITULOS CENTRADOS
