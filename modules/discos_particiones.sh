@@ -30,13 +30,6 @@ while true; do
 	while true; do
 		menu_header
 		print_title "DISCO SELECCIONADO: $DISCO"
-		
-		# Modelo inteligente (con detección de VM)
-		MODELO_DISCO=$(lsblk -d -n -o MODEL "$DISCO" | xargs)
-		if [ -z "$MODELO_DISCO" ] && [ "$IS_VM" = true ]; then
-			MODELO_DISCO="Maquina Virtual ($(systemd-detect-virt | tr '[:lower:]' '[:upper:]'))"
-		fi
-		[ -n "$MODELO_DISCO" ] && printf "${blue}Modelo:${end} $MODELO_DISCO\n"
 
 		printf "${blue}Detalles del dispositivo:${end}\n"
 		if [ "$IS_VM" = true ]; then
@@ -47,12 +40,12 @@ while true; do
 		printf "\n"
 		
 		printf "Selecciona la operacion:\n"
-		printf " 1) Ver salud/info (SMART/NVMe)\n"
-		printf " 2) Borrado de fabrica (NVMe Sanitize)\n"
-		printf " 3) Limpiar firmas y tablas (wipefs/zap-all)\n"
+		printf " 1) Ver salud/info\n"
+		printf " 2) Borrado de fabrica\n"
+		printf " 3) Limpiar firmas y tablas\n"
 		printf " 4) Particionar con cfdisk\n"
-		printf " 5) Abrir Terminal (Modo Manual)\n"
-		printf " 6) Volver atras (Cambiar disco)\n"
+		printf " 5) Modo Manual - Shell\n"
+		printf " 6) Volver atras\n"
 		printf " 7) Finalizar y continuar\n"
 
 		pregunta
@@ -107,14 +100,11 @@ while true; do
 			5)
 				menu_header
 				print_title "MODO MANUAL: TERMINAL"
-				printf "${yellow}[!] Entrando en shell interactiva sobre: $DISCO${end}\n"
-				printf "${cyan}[i] Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
+				printf "${red}[!] Entrando en shell interactiva.${end}\n"
+				printf "${silver}[i] Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
 				
-				# Abrimos bash. El prompt personalizado ayuda a saber que estamos en modo manual.
-				PS1="(MODO-MANUAL) \u@archiso \w \$ " /bin/bash --norc
-				
-				printf "\n${green}[+] Has salido de la terminal.${end}\n"
-				pausa  # Aquí te pregunta si has acabado para volver al menú
+				# Abrimos shell.
+				PS1="$ " /bin/bash --norc
 				;;
 			6)
 				VOLVER_AL_PASO_1=true
