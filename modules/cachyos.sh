@@ -15,9 +15,9 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 
 	# Mensaje de Advertencia
 	print_warning_box "AVISO IMPORTANTE"
-	printf "${yellow}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
-	printf "${yellow}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
-	printf "${yellow}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
+	printf "${orange}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
+	printf "${orange}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
+	printf "${orange}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
 	print_warning_end
 	printf "\n"
 
