@@ -14,8 +14,15 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "\n\n"
 
 	# Mensaje de Advertencia
+	# Mensaje de Advertencia
+printf "${red}───────────────── AVISO IMPORTANTE ─────────────────${end}\n"
+printf "${yellow}  󱈸 ${end}${cyan}REPOS CACHYOS:${end} Añadir solo para kernels y librerías.\n"
+printf "${yellow}  󱈸 ${end}${cyan}LIBRERÍAS:${end} Evitar 'zlib-ng-compat' fuera de chroot.\n"
+printf "${yellow}  󱈸 ${end}${cyan}PAQUETES:${end} No instalar todavía (esperar al chroot).\n"
+printf "${red}────────────────────────────────────────────────────${end}\n"
+printf "\n"
 	printf "${red}!!!!!!!!!!!!!!!!!! ADVERTENCIA !!!!!!!!!!!!!!!!!!${end}\n"
-	printf "${cyan}- Solo anadir los repos cachyos para instalar, en pacstrap, los kernels y las librerias de cachyos.${end}\n"
+	printf "${cyan}- Solo añadir los repositorios cachyos para instalar, en pacstrap, los kernels y las librerias de cachyos.${end}\n"
 	printf "${cyan}- No instalar la libreria zlib-ng-compat, todavia estamos fuera del entorno chroot.${end}\n"
 	printf "${cyan}- No instalar los paquetes, todavia estamos fuera del entorno chroot.${end}\n"
 	printf "\n"
