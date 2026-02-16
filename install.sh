@@ -13,14 +13,14 @@ source ./modules/fuente.sh
 menu_header
 source ./modules/discos_particiones.sh
 
-source ./modules/preconfiguracion.sh
+#source ./modules/preconfiguracion.sh
 
-source ./modules/red.sh
+#source ./modules/red.sh
 
-source ./modules/reflector.sh
+#source ./modules/reflector.sh
 
-source ./modules/cachyos.sh
+#source ./modules/cachyos.sh
 
-source ./modules/llaves.sh
+#source ./modules/llaves.sh
 
-source ./modules/discos_particiones.sh
+#source ./modules/discos_particiones.sh

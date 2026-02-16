@@ -26,7 +26,7 @@ menu_header() {
 	printf "\n"
 	printf "${purple}===============================================${end}\n"
 	printf "\n"
-	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
+	print_title "INSTALADOR INTERACTIVO ARCH"
 	printf "\n"
 	printf "${purple}===============================================${end}\n"
 	printf "\n"
@@ -135,4 +135,10 @@ pausa() {
 	read -r
 }
 
+# DETECCION ENTORNO VIRTUAL
+export IS_VM=false
+if systemd-detect-virt > /dev/null 2>&1; then
+	export IS_VM=true
+	export VIRT_TYPE=$(systemd-detect-virt)
+fi
 

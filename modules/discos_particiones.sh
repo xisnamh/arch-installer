@@ -30,6 +30,18 @@ while true; do
 	while true; do
 		menu_header
 		print_title "DISCO SELECCIONADO: $DISCO"
+		
+		# Mostramos detalles específicos del disco elegido
+		printf "${blue}Detalles del dispositivo:${end}\n"
+		if [ "$IS_VM" = true ]; then
+			# En VM nos interesa saber el VENDOR (VBOX, VMware) y el tipo de transporte
+			lsblk -p -o NAME,SIZE,MODEL,VENDOR,TRAN | grep -E "NAME|$DISCO"
+		else
+			# En físico nos interesa más el modelo real y si es SSD/HDD
+			lsblk -p -o NAME,SIZE,MODEL,ROTA,TRAN | grep -E "NAME|$DISCO"
+		fi
+		printf "\n"
+		
 		printf "Selecciona la operacion:\n"
 		printf " 1) Ver salud/info (SMART/NVMe)\n"
 		printf " 2) Borrado de fabrica (NVMe Sanitize)\n"
@@ -50,15 +62,17 @@ while true; do
 					# Limpiamos pantalla para que la info de salud sea lo único que se vea
 					menu_header
 					print_title "SALUD NVME: $DISCO"
-					nvme smart-log "$DISCO"
+					nvme smart-log "$DISCO" 2>/dev/null || printf "${orange}[!] Nota: Log de salud NVMe no disponible.${end}\n"
 				else
 					pacman -S --needed smartmontools --noconfirm >/dev/null 2>&1
 					
 					menu_header
 					print_title "SALUD SMART: $DISCO"
-					# Añadimos -d ata o -d scsi si falla el auto-detect, 
-					# pero para evitar el error "unable to detect", forzamos el escaneo
-					smartctl -a "$DISCO" || printf "${orange}[!] Nota: SMART no disponible o no soportado en este disco virtual.${end}\n"
+					
+					# Redirigimos stderr (2) al limbo (/dev/null) para que no ensucie la pantalla
+					if ! smartctl -a "$DISCO" 2>/dev/null; then
+						printf "${orange}[!] Nota: SMART no disponible o no soportado en este disco.${end}\n"
+					fi
 				fi
 				pausa
 				;;
