@@ -8,13 +8,16 @@ cd "$(dirname "$0")"
 FONT_PATH="/usr/share/kbd/consolefonts/ter-u24n-nerd.psf.gz"
 
 if [ ! -f "$FONT_PATH" ]; then
-    printf "${yellow}[*] Preparando entorno visual...${end}\n"
-    # Descargamos solo la fuente de consola (PSF) que soporta iconos
-    # Esta es una versión de Terminus parcheada para TTY
-    curl -sL "https://github.com/terroo/font-terminus-nerd/raw/master/ter-u24n-nerd.psf.gz" -o "$FONT_PATH"
+    printf "${yellow}[*] Configurando entorno visual (Nerd Font)...${end}\n"
     
-    # Aplicamos la fuente
-    setfont ter-u24n-nerd
+    # Descarga con reintentos y soporte de certificados
+    if curl -fsSL --connect-timeout 5 "https://github.com/terroo/font-terminus-nerd/raw/master/ter-u24n-nerd.psf.gz" -o "$FONT_PATH"; then
+        setfont ter-u24n-nerd &>/dev/null
+        printf "${green}[+] Fuente aplicada correctamente.${end}\n"
+    else
+        printf "${red}[!] No se pudo descargar la fuente. Usando fuente estándar.${end}\n"
+        # Si falla la descarga, no intentamos setfont para evitar el error "Bad Input"
+    fi
     sleep 2
 fi
 
