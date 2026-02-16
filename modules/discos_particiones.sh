@@ -44,7 +44,7 @@ while true; do
 		printf " 2) Borrado de fabrica\n"
 		printf " 3) Limpiar firmas y tablas\n"
 		printf " 4) Particionar con cfdisk\n"
-		printf " 5) Modo Manual - Shell\n"
+		printf " 5) Modo Manual\n"
 		printf " 6) Volver atras\n"
 		printf " 7) Finalizar y continuar\n"
 
@@ -88,10 +88,10 @@ while true; do
 				;;
 			3)
 				printf "${red}[!] Limpiando tablas de particiones en $DISCO...${end}\n"
-				pacman -S --needed gptfdisk --noconfirm
+				pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
-				printf "${green}[+] Disco limpio.${end}\n"
+				printf "${green}[+] Disco limpiado con exito.${end}\n"
 				pausa
 				;;
 			4)

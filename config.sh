@@ -17,6 +17,14 @@ export end="\e[0m"
 export green="$lime"
 export yellow="$gold"
 
+# ICONOS
+ico_ok=$(printf '\u2714')	# ✔
+ico_error=$(printf '\u2718')	# ✖
+ico_warning=$(printf '\u26a0')	# ⚠
+ico_info=$(printf '\u2139')	# ℹ
+ico_input=$(printf '\u276f')	# ❯
+ico_next=$(printf '\u00bb')	# »
+
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores (Opcion no valida)
 T_INFO=2	# Tiempo para mensajes informativos o de exito
@@ -73,7 +81,6 @@ print_warning_box() {
 	printf "${end}\n"
 }
 
-# FUNCION CIERRE AVISO IMPORTANTE
 print_warning_end() {
 	local ancho=47
 	printf "${red}"
@@ -98,7 +105,6 @@ print_info_box() {
 	printf "${end}\n"
 }
 
-# FUNCION CIERRE AVISO INFORMATIVO
 print_info_end() {
 	local ancho=47
 	printf "${gold}"
@@ -106,9 +112,9 @@ print_info_end() {
 	printf "${end}\n"
 }
 
-# FUNCION PEDIR OPCIONES
+# FUNCION OPCIONES
 pregunta() {
-	printf "\n${white}Elige una opcion:${end} "
+	printf "\n${white}${ico_input} Elige una opcion:${end} "
 }
 
 # FUNCION VALIDACION
@@ -116,24 +122,24 @@ confirmar() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${yellow}$pregunta (s/n): ${end}"
+		printf "${yellow}${ico_warning} $pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\e[1A\e[K${red}[!] Opcion no valida.${end}"
+				printf "\e[1A\e[K${red}${ico_error} Opcion no valida.${end}"
 				sleep 1; printf "\r\e[K"
 				;;
 		esac
 	done
 }
 
-# UTILIDAD AUXILIAR
+# FUNCION CONTINUAR
 pausa() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}>>> Presiona [Intro] para continuar...${end}\n"
+	printf "\n${blue}${ico_next} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
