@@ -1,21 +1,19 @@
 #!/bin/bash
 
-# COLORES
-green="\e[32m"
-red="\e[31m"
-blue="\e[34m"
-yellow="\e[33m"
-purple="\e[35m"
-cyan="\e[36m"
-white="\e[37m"
-end="\e[0m"
-
-# COLORES AMPLIADOS
-orange="\e[38;5;208m"
-pink="\e[38;5;211m"
-soft_blue="\e[38;5;81m"
-lime="\e[38;5;118m"
-gray="\e[38;5;244m"
+# COLORES ANSI
+export purple="\e[38;5;141m"	# Púrpura pastel (Encabezados)
+export cyan="\e[38;5;81m"	# Azul cielo/Cian (Títulos)
+export red="\e[38;5;196m"	# Rojo vibrante (Alertas críticas)
+export orange="\e[38;5;208m"	# Naranja puro (Avisos importantes)
+export lime="\e[38;5;118m"	# Verde lima (Éxitos)
+export gold="\e[38;5;214m"	# Oro/Amarillo (Instrucciones)
+export blue="\e[38;5;33m"	# Azul eléctrico (Mensajes info)
+export white="\e[38;5;255m"	# Blanco puro
+export gray="\e[38;5;244m"	# Gris (Texto secundario)
+export end="\e[0m"
+# COMPATIBILIDAD COLORES CON TUS SCRIPTS ANTIGUOS
+export green="$lime"
+export yellow="$gold"
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores (Opcion no valida)
@@ -68,7 +66,7 @@ print_warning_box() {
 	# Imprimimos la línea decorativa con el texto separado por espacios
 	printf "${red}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${yellow}%s${red}" "$texto"
+	printf "${orange}%s${red}" "$texto"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -91,9 +89,9 @@ print_info_box() {
 	local guiones_izq=$(( total_guiones / 2 ))
 	local guiones_der=$(( ancho - len - guiones_izq ))
 
-	printf "${orange}"
+	printf "${gold}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${yellow}%s${green}" "$texto"
+	printf "${orange}%s${gold}" "$texto"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -101,7 +99,7 @@ print_info_box() {
 # FUNCION CIERRE AVISO INFORMATIVO
 print_info_end() {
 	local ancho=47
-	printf "${orange}"
+	printf "${gold}"
 	printf '─%.0s' $(seq 1 $ancho)
 	printf "${end}\n"
 }
