@@ -49,7 +49,7 @@ print_title() {
 
 # FUNCION SUBTITULOS O AVISOS
 print_warning_box() {
-	local texto="$1"
+	local texto=" $1 " # Añadimos un espacio antes y después del texto
 	local ancho=47
 	local len=${#texto}
 	
@@ -58,7 +58,7 @@ print_warning_box() {
 	local guiones_izq=$(( total_guiones / 2 ))
 	local guiones_der=$(( ancho - len - guiones_izq ))
 
-	# Imprimimos la línea decorativa con el texto en medio
+	# Imprimimos la línea decorativa con el texto separado por espacios
 	printf "${red}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
 	printf "${yellow}%s${red}" "$texto"
