@@ -35,10 +35,10 @@ while true; do
 		printf "${blue}Detalles del dispositivo:${end}\n"
 		if [ "$IS_VM" = true ]; then
 			# En VM nos interesa saber el VENDOR (VBOX, VMware) y el tipo de transporte
-			lsblk -p -o NAME,SIZE,MODEL,VENDOR,TRAN | grep -E "NAME|$DISCO"
+			lsblk -p -o NAME,SIZE,TYPE,MODEL,VENDOR,TRAN | grep -E "NAME|$DISCO" | column -t
 		else
 			# En físico nos interesa más el modelo real y si es SSD/HDD
-			lsblk -p -o NAME,SIZE,MODEL,ROTA,TRAN | grep -E "NAME|$DISCO"
+			lsblk -p -o NAME,SIZE,TYPE,MODEL,ROTA,TRAN | grep -E "NAME|$DISCO" | column -t
 		fi
 		printf "\n"
 		
