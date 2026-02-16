@@ -20,7 +20,9 @@ menu_header() {
 	clear
 	printf "\n"
 	printf "${purple}===============================================${end}\n"
+	printf "\n"
 	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
+	printf "\n"
 	printf "${purple}===============================================${end}\n"
 	printf "\n"
 	printf "\n"
