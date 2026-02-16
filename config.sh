@@ -66,6 +66,14 @@ print_warning_box() {
 	printf "${end}\n"
 }
 
+# FUNCION CIERRE DE AVISOS
+print_warning_end() {
+	local ancho=47
+	printf "${red}"
+	printf '─%.0s' $(seq 1 $ancho)
+	printf "${end}\n"
+}
+
 # FUNCION PEDIR OPCIONES
 pregunta() {
 	printf "\n${white}Elige una opcion:${end} "

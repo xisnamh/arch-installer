@@ -18,7 +18,7 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "${yellow}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
 	printf "${yellow}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
 	printf "${yellow}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
-	printf "${red}────────────────────────────────────────────────────${end}\n"
+	print_warning_end
 	printf "\n"
 
 	printf "${yellow}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
@@ -35,9 +35,9 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "${yellow}[*] Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n"
 	print_title "INSTRUCCIONES DE CONFIGURACION"
-	printf "${white}- Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
-	printf "${white}- Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
-	printf "${white}- Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
+	printf "${white}• Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
+	printf "${white}• Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
+	printf "${white}• Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
 	pausa
 
 	# Bucle de edicion manual con validacion mediante la nueva funcion
