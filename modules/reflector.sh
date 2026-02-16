@@ -8,16 +8,16 @@ while true; do
 	printf "${yellow}[*] Iniciando Reflector en modo detallado...${end}\n"
 
 	if reflector --verbose --country France --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; then
-		printf "\n${green}[+] Proceso completado. Mirrorlist guardado con exito.${end}\n"
+		printf "\n${green}[+] Optimizacion de espejos finalizada con exito.${end}\n"
 		pausa
 		break
 	else
-		printf "\n${red}[!] Proceso fallido. Mirrorlist no pudo guardarse.${end}\n"
+		printf "\n${red}[!] Optimizacion de espejos finalizada con error.${end}\n"
 		
-		if confirmar "Deseas reintentar la optimizacion?"; then
+		if confirmar "Deseas reintentar la optimizacion de espejos?"; then
 			continue
 		else
-			printf "\n${blue}[!] Continuando con el script a pesar del fallo...${end}\n"
+			printf "\n${blue}[!] Optimizacion de espejos omitida por el usuario.${end}\n"
 			pausa
 			break
 		fi

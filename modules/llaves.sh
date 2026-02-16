@@ -24,5 +24,5 @@ pacman -Syy
 printf "${green}[+] Bases de datos sincronizadas.${end}\n"
 pausa
 
-printf "\n${green}[+] PROCESO COMPLETO: Llaveros y repositorios listos.${end}\n"
+printf "\n${green}[+] Configuracion de Llaveros finalizada con exito.${end}\n"
 pausa

@@ -35,7 +35,7 @@ while true; do
 		printf " 2) Borrado de fabrica (NVMe Sanitize)\n"
 		printf " 3) Limpiar firmas y tablas (wipefs/zap-all)\n"
 		printf " 4) Particionar con cfdisk\n"
-		printf " 5) Volver atras (Cambiar de disco)\n"
+		printf " 5) Volver atras\n"
 		printf " 6) Finalizar y continuar\n"
 
 		pregunta
@@ -44,11 +44,21 @@ while true; do
 		case $disco_opt in
 			1)
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					pacman -S --needed nvme-cli --noconfirm
+					# Instalamos silenciosamente redireccionando salida estándar y errores
+					pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
+					
+					# Limpiamos pantalla para que la info de salud sea lo único que se vea
+					menu_header
+					print_title "SALUD NVME: $DISCO"
 					nvme smart-log "$DISCO"
 				else
-					pacman -S --needed smartmontools --noconfirm
-					smartctl -a "$DISCO"
+					pacman -S --needed smartmontools --noconfirm >/dev/null 2>&1
+					
+					menu_header
+					print_title "SALUD SMART: $DISCO"
+					# Añadimos -d ata o -d scsi si falla el auto-detect, 
+					# pero para evitar el error "unable to detect", forzamos el escaneo
+					smartctl -a "$DISCO" || printf "${orange}[!] Nota: SMART no disponible o no soportado en este disco virtual.${end}\n"
 				fi
 				pausa
 				;;
