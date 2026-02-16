@@ -84,9 +84,9 @@ print_info_box() {
 	local guiones_izq=$(( total_guiones / 2 ))
 	local guiones_der=$(( ancho - len - guiones_izq ))
 
-	printf "${blue}"
+	printf "${green}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${white}%s${blue}" "$texto"
+	printf "${yellow}%s${green}" "$texto"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -94,7 +94,7 @@ print_info_box() {
 # FUNCION CIERRE AVISO INFORMATIVO
 print_info_end() {
 	local ancho=47
-	printf "${blue}"
+	printf "${green}"
 	printf '─%.0s' $(seq 1 $ancho)
 	printf "${end}\n"
 }
