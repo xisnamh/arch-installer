@@ -34,10 +34,12 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 
 	printf "${yellow}[*] Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n"
-	print_title "INSTRUCCIONES DE CONFIGURACION"
+	print_info_box "INSTRUCCIONES DE CONFIGURACION"
 	printf "${white}• Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
 	printf "${white}• Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
 	printf "${white}• Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
+	print_info_end
+	
 	pausa
 
 	# Bucle de edicion manual con validacion mediante la nueva funcion

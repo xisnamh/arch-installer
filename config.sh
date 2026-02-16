@@ -47,7 +47,7 @@ print_title() {
 	printf "\n"
 }
 
-# FUNCION SUBTITULOS O AVISOS
+# FUNCION AVISO IMPORTANTE
 print_warning_box() {
 	local texto=" $1 " # Añadimos un espacio antes y después del texto
 	local ancho=47
@@ -66,10 +66,35 @@ print_warning_box() {
 	printf "${end}\n"
 }
 
-# FUNCION CIERRE DE AVISOS
+# FUNCION CIERRE AVISO IMPORTANTE
 print_warning_end() {
 	local ancho=47
 	printf "${red}"
+	printf '─%.0s' $(seq 1 $ancho)
+	printf "${end}\n"
+}
+
+# FUNCION AVISO INFORMATIVO
+print_info_box() {
+	local texto=" $1 "
+	local ancho=47
+	local len=${#texto}
+	
+	local total_guiones=$(( ancho - len ))
+	local guiones_izq=$(( total_guiones / 2 ))
+	local guiones_der=$(( ancho - len - guiones_izq ))
+
+	printf "${blue}"
+	printf '─%.0s' $(seq 1 $guiones_izq)
+	printf "${white}%s${blue}" "$texto"
+	printf '─%.0s' $(seq 1 $guiones_der)
+	printf "${end}\n"
+}
+
+# FUNCION CIERRE AVISO INFORMATIVO
+print_info_end() {
+	local ancho=47
+	printf "${blue}"
 	printf '─%.0s' $(seq 1 $ancho)
 	printf "${end}\n"
 }
