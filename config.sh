@@ -43,7 +43,8 @@ print_title() {
 		# Generamos los espacios dinamicamente con tabs para la indentacion
 		printf "${cyan}%*s%s%*s${end}\n" "$esp_izq" "" "$texto" "$((ancho - len - esp_izq))" ""
 	fi
-	printf "${cyan}===============================================${end}\n"
+	#printf "${cyan}===============================================${end}\n"
+	printf "${purple}───────────────────────────────────────────────${end}"
 }
 
 # FUNCION PEDIR OPCIONES
