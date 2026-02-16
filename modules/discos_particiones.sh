@@ -31,15 +31,18 @@ while true; do
 		menu_header
 		print_title "DISCO SELECCIONADO: $DISCO"
 		
-		# Mostramos detalles específicos del disco elegido
+		# Modelo inteligente (con detección de VM)
+		MODELO_DISCO=$(lsblk -d -n -o MODEL "$DISCO" | xargs)
+		if [ -z "$MODELO_DISCO" ] && [ "$IS_VM" = true ]; then
+			MODELO_DISCO="Maquina Virtual ($(systemd-detect-virt | tr '[:lower:]' '[:upper:]'))"
+		fi
+		[ -n "$MODELO_DISCO" ] && printf "${blue}Modelo:${end} $MODELO_DISCO\n"
+
 		printf "${blue}Detalles del dispositivo:${end}\n"
 		if [ "$IS_VM" = true ]; then
-			# Disco maquina virtual
 			lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		else
-			# Disco fisico ssd/hdd
 			lsblk -p -o NAME,SIZE,TYPE,TRAN,ROTA,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
-		
 		fi
 		printf "\n"
 		
@@ -48,8 +51,9 @@ while true; do
 		printf " 2) Borrado de fabrica (NVMe Sanitize)\n"
 		printf " 3) Limpiar firmas y tablas (wipefs/zap-all)\n"
 		printf " 4) Particionar con cfdisk\n"
-		printf " 5) Volver atras\n"
-		printf " 6) Finalizar y continuar\n"
+		printf " 5) Abrir Terminal (Modo Manual)\n"
+		printf " 6) Volver atras (Cambiar disco)\n"
+		printf " 7) Finalizar y continuar\n"
 
 		pregunta
 		read disco_opt
@@ -57,30 +61,21 @@ while true; do
 		case $disco_opt in
 			1)
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					# Instalamos silenciosamente
 					pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
-					
 					menu_header
 					print_title "SALUD NVME: $DISCO"
-					
-					# Redirigimos TODO (salida y errores) al limbo
 					if ! nvme smart-log "$DISCO" >/dev/null 2>&1; then
 						printf "${orange}[!] Nota: Log de salud NVMe no disponible.${end}\n"
 					else
-						# Si quieres ver la info si el comando funciona, quita el >/dev/null de aquí:
 						nvme smart-log "$DISCO"
 					fi
 				else
 					pacman -S --needed smartmontools --noconfirm >/dev/null 2>&1
-					
 					menu_header
 					print_title "SALUD SMART: $DISCO"
-					
-					# Aquí está el truco: Redirigimos >/dev/null 2>&1 para silenciar todo
 					if ! smartctl -H "$DISCO" >/dev/null 2>&1; then
-						printf "${orange}[!] Nota: SMART no disponible o no soportado en este disco.${end}\n"
+						printf "${orange}[!] Nota: SMART no disponible o no soportado.${end}\n"
 					else
-						# Si el disco soporta SMART, mostramos el resumen
 						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
 					fi
 				fi
@@ -110,10 +105,22 @@ while true; do
 				cfdisk "$DISCO"
 				;;
 			5)
+				menu_header
+				print_title "MODO MANUAL: TERMINAL"
+				printf "${yellow}[!] Entrando en shell interactiva sobre: $DISCO${end}\n"
+				printf "${cyan}[i] Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
+				
+				# Abrimos bash. El prompt personalizado ayuda a saber que estamos en modo manual.
+				PS1="(MODO-MANUAL) \u@archiso \w \$ " /bin/bash --norc
+				
+				printf "\n${green}[+] Has salido de la terminal.${end}\n"
+				pausa  # Aquí te pregunta si has acabado para volver al menú
+				;;
+			6)
 				VOLVER_AL_PASO_1=true
 				break
 				;;
-			6)
+			7)
 				menu_header
 				print_title "RESUMEN FINAL"
 				lsblk "$DISCO"
