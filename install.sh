@@ -3,19 +3,19 @@
 # ASEGURAR QUE LAS RUTAS RELATIVAS FUNCIONEN (./MODULES)
 cd "$(dirname "$0")"
 
-# DESCARGAR FUENTE  ---
+# DESCARGAR FUENTE NERD PARCHEADA
 # Definimos la ruta de la fuente parcheada
 FONT_NAME="ter-u24n-nerd.psf.gz"
 FONT_PATH="/usr/share/kbd/consolefonts/$FONT_NAME"
-# URL directa del repositorio de Terroo (formato PSF para TTY)
 URL="https://raw.githubusercontent.com/terroo/fonts/main/terminus-nerd/ter-u24n-nerd.psf.gz"
 
 if [ ! -f "$FONT_PATH" ]; then
-	# Descarga totalmente silenciosa
+	# Descarga silenciosa
 	curl -fsSL "$URL" -o "$FONT_PATH" &>/dev/null
 	if [ -f "$FONT_PATH" ]; then
 		setfont ter-u24n-nerd &>/dev/null
 	fi
+fi
 
 # CARGAR CONFIGURACION Y COLORES
 source ./config.sh
