@@ -13,18 +13,12 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	# Dos saltos de linea antes de la advertencia
 	printf "\n\n"
 
-	# Mensaje de Advertencia
-	# Mensaje de Advertencia
-	printf "${red}───────────────── AVISO IMPORTANTE ─────────────────${end}\n"
-	printf "${yellow}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerías.\n"
-	printf "${yellow}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
-	printf "${yellow}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot).\n"
-	printf "${red}────────────────────────────────────────────────────${end}\n"
-	printf "\n"
-	printf "${red}!!!!!!!!!!!!!!!!!! ADVERTENCIA !!!!!!!!!!!!!!!!!!${end}\n"
-	printf "${cyan}- Solo añadir los repositorios cachyos para instalar, en pacstrap, los kernels y las librerias de cachyos.${end}\n"
-	printf "${cyan}- No instalar la libreria zlib-ng-compat, todavia estamos fuera del entorno chroot.${end}\n"
-	printf "${cyan}- No instalar los paquetes, todavia estamos fuera del entorno chroot.${end}\n"
+# Mensaje de Advertencia
+	print_warning_box "AVISO IMPORTANTE"
+	printf "\t${yellow}󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para kernels y librerias.\n"
+	printf "\t${yellow}󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar (fuera de chroot).\n"
+	printf "\t${yellow}󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar (fuera de chroot).\n"
+	printf "\t${red}─────────────────────────────────────────────${end}\n"
 	printf "\n"
 
 	printf "${yellow}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
@@ -40,7 +34,7 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 
 	printf "${yellow}[*] Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n"
-	printf "${cyan}INSTRUCCIONES DE CONFIGURACION:${end}\n"
+	print_title "INSTRUCCIONES DE CONFIGURACION"
 	printf "${white}- Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
 	printf "${white}- Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
 	printf "${white}- Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"

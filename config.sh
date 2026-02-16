@@ -47,6 +47,27 @@ print_title() {
 	printf "\n"
 }
 
+# FUNCION SUBTITULOS O AVISOS
+print_warning_box() {
+	local texto="$1"
+	local ancho=45
+	
+	printf "${red}┌"
+	printf '─%.0s' $(seq 1 $ancho)
+	printf "┐${end}\n"
+	
+	# Centrado del texto dentro del marco
+	local len=${#texto}
+	local esp=$(( (ancho - len) / 2 ))
+	
+	# Usamos %*s para los espacios internos de centrado
+	printf "${red}│${end}${yellow}%*s%s%*s${end}${red}│${end}\n" "$esp" "" "$texto" "$((ancho - len - esp))" ""
+	
+	printf "${red}└"
+	printf '─%.0s' $(seq 1 $ancho)
+	printf "┘${end}\n"
+}
+
 # FUNCION PEDIR OPCIONES
 pregunta() {
 	printf "\n${white}Elige una opcion:${end} "
