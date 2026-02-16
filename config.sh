@@ -19,9 +19,9 @@ T_WAIT=5	# Tiempo para esperas de red/sincronizacion
 menu_header() {
 	clear
 	printf "\n"
-	printf "${purple}==========================================${end}\n"
-	printf "${purple}         INSTALADOR INTERACTIVO ARCH        ${end}\n"
-	printf "${purple}==========================================${end}\n"
+	printf "${purple}===============================================${end}\n"
+	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
+	printf "${purple}===============================================${end}\n"
 	printf "\n"
 	printf "\n"
 }
@@ -29,7 +29,7 @@ menu_header() {
 # FUNCION TITULOS CENTRADOS
 print_title() {
 	local texto="$1"
-	local ancho=42
+	local ancho=47
 	local len=${#texto}
 	
 	# Si el texto es mas largo que el ancho, lo recortamos o ajustamos
@@ -41,7 +41,7 @@ print_title() {
 		# Generamos los espacios dinamicamente con tabs para la indentacion
 		printf "${cyan}%*s%s%*s${end}\n" "$esp_izq" "" "$texto" "$((ancho - len - esp_izq))" ""
 	fi
-	printf "${cyan}==========================================${end}\n"
+	printf "${cyan}===============================================${end}\n"
 }
 
 # FUNCION PEDIR OPCIONES
