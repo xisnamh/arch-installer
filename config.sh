@@ -10,7 +10,9 @@ export gold="\e[38;5;214m"	# Oro/Amarillo (Instrucciones)
 export blue="\e[38;5;33m"	# Azul eléctrico (Mensajes info)
 export white="\e[38;5;255m"	# Blanco puro
 export gray="\e[38;5;244m"	# Gris (Texto secundario)
+export silver="\e[38;5;250m"	# Gris platino suave para tablas
 export end="\e[0m"
+
 # COMPATIBILIDAD COLORES CON TUS SCRIPTS ANTIGUOS
 export green="$lime"
 export yellow="$gold"
