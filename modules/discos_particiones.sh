@@ -32,7 +32,6 @@ while true; do
 		print_title "DISCO SELECCIONADO: $DISCO"
 		
 		# Mostramos detalles específicos del disco elegido
-		printf "${blue}Modelo:${end} $(lsblk -d -n -o MODEL "$DISCO")\n"
 		printf "${blue}Detalles del dispositivo:${end}\n"
 		if [ "$IS_VM" = true ]; then
 			# Disco maquina virtual
@@ -58,22 +57,31 @@ while true; do
 		case $disco_opt in
 			1)
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					# Instalamos silenciosamente redireccionando salida estándar y errores
+					# Instalamos silenciosamente
 					pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
 					
-					# Limpiamos pantalla para que la info de salud sea lo único que se vea
 					menu_header
 					print_title "SALUD NVME: $DISCO"
-					nvme smart-log "$DISCO" 2>/dev/null || printf "${orange}[!] Nota: Log de salud NVMe no disponible.${end}\n"
+					
+					# Redirigimos TODO (salida y errores) al limbo
+					if ! nvme smart-log "$DISCO" >/dev/null 2>&1; then
+						printf "${orange}[!] Nota: Log de salud NVMe no disponible.${end}\n"
+					else
+						# Si quieres ver la info si el comando funciona, quita el >/dev/null de aquí:
+						nvme smart-log "$DISCO"
+					fi
 				else
 					pacman -S --needed smartmontools --noconfirm >/dev/null 2>&1
 					
 					menu_header
 					print_title "SALUD SMART: $DISCO"
 					
-					# Redirigimos stderr (2) al limbo (/dev/null) para que no ensucie la pantalla
-					if ! smartctl -a "$DISCO" 2>/dev/null; then
+					# Aquí está el truco: Redirigimos >/dev/null 2>&1 para silenciar todo
+					if ! smartctl -H "$DISCO" >/dev/null 2>&1; then
 						printf "${orange}[!] Nota: SMART no disponible o no soportado en este disco.${end}\n"
+					else
+						# Si el disco soporta SMART, mostramos el resumen
+						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
 					fi
 				fi
 				pausa
