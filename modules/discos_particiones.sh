@@ -27,21 +27,21 @@ while true; do
 	# --- PASO 3: MENU DE ACCIONES ---
 	VOLVER_AL_PASO_1=false
 
-while true; do
+	while true; do
 		menu_header
 		print_title "DISCO SELECCIONADO: $DISCO"
 		
+		# Mostramos detalles específicos del disco elegido
+		printf "${blue}Modelo:${end} $(lsblk -d -n -o MODEL "$DISCO")\n"
 		printf "${blue}Detalles del dispositivo:${end}\n"
-		
 		if [ "$IS_VM" = true ]; then
-			# Generamos la salida + Usamos 'sed' para pintar la primera línea (cabecera) del color suave + column -t -o '    ' para separar con 4 espacios
-			lsblk -p -o NAME,SIZE,TYPE,FSTYPE,MODEL,VENDOR,TRAN,MOUNTPOINTS | grep -E "NAME|$DISCO" | \
-			sed "1s/.*/${silver}&${end}/" | column -t -o '    '
+			# Disco maquina virtual
+			lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		else
-			lsblk -p -o NAME,SIZE,TYPE,FSTYPE,MODEL,ROTA,TRAN,MOUNTPOINTS | grep -E "NAME|$DISCO" | \
-			sed "1s/.*/${silver}&${end}/" | column -t -o '    '
-		fi
+			# Disco fisico ssd/hdd
+			lsblk -p -o NAME,SIZE,TYPE,TRAN,ROTA,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		
+		fi
 		printf "\n"
 		
 		printf "Selecciona la operacion:\n"
