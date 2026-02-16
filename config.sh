@@ -66,7 +66,7 @@ print_warning_box() {
 	# Imprimimos la línea decorativa con el texto separado por espacios
 	printf "${red}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${orange}%s${red}" "$texto"
+	printf "${red}%s${red}" "$texto"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -91,7 +91,7 @@ print_info_box() {
 
 	printf "${gold}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${orange}%s${gold}" "$texto"
+	printf "${gold}%s${gold}" "$texto"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }

@@ -15,9 +15,9 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 
 	# Mensaje de Advertencia
 	print_warning_box "AVISO IMPORTANTE"
-	printf "${orange}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
-	printf "${orange}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
-	printf "${orange}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
+	printf "${red}  󱈸 ${end}${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
+	printf "${red}  󱈸 ${end}${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
+	printf "${red}  󱈸 ${end}${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
 	print_warning_end
 	printf "\n"
 
@@ -38,9 +38,9 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "\n"
 	
 	print_info_box "INSTRUCCIONES DE CONFIGURACION"
-	printf "${white}• Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
-	printf "${white}• Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
-	printf "${white}• Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
+	printf "${gold}  󱈸 ${end}${white}Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
+	printf "${gold}  󱈸 ${end}${white}Mueve los repos [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
+	printf "${gold}  󱈸 ${end}${white}Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
 	print_info_end
 	
 	pausa
