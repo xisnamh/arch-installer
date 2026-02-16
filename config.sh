@@ -50,22 +50,20 @@ print_title() {
 # FUNCION SUBTITULOS O AVISOS
 print_warning_box() {
 	local texto="$1"
-	local ancho=45
-	
-	printf "${red}┌"
-	printf '─%.0s' $(seq 1 $ancho)
-	printf "┐${end}\n"
-	
-	# Centrado del texto dentro del marco
+	local ancho=47
 	local len=${#texto}
-	local esp=$(( (ancho - len) / 2 ))
 	
-	# Usamos %*s para los espacios internos de centrado
-	printf "${red}│${end}${yellow}%*s%s%*s${end}${red}│${end}\n" "$esp" "" "$texto" "$((ancho - len - esp))" ""
-	
-	printf "${red}└"
-	printf '─%.0s' $(seq 1 $ancho)
-	printf "┘${end}\n"
+	# Calculamos cuántos guiones poner a cada lado
+	local total_guiones=$(( ancho - len ))
+	local guiones_izq=$(( total_guiones / 2 ))
+	local guiones_der=$(( ancho - len - guiones_izq ))
+
+	# Imprimimos la línea decorativa con el texto en medio
+	printf "${red}"
+	printf '─%.0s' $(seq 1 $guiones_izq)
+	printf "${yellow}%s${red}" "$texto"
+	printf '─%.0s' $(seq 1 $guiones_der)
+	printf "${end}\n"
 }
 
 # FUNCION PEDIR OPCIONES
