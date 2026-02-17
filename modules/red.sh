@@ -112,21 +112,20 @@ while true; do
 					1)
 						menu_header
 						print_title "GUIA DE COMANDOS IWCTL"
-						${ico_ok} ${green}
-						printf "${icon_line}  Dispositivos${end}\n"
+						printf "${icon_line}${silver}  Dispositivos${end}\n"
 						printf "   device list                                     - Lista tarjetas\n"
 						printf "   device <wlan> set-property Powered on | off     - ON/OFF tarjeta\n"
 						printf "   device <wlan> show                              - Detalles\n\n"
-						printf "${icon_line}  Escaneo y Estaciones${end}\n"
+						printf "${icon_line}${silver}  Escaneo y Estaciones${end}\n"
 						printf "   station list                                    - Dispositivos\n"
 						printf "   station <wlan> scan                             - Buscar (Obligatorio)\n"
 						printf "   station <wlan> get-networks                     - Ver SSIDs\n"
 						printf "   station <wlan> connect <SSID>                   - Conectar\n"
 						printf "   station <wlan> show                             - Ver IP y Señal\n\n"
-						printf "${icon_line}  Gestion de Redes Conocidas${end}\n"
+						printf "${icon_line}${silver}  Gestion de Redes Conocidas${end}\n"
 						printf "   known-networks list                             - Listar guardadas\n"
 						printf "   known-networks <SSID> forget                    - Borrar guardada\n\n"
-						printf "${icon_line}  Modos Especiales${end}\n"
+						printf "${icon_line}${silver}  Modos Especiales${end}\n"
 						printf "   ap <wlan> start-profile <nombre>                - Crear Punto Acceso\n"
 						printf "   ad-hoc <wlan> start <nombre> <pass>             - Punto a punto\n"
 						print_back
