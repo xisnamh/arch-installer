@@ -39,9 +39,8 @@ while true; do
 	setfont "$FONT" 2>/dev/null
 
 	# Fuerza a la TTY a refrescar el modo UTF-8
+	reset -e 2>/dev/null
 	unicode_start 2>/dev/null
-	echo -ne "\033%G" # Otra variante del printf para forzar UTF-8
-    	stty utf8        # Indica al driver de la terminal que use UTF-8
 
 	# Usamos la nueva funcion de confirmacion
 	if print_confirm "Te gusta este tamaño?"; then
