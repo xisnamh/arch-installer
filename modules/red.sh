@@ -132,7 +132,7 @@ while true; do
 						printf "   ap <wlan> start-profile <nombre>              - Crear Punto Acceso\n"
 						printf "   ad-hoc <wlan> start <nombre> <pass>             - Punto a punto\n"
 						printf "${blue}================================================================${end}\n"
-						pausa
+						volver
 						;;
 					2)
 						printf "${yellow}Entrando en iwctl... Escribe 'exit' para volver.${end}\n"
@@ -161,4 +161,4 @@ while true; do
 	esac
 done
 
-pausa
+continuar

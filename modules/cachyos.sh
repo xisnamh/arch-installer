@@ -22,12 +22,12 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "\n"
 
 	printf "${yellow}[!] A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
-	pausa
+	continuar
 
 	./cachyos-repo.sh
 
 	printf "\n${green}[+] El script oficial de CachyOS ha finalizado correctamente.${end}\n"
-	pausa
+	continuar
 
 	menu_header
 	print_title "CONFIGURACION DE CACHYOS"
@@ -43,7 +43,7 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	printf "${gold}  󱈸 ${end}${white}Deshabilita los repos [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
 	print_info_end
 	
-	pausa
+	continuar
 
 	# Bucle de edicion manual con validacion mediante la nueva funcion
 	while true; do
@@ -59,9 +59,9 @@ if confirmar "Deseas descargar e instalar los repositorios de CachyOS?"; then
 
 	printf "\n${green}[+] Configuracion de CachyOS finalizada con exito.${end}\n"
 	cd ..
-	pausa
+	continuar
 else
 	# Opcion si se responde que NO
 	printf "\n${green}[+] Configuracion de CachyOS omitida por el usuario.${end}\n"
-	pausa
+	continuar
 fi

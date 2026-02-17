@@ -18,12 +18,16 @@ export green="$lime"
 export yellow="$gold"
 
 # ICONOS
-ico_ok=$(printf '\u2714')	# ✔
-ico_error=$(printf '\u2718')	# ✖
-ico_warning=$(printf '\u26a0')	# ⚠
-ico_info=$(printf '\u2139')	# ℹ
-ico_input=$(printf '\u276f')	# ❯
-ico_next=$(printf '\u00bb')	# »
+ico_ok="\u221a"		# √ (Ok)
+ico_error="\u00d7"	# × (Error)
+ico_info="\u2139"	# ℹ (Informacion)
+ico_warn="\u0021"	# ! (Peligro)
+ico_ques="\u003f"	# ? (Confirmar)
+ico_input="\u00bb"	# » (Prompt)
+ico_item="\u2022"	# • (Item)
+ico_star="\u002a"	# * (Asterisco)
+ico_plus="\u002b"	# + (Instalar)
+ico_line="\u2500"	# ─ (Linea horizontal)
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores (Opcion no valida)
@@ -64,6 +68,7 @@ print_title() {
 
 # FUNCION AVISO IMPORTANTE
 print_warning_box() {
+	local texto=" ${ico_warn} $1 "
 	local texto=" $1 " # Añadimos un espacio antes y después del texto
 	local ancho=47
 	local len=${#texto}
@@ -90,6 +95,7 @@ print_warning_end() {
 
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
+	local texto=" ${ico_info} $1 "
 	local texto=" $1 "
 	local ancho=47
 	local len=${#texto}
@@ -122,7 +128,7 @@ confirmar() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${yellow}${ico_warning} $pregunta (s/n): ${end}"
+		printf "${yellow}${ico_warn} $pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
@@ -137,12 +143,19 @@ confirmar() {
 }
 
 # FUNCION CONTINUAR
-pausa() {
+continuar() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
 	printf "\n${blue}${ico_next} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
+# FUNCION VOLVER
+volver() {
+	# Usar -r en read es buena practica para evitar que escape caracteres
+	printf "\n${blue}${ico_back} Presiona [Intro] para volver...${end}\n"
+	read -r
+}
+ico_back="\u00ab" («) -> Para retroceder en los menús.
 # DETECCION ENTORNO VIRTUAL
 export IS_VM=false
 if systemd-detect-virt > /dev/null 2>&1; then

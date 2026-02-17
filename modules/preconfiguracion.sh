@@ -7,7 +7,7 @@ print_title "PRE-CONFIGURANDO EL SISTEMA"
 printf "${yellow}[*] Configurando teclado...${end}\n"
 loadkeys es
 printf "${green}[+] Teclado configurado en español.${end}\n"
-pausa
+continuar
 
 # 3. SERVICIO NTP
 menu_header
@@ -20,7 +20,7 @@ printf "${green}[+] Hora del sistema sincronizada.${end}\n\n"
 printf "${blue}Estado actual del tiempo:${end}\n"
 timedatectl status | grep -E "Local time|Universal time|RTC time|System clock synchronized|NTP service"
 printf "\n"
-pausa
+continuar
 
 # 4. VERIFICAR EL MODO DE ARRANQUE
 menu_header
@@ -36,4 +36,4 @@ else
 		exit 1
 	fi
 fi
-pausa
+continuar

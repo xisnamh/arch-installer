@@ -9,7 +9,7 @@ while true; do
 
 	if reflector --verbose --country France --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; then
 		printf "\n${green}[+] Optimizacion de espejos finalizada con exito.${end}\n"
-		pausa
+		continuar
 		break
 	else
 		printf "\n${red}[!] Optimizacion de espejos finalizada con error.${end}\n"
@@ -18,7 +18,7 @@ while true; do
 			continue
 		else
 			printf "\n${blue}[!] Optimizacion de espejos omitida por el usuario.${end}\n"
-			pausa
+			continuar
 			break
 		fi
 	fi

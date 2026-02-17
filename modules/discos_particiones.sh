@@ -72,7 +72,7 @@ while true; do
 						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
 					fi
 				fi
-				pausa
+				continuar
 				;;
 			2)
 				if [[ "$DISCO" == *"nvme"* ]]; then
@@ -84,7 +84,7 @@ while true; do
 						nvme sanitize "$DISCO" --sanact=3
 					fi
 				fi
-				pausa
+				continuar
 				;;
 			3)
 				printf "${red}[!] Limpiando tablas de particiones en $DISCO...${end}\n"
@@ -92,7 +92,7 @@ while true; do
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
 				printf "${green}[+] Disco limpiado con exito.${end}\n"
-				pausa
+				continuar
 				;;
 			4)
 				cfdisk "$DISCO"
