@@ -131,6 +131,7 @@ while true; do
 						print_back
 						;;
 					2)
+						printf "\n"
 						printf "${ico_info} ${blue}Entrando en iwctl... Escribe 'exit' para volver.${end}\n"
 						iwctl
 						;;
