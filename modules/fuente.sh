@@ -14,7 +14,7 @@ while true; do
 	clear
 	menu_header
 	print_title "CONFIGURACION DE FUENTE (TTY)"
-	printf "Selecciona un tamaño de letra para la consola:\n"
+	printf "${ico_info} ${blue}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
@@ -29,7 +29,7 @@ while true; do
 		3) FONT="ter-v32b" ;;
 		4) break ;;
 		*)
-			printf "${red}[${ico_error}] Opcion no valida.${end}\n"
+			printf "${ico_error} ${red}Opcion no valida${end}\n"
 			sleep $T_ERR
 			continue
 			;;
@@ -39,7 +39,7 @@ while true; do
 	setfont "$FONT" 2>/dev/null
 
 	if print_confirm "Te gusta este tamaño?"; then
-		printf "${green}[${ico_ok}] Tamaño de letra configurada.${end}\n"
+		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
 		sleep $T_INFO
 		break
 	else

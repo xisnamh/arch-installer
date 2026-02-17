@@ -18,16 +18,16 @@ export green="$lime"
 export yellow="$gold"
 
 # ICONOS
-ico_ok="\u221a"		# √ (Ok)
-ico_error="\u00d7"	# × (Error)
-ico_info="\u2139"	# ℹ (Informacion)
-ico_warn="\u0021"	# ! (Peligro)
-ico_ques="\u003f"	# ? (Confirmar)
-ico_input=">"		# > (Prompt)
-ico_item="\u2022"	# • (Item)
-ico_star="\u002a"	# * (Asterisco)
-ico_plus="\u002b"	# + (Instalar)
-ico_line="\u2500"	# ─ (Linea horizontal)
+ico_ok="${lime}[\u221a]${end}"		# [√] Ok (verde)
+ico_error="${red}[\u00d7]${end}"	# [×] Error (rojo)
+ico_info="${blue}[\u2139]${end}"	# [ℹ] Informacion (azul)
+ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro (amarillo)
+ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar (naranja)
+ico_star="${gold}[\u002a]${end}"	# [*] Asterisco (oro)
+ico_plus="${lime}[\u002b]${end}"	# [+] Instalar (verde)
+ico_input=">"				#  > Prompt
+ico_item="${white}\u2022${end}"		#  • Item (blanco)
+ico_line="${silver}\u2500${end}"	#  ─ Linea horizontal
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores (Opcion no valida)
@@ -68,20 +68,17 @@ print_title() {
 
 # FUNCION AVISO FALLIDO
 print_warning_box() {
-	local texto=" [${ico_error}] $1 "
-	local texto=" $1 " # Añadimos un espacio antes y después del texto
+	local texto=" ${ico_error} $1 "
 	local ancho=47
-	local len=${#texto}
+	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -c)
 	
-	# Calculamos cuántos guiones poner a cada lado
 	local total_guiones=$(( ancho - len ))
 	local guiones_izq=$(( total_guiones / 2 ))
 	local guiones_der=$(( ancho - len - guiones_izq ))
 
-	# Imprimimos la línea decorativa con el texto separado por espacios
 	printf "${red}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${red}%s${red}" "$texto"
+	printf "${end}${texto}${red}" # Aquí el texto ya trae su icono con corchetes
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -96,9 +93,8 @@ print_warning_end() {
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
 	local texto=" ${ico_info} $1 "
-	local texto=" $1 "
 	local ancho=47
-	local len=${#texto}
+	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -c)
 	
 	local total_guiones=$(( ancho - len ))
 	local guiones_izq=$(( total_guiones / 2 ))
@@ -106,7 +102,7 @@ print_info_box() {
 
 	printf "${gold}"
 	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${gold}%s${gold}" "$texto"
+	printf "${end}${texto}${gold}"
 	printf '─%.0s' $(seq 1 $guiones_der)
 	printf "${end}\n"
 }
@@ -128,15 +124,16 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${yellow}[${ico_warn}] $pregunta (s/n): ${end}"
+		printf "${ico_warn} ${yellow}$pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\e[1A\e[K${red}[${ico_error}] Opcion no valida.${end}"
-				sleep 1; printf "\r\e[K"
+				printf "\e[1A\e[K${ico_error} ${red}Opcion no valida${end}"
+				sleep $T_ERR
+				printf "\r\e[K"
 				;;
 		esac
 	done

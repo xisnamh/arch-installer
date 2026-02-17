@@ -4,20 +4,20 @@
 menu_header
 print_title "PRE-CONFIGURANDO EL SISTEMA"
 
-printf "${yellow}[${ico_star}] Configurando teclado...${end}\n"
+printf "${ico_star} ${yellow}Configurando el teclado...${end}\n"
 loadkeys es
-printf "${green}[${ico_ok}] Teclado configurado en español.${end}\n"
+printf "${ico_ok} ${green}Configurado el teclado en español correctamente.${end}\n"
 print_continue
 
 # 3. SERVICIO NTP
 menu_header
 print_title "PRE-CONFIGURANDO EL SISTEMA"
 
-printf "${yellow}[${ico_star}] Sincronizando la hora del sistema (NTP)...${end}\n"
+printf "${ico_star} ${yellow}Sincronizando la hora del sistema...${end}\n"
 timedatectl set-ntp true
 sleep $T_INFO
-printf "${green}[${ico_ok}] Hora del sistema sincronizada.${end}\n\n"
-printf "${blue}Estado actual del tiempo:${end}\n"
+printf "${ico_ok} ${green}Sincronizada la hora del sistema correctamente.${end}\n\n"
+printf "${ico_info} ${blue}Estado actual del tiempo:${end}\n"
 timedatectl status | grep -E "Local time|Universal time|RTC time|System clock synchronized|NTP service"
 printf "\n"
 print_continue
@@ -26,13 +26,13 @@ print_continue
 menu_header
 print_title "PRE-CONFIGURANDO EL SISTEMA"
 
-printf "${yellow}[${ico_star}] Verificando modo de arranque...${end}\n"
+printf "${ico_star} ${yellow}Verificando el modo de arranque...${end}\n"
 if [ -d "/sys/firmware/efi" ]; then
-	printf "${green}[${ico_ok}] Sistema en modo UEFI.${end}\n"
+	printf "${ico_ok} ${green}El modo de arranque es UEFI.${end}\n"
 else
-	printf "${red}[${ico_warn}] Estas en modo BIOS/Legacy.${end}\n"
+	printf "${ico_warn} ${red}El modo de arranque es BIOS/Legacy.${end}\n"
 	if ! print_confirm "Deseas continuar de todas formas?"; then
-		printf "${red}Abortando por eleccion del usuario.${end}\n"
+		printf "${ico_error} ${red}Abortando por eleccion del usuario.${end}\n"
 		exit 1
 	fi
 fi
