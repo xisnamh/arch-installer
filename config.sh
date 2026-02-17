@@ -145,14 +145,14 @@ print_confirm() {
 # FUNCION CONTINUAR
 print_continue() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_input} Presiona [Intro] para continuar...${end}\n"
+	printf "\n${blue}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
 print_back() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_input} Presiona [Intro] para volver...${end}\n"
+	printf "\n${blue}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
 

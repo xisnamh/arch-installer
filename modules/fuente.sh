@@ -38,12 +38,8 @@ while true; do
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
 
-unicode_start "$FONT" 2>/dev/null
-printf "\033%%G"
-
-	# Usamos la nueva funcion de confirmacion
 	if print_confirm "Te gusta este tamaño?"; then
-		printf "${green}[${ico_ok}] Fuente configurada.${end}\n"
+		printf "${green}[${ico_ok}] Tamaño de letra configurada.${end}\n"
 		sleep $T_INFO
 		break
 	else
