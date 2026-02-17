@@ -135,7 +135,7 @@ confirmar() {
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\e[1A\e[K${red}${ico_error} Opcion no valida.${end}"
+				printf "\e[1A\e[K${red}$[{ico_error}] Opcion no valida.${end}"
 				sleep 1; printf "\r\e[K"
 				;;
 		esac
