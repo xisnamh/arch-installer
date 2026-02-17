@@ -155,7 +155,7 @@ volver() {
 	printf "\n${blue}${ico_back} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
-ico_back="\u00ab" («) -> Para retroceder en los menús.
+ico_back="\u00ab"	# « (Volver)
 # DETECCION ENTORNO VIRTUAL
 export IS_VM=false
 if systemd-detect-virt > /dev/null 2>&1; then
