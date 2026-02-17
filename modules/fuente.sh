@@ -36,7 +36,8 @@ while true; do
 	esac
 
 	# Aplicamos la fuente para que el usuario vea el cambio
-setfont "$FONT" -u unicode 2>/dev/null
+	setfont "$FONT" 2>/dev/null
+
 unicode_start "$FONT" 2>/dev/null
 printf "\033%%G"
 
@@ -48,6 +49,5 @@ printf "\033%%G"
 	else
 		# Si no le gusta, restauramos la fuente por defecto y vuelve al inicio del bucle
 		setfont lat9w-16 2>/dev/null
-		unicode_start 2>/dev/null
 	fi
 done
