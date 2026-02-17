@@ -29,7 +29,7 @@ while true; do
 		3) FONT="ter-v32b" ;;
 		4) break ;;
 		*)
-			printf "${red}[!] Opcion no valida.${end}\n"
+			printf "${red}[${ico_error}] Opcion no valida.${end}\n"
 			sleep $T_ERR
 			continue
 			;;
@@ -38,13 +38,18 @@ while true; do
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
 
+	# Fuerza a la TTY a refrescar el modo UTF-8
+	unicode_start 2>/dev/null
+	printf "\033%%G"
+
 	# Usamos la nueva funcion de confirmacion
 	if print_confirm "Te gusta este tamaño?"; then
-		printf "${green}[+] Fuente configurada.${end}\n"
+		printf "${green}[${ico_ok}] Fuente configurada.${end}\n"
 		sleep $T_ERR
 		break
 	else
 		# Si no le gusta, restauramos la fuente por defecto y vuelve al inicio del bucle
 		setfont lat9w-16 2>/dev/null
+		unicode_start 2>/dev/null
 	fi
 done
