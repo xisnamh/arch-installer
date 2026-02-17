@@ -14,7 +14,7 @@ while true; do
 	clear
 	menu_header
 	print_title "CONFIGURACION DE FUENTE (TTY)"
-	printf "${ico_info} ${blue}Selecciona un tamaño de letra para la consola:${end}\n"
+	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"

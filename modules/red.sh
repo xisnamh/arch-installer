@@ -11,15 +11,15 @@ while true; do
 			printf "${ico_error} ${red}No hay conexion a internet detectada.${end}\n"
 	fi
 
-	printf "\n${ico_info} ${blue}Estado actual de las interfaces:${end}\n"
+	printf "\n${blue}Estado actual de las interfaces:${end}\n"
 	ip -brief address show scope global
 	printf "\n"
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
 
-	printf "${ico_item} ${white}Selecciona como configurar el wifi:\n"
+	printf "${white}Selecciona como configurar el wifi:\n"
 	if [ -z "$WIFI_DEVICES" ]; then
-		printf " ${gray}1) Modo Asistido (No se detectan tarjetas wifi)${end}\n"
+		printf " ${orange}1) Modo Asistido (No se detectan tarjetas wifi)${end}\n"
 	else
 		printf " 1) Modo Asistido\n"
 	fi
@@ -112,20 +112,23 @@ while true; do
 					1)
 						menu_header
 						print_title "GUIA DE COMANDOS IWCTL"
-						printf "${gold}${ico_item} Dispositivos${end}\n"
+						printf "${gold}  Dispositivos${end}\n"
 						printf "   device list                                     - Lista tarjetas\n"
 						printf "   device <wlan> set-property Powered on | off     - ON/OFF tarjeta\n"
 						printf "   device <wlan> show                              - Detalles\n\n"
-						printf "${gold}${ico_item} Escaneo y Estaciones${end}\n"
+						printf "${ico_line}"
+						printf "${gold}  Escaneo y Estaciones${end}\n"
 						printf "   station list                                    - Dispositivos\n"
 						printf "   station <wlan> scan                             - Buscar (Obligatorio)\n"
 						printf "   station <wlan> get-networks                     - Ver SSIDs\n"
 						printf "   station <wlan> connect <SSID>                   - Conectar\n"
 						printf "   station <wlan> show                             - Ver IP y Señal\n\n"
-						printf "${gold}${ico_item} Gestion de Redes Conocidas${end}\n"
+						printf "${ico_line}"
+						printf "${gold}  Gestion de Redes Conocidas${end}\n"
 						printf "   known-networks list                             - Listar guardadas\n"
 						printf "   known-networks <SSID> forget                    - Borrar guardada\n\n"
-						printf "${gold}${ico_item} Modos Especiales${end}\n"
+						printf "${ico_line}"
+						printf "${gold}  Modos Especiales${end}\n"
 						printf "   ap <wlan> start-profile <nombre>                - Crear Punto Acceso\n"
 						printf "   ad-hoc <wlan> start <nombre> <pass>             - Punto a punto\n"
 						print_back
