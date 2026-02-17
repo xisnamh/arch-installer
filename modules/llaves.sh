@@ -4,25 +4,25 @@
 menu_header
 print_title "CONFIGURACION DE LLAVEROS"
 
-printf "${yellow}[*] Iniciando el llavero local...${end}\n"
+printf "${yellow}[${ico_star}] Iniciando el llavero local...${end}\n"
 pacman-key --init
-printf "${green}[+] Llavero local iniciado correctamente.${end}\n"
+printf "${green}[${ico_ok}] Llavero local iniciado correctamente.${end}\n"
 print_continue
 
-printf "${yellow}[*] Cargando llaves maestras de Arch Linux...${end}\n"
+printf "${yellow}[${ico_star}] Cargando llaves maestras de Arch Linux...${end}\n"
 pacman-key --populate archlinux
-printf "${green}[+] Llaves maestras de Arch Linux cargadas correctamente.${end}\n"
+printf "${green}[${ico_ok}] Llaves maestras de Arch Linux cargadas correctamente.${end}\n"
 print_continue
 
-printf "${yellow}[*] Actualizando el llavero de Arch Linux...${end}\n"
+printf "${yellow}[${ico_star}] Actualizando el llavero de Arch Linux...${end}\n"
 pacman -Sy archlinux-keyring --noconfirm
-printf "${green}[+] Llavero actualizado a la ultima version.${end}\n"
+printf "${green}[${ico_ok}] Llavero actualizado a la ultima version.${end}\n"
 print_continue
 
-printf "${yellow}[*] Sincronizando bases de datos...${end}\n"
+printf "${yellow}[${ico_star}] Sincronizando bases de datos...${end}\n"
 pacman -Syy
-printf "${green}[+] Bases de datos sincronizadas.${end}\n"
+printf "${green}[${ico_ok}] Bases de datos sincronizadas.${end}\n"
 print_continue
 
-printf "\n${green}[+] Configuracion de Llaveros finalizada con exito.${end}\n"
+printf "\n${green}[${ico_ok}] Configuracion de Llaveros finalizada con exito.${end}\n"
 print_continue
