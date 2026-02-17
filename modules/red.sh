@@ -26,7 +26,7 @@ while true; do
 	printf " 2) Modo Manual\n"
 	printf " 3) Saltar / Ya tengo internet\n"
 
-	pregunta
+	print_ask
 	read wifi_opt
 
 	case $wifi_opt in
@@ -107,7 +107,7 @@ while true; do
 				printf " 4) Salir y continuar con el script de instalacion\n"
 				printf "${yellow}================================================================${end}\n"
 
-				pregunta
+				print_ask
 				read manual_opt
 
 				case $manual_opt in
@@ -115,23 +115,23 @@ while true; do
 						menu_header
 						printf "${blue}                GUIA COMPLETA DE COMANDOS IWCTL                  ${end}\n"
 						printf "${blue}================================================================${end}\n"
-						printf "\n\n\n${yellow}Dispositivos${end}\n"
+						printf "${yellow}Dispositivos${end}\n"
 						printf "   device list                                     - Lista tarjetas\n"
 						printf "   device <wlan> set-property Powered on | off     - ON/OFF tarjeta\n"
 						printf "   device <wlan> show                              - Detalles\n\n"
-						printf "\n\n\n${yellow}Escaneo y Estaciones${end}\n"
+						printf "${yellow}Escaneo y Estaciones${end}\n"
 						printf "   station list                                    - Dispositivos\n"
 						printf "   station <wlan> scan                             - Buscar (Obligatorio)\n"
 						printf "   station <wlan> get-networks                     - Ver SSIDs\n"
 						printf "   station <wlan> connect <SSID>                   - Conectar\n"
 						printf "   station <wlan> show                             - Ver IP y Señal\n\n"
-						printf "\n\n\n${yellow}Gestion de Redes Conocidas${end}\n"
+						printf "{yellow}Gestion de Redes Conocidas${end}\n"
 						printf "   known-networks list                             - Listar guardadas\n"
 						printf "   known-networks <SSID> forget                    - Borrar guardada\n\n"
-						printf "\n\n\n${yellow}Modos Especiales${end}\n"
+						printf "${yellow}  Modos Especiales${end}\n"
 						printf "   ap <wlan> start-profile <nombre>                - Crear Punto Acceso\n"
 						printf "   ad-hoc <wlan> start <nombre> <pass>             - Punto a punto\n"
-						volver
+						print_back
 						;;
 					2)
 						printf "${yellow}Entrando en iwctl... Escribe 'exit' para volver.${end}\n"
@@ -160,4 +160,4 @@ while true; do
 	esac
 done
 
-continuar
+print_continue

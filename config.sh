@@ -66,9 +66,9 @@ print_title() {
 	printf "\n"
 }
 
-# FUNCION AVISO IMPORTANTE
+# FUNCION AVISO FALLIDO
 print_warning_box() {
-	local texto=" ${ico_warn} $1 "
+	local texto=" [${ico_error}] $1 "
 	local texto=" $1 " # Añadimos un espacio antes y después del texto
 	local ancho=47
 	local len=${#texto}
@@ -119,23 +119,23 @@ print_info_end() {
 }
 
 # FUNCION OPCIONES
-pregunta() {
+print_ask() {
 	printf "\n${white}${ico_input} Elige una opcion:${end} "
 }
 
 # FUNCION VALIDACION
-confirmar() {
+print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${yellow}${ico_warn} $pregunta (s/n): ${end}"
+		printf "${yellow}[${ico_warn}] $pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\e[1A\e[K${red}$[{ico_error}] Opcion no valida.${end}"
+				printf "\e[1A\e[K${red}[${ico_error}] Opcion no valida.${end}"
 				sleep 1; printf "\r\e[K"
 				;;
 		esac
@@ -143,14 +143,14 @@ confirmar() {
 }
 
 # FUNCION CONTINUAR
-continuar() {
+print_continue() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_next} Presiona [Intro] para continuar...${end}\n"
+	printf "\n${blue}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
-volver() {
+print_back() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
 	printf "\n${blue}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r

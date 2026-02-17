@@ -9,7 +9,7 @@ while true; do
 		printf "\n"
 
 		printf "${yellow}Escribe la ruta del disco (ej: /dev/nvme0n1): ${end}"
-		read DISCO
+		read -r DISCO
 
 		if [ -z "$DISCO" ]; then
 			printf "${red}[!] No has escrito nada.${end}"
@@ -48,7 +48,7 @@ while true; do
 		printf " 6) Volver atras\n"
 		printf " 7) Finalizar y continuar\n"
 
-		pregunta
+		print_ask
 		read disco_opt
 
 		case $disco_opt in
@@ -72,7 +72,7 @@ while true; do
 						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
 					fi
 				fi
-				continuar
+				print_continue
 				;;
 			2)
 				if [[ "$DISCO" == *"nvme"* ]]; then
@@ -84,7 +84,7 @@ while true; do
 						nvme sanitize "$DISCO" --sanact=3
 					fi
 				fi
-				continuar
+				print_continue
 				;;
 			3)
 				printf "${red}[!] Limpiando tablas de particiones en $DISCO...${end}\n"
@@ -92,7 +92,7 @@ while true; do
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
 				printf "${green}[+] Disco limpiado con exito.${end}\n"
-				continuar
+				print_continue
 				;;
 			4)
 				cfdisk "$DISCO"

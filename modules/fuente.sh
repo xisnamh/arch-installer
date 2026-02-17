@@ -20,7 +20,7 @@ while true; do
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
 	printf " 4) Saltar / No cambiar\n"
 
-	pregunta
+	print_ask
 	read -r font_opt
 
 	case $font_opt in
@@ -39,7 +39,7 @@ while true; do
 	setfont "$FONT" 2>/dev/null
 
 	# Usamos la nueva funcion de confirmacion
-	if confirmar "Te gusta este tamaño?"; then
+	if print_confirm "Te gusta este tamaño?"; then
 		printf "${green}[+] Fuente configurada.${end}\n"
 		sleep $T_ERR
 		break
