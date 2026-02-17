@@ -152,10 +152,10 @@ continuar() {
 # FUNCION VOLVER
 volver() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_back} Presiona [Intro] para volver...${end}\n"
+	printf "\n${blue}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
-ico_back="\u00ab"	# « (Volver)
+
 # DETECCION ENTORNO VIRTUAL
 export IS_VM=false
 if systemd-detect-virt > /dev/null 2>&1; then
