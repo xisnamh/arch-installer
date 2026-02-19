@@ -4,7 +4,9 @@
 export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\033[1;37m"	# Blanco		(subtitulo)
 export gray="\033[1;30m"	# Gris			(texto secundario)
-export green="\033[1;32m"	# Verde			(exito)
+export green1="\033[1;32m"	# Verde			(exito)
+export green2="\033[0;92m"	# Verde			(exito)
+
 export red="\033[1;31m"		# Rojo			(alerta critica)
 export orange="\033[0;33m"	# Naranja		(aviso importante)
 export yellow="\033[1;33m"	# Amarillo		(instrucciones)
@@ -33,9 +35,9 @@ menu_header() {
 	clear
 	printf "\n"
 	printf "\n"
-	printf "${blue}─────────────────────${end}\n"
+	printf "${green1}─────────────────────${end}\n"
 	printf "${blue} ARCH LINUX INSTALAR ${end}\n"
-	printf "${blue}─────────────────────${end}\n"
+	printf "${green2}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
