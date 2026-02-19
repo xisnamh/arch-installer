@@ -12,7 +12,17 @@ while true; do
 	fi
 
 	printf "\n${purple}Estado actual de las interfaces:${end}\n"
-ip -4 -brief address show scope global | awk '{split($3,a,"/"); print $1, $2, a[1]}' | column -t
+# Usamos un bucle para procesar linea por linea y aplicar tus colores
+	ip -4 -brief address show scope global | while read -r iface status ip_mask; do
+		# Limpiamos el /24 de la IP
+		clean_ip=$(echo $ip_mask | cut -d/ -f1)
+		
+		# Definimos el color del estado (UP verde, lo demas rojo)
+		[ "$status" == "UP" ] && col_status="${green}" || col_status="${red}"
+		
+		# Imprimimos con formato: Nombre (blanco), Estado (color), IP (cian/bluel)
+		printf "${white}%-10s${end}  ${col_status}%-8s${end}  ${bluel}%s${end}\n" "$iface" "$status" "$clean_ip"
+	done
 	printf "\n"
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
