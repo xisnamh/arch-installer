@@ -63,7 +63,14 @@ print_title() {
 
 # AVISO ERROR
 print_warning_box() {
-	printf "${red}${ico_error} ERROR:${end} ${white}$1${end}\n"
+	local texto="$1"
+	# Medimos el texto + 9 caracteres del prefijo "[×] Error: "
+	local len=${#texto}
+	local linea_largo=$((len + 10))	# +9 del prefijo y +1 para que sobresalga
+
+	printf "${red}${ico_error} Error:${end} ${white}${texto}${end}\n"
+	printf "${red}%.0s─${end}" $(seq 1 $linea_largo)
+	printf "\n"
 }
 
 print_warning_end() {
@@ -72,7 +79,14 @@ print_warning_end() {
 
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
-	printf "${blue}${ico_info} INFO:${end} ${white}$1${end}\n"
+	local texto="$1"
+	# Medimos el texto + 8 caracteres del prefijo "[ℹ] Info: "
+	local len=${#texto}
+	local linea_largo=$((len + 9))	# +8 del prefijo y +1 para que sobresalga
+
+	printf "${blue}${ico_info} Info:${end} ${white}${texto}${end}\n"
+	printf "${blue}%.0s─${end}" $(seq 1 $linea_largo)
+	printf "\n"
 }
 
 print_info_end() {
