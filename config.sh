@@ -20,7 +20,7 @@ export end="\033[0m"
 ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde brillante)
 ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo)
 ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
-ico_warn="${gray}[\u0021]${end}"	# [!] Peligro		(gris)
+ico_warn="${white}[\u0021]${end}"	# [!] Peligro		(blanco)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
 ico_input=">"				#  > Prompt
@@ -79,7 +79,7 @@ print_info_end() {
 
 # FUNCION OPCIONES
 print_ask() {
-	printf "\n${gray}${ico_input} Elige una opcion:${end} "
+	printf "\n${white}${ico_input} Elige una opcion:${end} "
 }
 
 # FUNCION VALIDACION
@@ -87,7 +87,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${ico_warn} ${gray}$pregunta (s/n): ${end}"
+		printf "${ico_warn} ${white}$pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
