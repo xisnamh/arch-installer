@@ -5,7 +5,7 @@ while true; do
 	clear
 	menu_header
 	print_title "MIRRORLIST"
-	printf "${ico_star} ${greend}Iniciando Reflector en modo detallado...${end}\n"
+	printf "${ico_star} ${greend}Iniciando optimizacion de espejos...${end}\n"
 
 	if reflector --verbose --country France --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; then
 		printf "\n${ico_ok} ${greenl}Optimizacion de espejos finalizada con exito.${end}\n"

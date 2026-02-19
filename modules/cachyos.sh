@@ -8,11 +8,11 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 	
 	# BUCLE DE DESCARGA CON REINTENTO
 	while true; do
-		printf "${ico_star} ${yellow}Descargando instalador...${end}\n"
+		printf "${ico_star} ${greend}Descargando instalador...${end}\n"
 		
 		# Intentamos la descarga
 		if curl -L https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; then
-			printf "${ico_ok} ${green}Descarga completada correctamente.${end}\n"
+			printf "${ico_ok} ${greenl}Descarga completada correctamente.${end}\n"
 			break # Sale del bucle si funciona
 		else
 			print_error_box "Error al descargar el repositorio de CachyOS."
@@ -35,18 +35,18 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 	# Mensajes visuales
 	printf "\n\n"
 	print_info_box "AVISO IMPORTANTE"
-	printf "  ${ico_item} ${cyan}Repositorios CachyOS:${end} Añadir para instalar kernels y librerias.\n"
-	printf "  ${ico_item} ${cyan}Libreria zlib-ng-compat:${end} No instalar, estamos fuera de chroot.\n"
-	printf "  ${ico_item} ${cyan}Paquetes restantes:${end} No instalar, estamos fuera de chroot.\n"
+	printf "  ${ico_item} Repositorios CachyOS: Añadir para instalar kernels y librerias.\n"
+	printf "  ${ico_item} Libreria zlib-ng-compat: No instalar, estamos fuera de chroot.\n"
+	printf "  ${ico_item} Paquetes restantes: No instalar, estamos fuera de chroot.\n"
 	print_info_end
 	printf "\n"
 
-	printf "${ico_warn} ${yellow}A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
+	printf "${ico_warn} ${white}A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
 	print_continue
 
 	./cachyos-repo.sh
 
-	printf "\n${ico_ok} ${green}El script oficial de CachyOS ha finalizado correctamente.${end}\n"
+	printf "\n${ico_ok} ${greenl}El script oficial de CachyOS ha finalizado correctamente.${end}\n"
 	
 	# Volver atras para que el instalador encuentre los siguientes modulos
 	cd ..
@@ -54,13 +54,13 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 	menu_header
 	print_title "CONFIGURACION DE CACHYOS"
 
-	printf "${ico_star} ${yellow}Preparando edicion de /etc/pacman.conf...${end}\n"
+	printf "${ico_star} ${greend}Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n\n"
 	
 	print_info_box "INSTRUCCIONES DE CONFIGURACION"
-	printf "  ${ico_item} ${white}Descomenta #color, #prettyprogressbar y #ilovecandy.${end}\n"
-	printf "  ${ico_item} ${white}Mueve los repositorios [cachyos-v3] y [cachyos-core-v3] al principio de la lista.${end}\n"
-	printf "  ${ico_item} ${white}Deshabilita los repositorios [cachyos-extra-v3] y [cachyos] (comenta con #).${end}\n"
+	printf "  ${ico_item} Descomenta #color, #prettyprogressbar y #ilovecandy.\n"
+	printf "  ${ico_item} Mueve los repositorios [cachyos-v3] y [cachyos-core-v3] al principio de la lista.\n"
+	printf "  ${ico_item} Deshabilita los repositorios [cachyos-extra-v3] y [cachyos] (comenta con #).\n"
 	print_info_end
 	
 	print_continue

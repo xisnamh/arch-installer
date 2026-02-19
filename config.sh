@@ -18,13 +18,14 @@ export end="\033[0m"
 
 # ICONOS
 ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde brillante)
-ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo)
-ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
+ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo brillante)
+ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(rojo oscuro)
 ico_warn="${white}[\u0021]${end}"	# [!] Peligro		(blanco)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
-ico_input=">"				#  > Prompt
-ico_item="${white}\u2022${end}"		#  • Item		(blanco)
+ico_input=">"				#  > Prompt		(sin color)
+ico_input="${white}>${end}"
+ico_item="•"				#  • Item		(sin color)
 ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
 
 # VARIABLES TIEMPO
@@ -60,7 +61,7 @@ print_title() {
 # AVISO ERROR
 print_warning_box() {
 	local texto="$1"
-	printf "${red}${ico_error} Error: ${texto}${end}\n"
+	printf "${redl}${ico_error} Error: ${texto}${end}\n"
 }
 
 print_warning_end() {
@@ -70,7 +71,7 @@ print_warning_end() {
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
 	local texto="$1"
-	printf "${orange}${ico_info} Info: ${texto}${end}\n"
+	printf "${redd}${ico_info} ${texto}${end}\n"
 }
 
 print_info_end() {
@@ -87,7 +88,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${ico_warn} ${white}$pregunta (s/n): ${end}"
+		printf "${ico_input} ${white}$pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;

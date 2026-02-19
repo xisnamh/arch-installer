@@ -39,7 +39,7 @@ while true; do
 	case $wifi_opt in
 		1)
 			if [ -z "$WIFI_DEVICES" ]; then
-				printf "${ico_error} ${red}Error: No se detecto hardware wifi${end}\n"
+				printf "${ico_error} ${redl}Error: No se detecto hardware wifi${end}\n"
 				sleep "$T_ERR"
 				continue
 			fi
@@ -96,7 +96,7 @@ while true; do
 					iwctl station "$ADAPTADOR" disconnect > /dev/null 2>&1
 				fi
 
-				printf "\n${ico_warn} ${yellow}Presiona una tecla para reintentar... ${end}"
+				printf "\n${ico_warn} ${white}Presiona una tecla para reintentar... ${end}"
 				read -n 1
 				menu_header
 				iwctl station "$ADAPTADOR" get-networks
