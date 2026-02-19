@@ -8,7 +8,7 @@ export greenl="\033[1;32m"	# Verde	brillante	(exito)
 export greend="\033[0;32m"	# Verde	oscuro		(exito)
 
 export redl="\033[1;31m"	# Rojo brillante	(alerta critica)
-export redd="\033[0;31m"	# Rojo brillante	(alerta critica)
+export redd="\033[0;31m"	# Rojo oscuro		(alerta critica)
 
 export orange="\033[0;33m"	# Naranja		(aviso importante)
 export yellow="\033[1;33m"	# Amarillo		(instrucciones)
@@ -20,7 +20,7 @@ export end="\033[0m"
 ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde)
 ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo)
 ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
-ico_warn="${greend}[\u0021]${end}"	# [!] Peligro		(verde)
+ico_warn="${gray}[\u0021]${end}"	# [!] Peligro		(gris)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde)
 ico_input=">"				#  > Prompt
@@ -87,7 +87,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${ico_warn} ${greend}$pregunta (s/n): ${end}"
+		printf "${ico_warn} ${gray}$pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;

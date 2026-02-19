@@ -47,7 +47,7 @@ while true; do
 	printf "\n"
 
 	if print_confirm "Te gusta este tamaño?"; then
-		printf "${ico_ok} ${greenl}Fuente configurada correctamente.${end}\n"
+		printf "${ico_ok} ${gray}Fuente configurada correctamente.${end}\n"
 		sleep $T_INFO
 		break
 	else
