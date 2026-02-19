@@ -14,6 +14,7 @@ while true; do
 	clear
 	menu_header
 	print_title "FUENTE (TTY)"
+	
 	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
@@ -38,9 +39,16 @@ while true; do
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
 
+	# Volvemos a pintar todo el menu con la fuente nueva antes de lanzar el print_confirm
 	clear
 	menu_header
 	print_title "FUENTE (TTY)"
+
+	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
+	printf " 1) Normal   (Tamaño estandar)\n"
+	printf " 2) Mediana  (Recomendado 1080p)\n"
+	printf " 3) Grande   (Recomendado 2K/4K)\n"
+	printf " 4) Saltar / No cambiar\n"
 
 	if print_confirm "Te gusta este tamaño?"; then
 		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
