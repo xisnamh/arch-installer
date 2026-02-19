@@ -2,7 +2,7 @@
 
 # COLORES ANSI
 export purple="\e[38;5;141m"	# Púrpura pastel (Encabezados)
-export cyan="\e[38;5;81m"	# Azul cielo/Cian (Títulos)
+export cyan="\033[0;36m"	# Azul cielo/Cian (Títulos)
 export red="\e[38;5;196m"	# Rojo vibrante (Alertas críticas)
 export orange="\e[38;5;216m"	# Naranja claro (Avisos importantes)
 export lime="\e[38;5;118m"	# Verde lima (Éxitos)
