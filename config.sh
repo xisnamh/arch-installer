@@ -45,22 +45,11 @@ menu_header() {
 	printf "\n"
 	printf "\n"
 	printf "Color \033[0;30mNegro (0;30)\033[0m - Casi invisible\n"
-printf "Color \033[0;31mRojo (0;31)\033[0m - Para errores\n"
-printf "Color \033[0;32mVerde (0;32)\033[0m - Para exitos\n"
-printf "Color \033[0;33mAmarillo/Marron (0;33)\033[0m - Para avisos\n"
-printf "Color \033[0;34mAzul (0;34)\033[0m - Muy oscuro\n"
-printf "Color \033[0;35mPurpura (0;35)\033[0m - Clasico\n"
-printf "Color \033[0;36mCian (0;36)\033[0m - Tu eleccion para Arch\n"
-printf "Color \033[0;37mGris Claro (0;37)\033[0m - Texto estandar\n"
-
-printf "Color \033[1;30mGris Oscuro (1;30)\033[0m - Muy elegante\n"
-printf "Color \033[1;31mRojo Brillante (1;31)\033[0m - Alerta maxima\n"
-printf "Color \033[1;32mVerde Brillante (1;32)\033[0m - Muy legible\n"
-printf "Color \033[1;33mAmarillo Brillante (1;33)\033[0m - Atencion\n"
-printf "Color \033[1;34mAzul Brillante (1;34)\033[0m - El electrico\n"
-printf "Color \033[1;35mMagenta (1;35)\033[0m - Muy vivo\n"
-printf "Color \033[1;36mCian Brillante (1;36)\033[0m - Neon\n"
-printf "Color \033[1;37mBlanco Puro (1;37)\033[0m - Maxima claridad\n"
+printf "Rojo Basico:    \033[1;31mPrueba de color rojo\033[0m\n"
+printf "Rojo 256 (196): \033[38;5;196mPrueba de color rojo\033[0m\n"
+printf "\n"
+printf "Azul Basico:    \033[0;36mPrueba de color azul\033[0m\n"
+printf "Azul 256 (39):  \033[38;5;39mPrueba de color azul\033[0m\n"
 }
 
 # SUBTITULO
