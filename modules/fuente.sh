@@ -33,7 +33,7 @@ while true; do
 		3) FONT="ter-932b" ;;
 		4) break ;;
 		*)
-			printf "${ico_error} ${red}Opcion no valida${end}\n"
+			printf "${ico_error} ${redl}Opcion no valida${end}\n"
 			sleep $T_ERR
 			continue
 			;;
@@ -47,7 +47,7 @@ while true; do
 	printf "\n"
 
 	if print_confirm "Te gusta este tamaño?"; then
-		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
+		printf "${ico_ok} ${greenl}Fuente configurada correctamente.${end}\n"
 		sleep $T_INFO
 		break
 	else

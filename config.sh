@@ -4,10 +4,12 @@
 export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\033[1;37m"	# Blanco		(subtitulo)
 export gray="\033[1;30m"	# Gris			(texto secundario)
-export greenl="\033[1;32m"	# Verde			(exito)
-export greend="\033[0;32m"	# Verde			(exito)
+export greenl="\033[1;32m"	# Verde	brillante	(exito)
+export greend="\033[0;32m"	# Verde	oscuro		(exito)
 
-export red="\033[1;31m"		# Rojo			(alerta critica)
+export redl="\033[1;31m"	# Rojo brillante	(alerta critica)
+export redd="\033[0;31m"	# Rojo brillante	(alerta critica)
+
 export orange="\033[0;33m"	# Naranja		(aviso importante)
 export yellow="\033[1;33m"	# Amarillo		(instrucciones)
 				# color ?		(mensajes info)
@@ -15,12 +17,12 @@ export bluel="\033[1;36m"	# Azul electrico
 export end="\033[0m"
 
 # ICONOS
-ico_ok="${green}[\u002b]${end}"		# [+] Ok 		(verde)
-ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
+ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde)
+ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo)
 ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
-ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
+ico_warn="${greend}[\u0021]${end}"	# [!] Peligro		(verde)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
-ico_star="${yellow}[\u002a]${end}"	# [*] Asterisco 	(oro)
+ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde)
 ico_input=">"				#  > Prompt
 ico_item="${white}\u2022${end}"		#  • Item		(blanco)
 ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
@@ -35,9 +37,9 @@ menu_header() {
 	clear
 	printf "\n"
 	printf "\n"
-	printf "${greenl}─────────────────────${end}\n"
+	printf "${blue}─────────────────────${end}\n"
 	printf "${blue} ARCH LINUX INSTALAR ${end}\n"
-	printf "${greend}─────────────────────${end}\n"
+	printf "${blue}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
@@ -85,7 +87,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${ico_warn} ${yellow}$pregunta (s/n): ${end}"
+		printf "${ico_warn} ${greend}$pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
