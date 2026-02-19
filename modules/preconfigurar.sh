@@ -11,7 +11,7 @@ print_continue
 
 # 3. SERVICIO NTP
 menu_header
-print_title "PRE-CONFIGURANDO EL SISTEMA"
+print_title "PRE-CONFIGURAR"
 
 printf "${ico_star} ${yellow}Sincronizando la hora del sistema...${end}\n"
 timedatectl set-ntp true
@@ -24,7 +24,7 @@ print_continue
 
 # 4. VERIFICAR EL MODO DE ARRANQUE
 menu_header
-print_title "PRE-CONFIGURANDO EL SISTEMA"
+print_title "PRE-CONFIGURAR"
 
 printf "${ico_star} ${yellow}Verificando el modo de arranque...${end}\n"
 if [ -d "/sys/firmware/efi" ]; then

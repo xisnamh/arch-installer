@@ -9,18 +9,21 @@ locale-gen > /dev/null 2>&1
 export LANG=es_ES.UTF-8
 export LC_ALL=es_ES.UTF-8
 
-# 1. CONFIGURACION DE FUENTE (TTY)
-while true; do
+# Funcion interna para no repetir ccdigo del menu
+font_menu() {
 	clear
 	menu_header
 	print_title "FUENTE (TTY)"
-	
 	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
 	printf " 4) Saltar / No cambiar\n"
+}
 
+# 1. CONFIGURACION DE FUENTE (TTY)
+while true; do
+	font_menu
 	print_ask
 	read -r font_opt
 
@@ -40,15 +43,7 @@ while true; do
 	setfont "$FONT" 2>/dev/null
 
 	# Volvemos a pintar todo el menu con la fuente nueva antes de lanzar el print_confirm
-	clear
-	menu_header
-	print_title "FUENTE (TTY)"
-
-	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
-	printf " 1) Normal   (Tamaño estandar)\n"
-	printf " 2) Mediana  (Recomendado 1080p)\n"
-	printf " 3) Grande   (Recomendado 2K/4K)\n"
-	printf " 4) Saltar / No cambiar\n"
+	font_menu
 	printf "\n"
 
 	if print_confirm "Te gusta este tamaño?"; then
