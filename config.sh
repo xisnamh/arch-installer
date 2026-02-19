@@ -23,10 +23,9 @@ ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(rojo oscuro)
 ico_warn="${white}[\u0021]${end}"	# [!] Peligro		(blanco)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
-ico_prompt="${white}>${end}"		#  > Prompt		(blanco)
-ico_input=">"				#  > input		(sin color)
-ico_item="•"				#  • Item		(sin color)
-ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
+ico_input=">"				#  >  Input		(sin color)
+ico_item="•"				#  •  Item		(sin color)
+ico_line="${gray}\u2500${end}"		#  ─  Linea horizontal
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores
@@ -80,7 +79,7 @@ print_info_end() {
 
 # FUNCION OPCIONES
 print_ask() {
-	printf "\n${white}${ico_prompt} Elige una opcion:${end} "
+	printf "\n${ico_input} Elige una opcion:${end} "
 }
 
 # FUNCION VALIDACION
@@ -88,7 +87,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${white}${ico_input} $pregunta (s/n): ${end}"
+		printf "${ico_input} $pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
