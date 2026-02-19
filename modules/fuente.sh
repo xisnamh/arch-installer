@@ -13,7 +13,7 @@ export LC_ALL=es_ES.UTF-8
 while true; do
 	clear
 	menu_header
-	print_title "CONFIGURACION DE FUENTE (TTY)"
+	print_title "FUENTE (TTY)"
 	printf "${blue}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"

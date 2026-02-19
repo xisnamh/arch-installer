@@ -2,7 +2,7 @@
 
 # 2. DISTRIBUCION DEL TECLADO
 menu_header
-print_title "PRE-CONFIGURANDO EL SISTEMA"
+print_title "PRE-CONFIGURAR"
 
 printf "${ico_star} ${yellow}Configurando el teclado...${end}\n"
 loadkeys es

@@ -34,94 +34,49 @@ T_ERR=1 	# Tiempo para errores (Opcion no valida)
 T_INFO=2	# Tiempo para mensajes informativos o de exito
 T_WAIT=5	# Tiempo para esperas de red/sincronizacion
 
-# FUNCION ENCABEZADO
-#menu_header() {
-#	clear
-#	printf "\n"
-#	printf "${purple}===============================================${end}\n"
-#	printf "\n"
-#	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
-#	printf "\n"
-#	printf "${purple}===============================================${end}\n"
-#	printf "\n"
-#	printf "\n"
-#}
-
+# TITULO
 menu_header() {
 	clear
 	printf "\n"
-	printf "${purple}───────────────────────────────────────────────${end}\n"
-	printf "${purple} INSTALADOR INTERACTIVO ARCH          ${end}\n"
-	printf "${purple}───────────────────────────────────────────────${end}\n"
+	printf "\n"
+	printf "${purple}─────────────────────${end}\n"
+	printf "${purple} ARCH LINUX INSTALAR ${end}\n"
+	printf "${purple}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
 
-# FUNCION TITULOS CENTRADOS
+# SUBTITULO
 print_title() {
-	local texto="$1"
-	local ancho=47
-	local len=${#texto}
-	
-	# Si el texto es mas largo que el ancho, lo recortamos o ajustamos
-	if [ "$len" -ge "$ancho" ]; then
-		printf "${cyan}%s${end}\n" "$texto"
-	else
-		local total_espacios=$(( ancho - len ))
-		local esp_izq=$(( total_espacios / 2 ))
-		# Generamos los espacios dinamicamente con tabs para la indentacion
-		printf "${cyan}%*s%s%*s${end}\n" "$esp_izq" "" "$texto" "$((ancho - len - esp_izq))" ""
-	fi
-	printf "${cyan}===============================================${end}\n"
-	printf "\n"
+	local texto=" $1"		# Agregamos el espacio inicial al texto
+	local len=${#texto}		# Medimos el texto (incluyendo ese espacio)
+	local linea_largo=$((len + 1))	# La línea será 1 carácter más larga
+
+	# Imprimimos el título con su espacio inicial
+	printf "${cyan}%s${end}\n" "$texto"
+	    
+	# Dibujamos la línea usando un truco de printf para repetir el carácter
+	printf "${cyan}%.0s─${end}" $(seq 1 $linea_largo)
+	    
+	printf "\n" # Espacio para que no se pegue al contenido
 }
 
-# FUNCION AVISO FALLIDO
+# AVISO ERROR
 print_warning_box() {
-	local texto=" ${ico_error} $1 "
-	local ancho=47
-	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -m)
-	
-	local total_guiones=$(( ancho - len ))
-	local guiones_izq=$(( total_guiones / 2 ))
-	local guiones_der=$(( ancho - len - guiones_izq ))
-
-	printf "${red}"
-	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${end}${texto}${red}" # Aquí el texto ya trae su icono con corchetes
-	printf '─%.0s' $(seq 1 $guiones_der)
-	printf "${end}\n"
+	printf "${red}${ico_error} ERROR:${end} ${white}$1${end}\n"
 }
 
 print_warning_end() {
-	local ancho=47
-	printf "${red}"
-	printf '─%.0s' $(seq 1 $ancho)
-	printf "${end}\n"
+	printf "\n"
 }
 
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
-	local texto=" ${ico_info} $1 "
-	local ancho=47
-	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -m)
-	
-	local total_guiones=$(( ancho - len ))
-	local guiones_izq=$(( total_guiones / 2 ))
-	local guiones_der=$(( ancho - len - guiones_izq ))
-
-	printf "${gold}"
-	printf '─%.0s' $(seq 1 $guiones_izq)
-	printf "${end}${texto}${gold}"
-	printf '─%.0s' $(seq 1 $guiones_der)
-	printf "${end}\n"
+	printf "${blue}${ico_info} INFO:${end} ${white}$1${end}\n"
 }
 
 print_info_end() {
-	local ancho=47
-	printf "${gold}"
-	printf '─%.0s' $(seq 1 $ancho)
-	printf "${end}\n"
+	printf "\n"
 }
 
 # FUNCION OPCIONES

@@ -2,7 +2,7 @@
 
 # 7. INSTALACION DE REPOSITORIOS CACHYOS
 menu_header
-print_title "CONFIGURACION DE CACHYOS"
+print_title "CACHYOS REPOSITORIOS"
 
 if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	

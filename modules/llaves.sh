@@ -2,7 +2,7 @@
 
 # 8. CONFIGURACION DE LLAVEROS Y LLAVES MAESTRAS
 menu_header
-print_title "CONFIGURACION DE LLAVEROS"
+print_title "LLAVES"
 
 printf "${ico_star} ${yellow}Iniciando el llavero local...${end}\n"
 pacman-key --init

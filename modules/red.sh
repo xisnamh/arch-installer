@@ -3,7 +3,7 @@
 # 5. RED
 while true; do
 	menu_header
-	print_title "CONFIGURACION DE RED"
+	print_title "RED"
 
 	if ping -c 1 google.com > /dev/null 2>&1; then
 		printf "${ico_ok} ${green}Hay conexion a internet detectada.${end}\n"

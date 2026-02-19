@@ -2,7 +2,7 @@ while true; do
 	# --- PASO 1 Y 2: SELECCION DE DISCO ---
 	while true; do
 		menu_header
-		print_title "GESTION DE DISCOS"
+		print_title "DISCOS"
 
 		printf "${blue}Discos detectados en el sistema:${end}\n"
 		lsblk -p -n -l -o NAME,SIZE,TYPE | grep "disk"
