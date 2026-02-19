@@ -49,6 +49,7 @@ while true; do
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
 	printf " 4) Saltar / No cambiar\n"
+	printf "\n"
 
 	if print_confirm "Te gusta este tamaño?"; then
 		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
