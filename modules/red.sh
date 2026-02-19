@@ -12,7 +12,7 @@ while true; do
 	fi
 
 	printf "\n${purple}Estado actual de las interfaces:${end}\n"
-	ip -4 -brief address show scope global | awk '{print $1 "  [ $2 ]  " $3}'
+	ip -4 -brief address show scope global | awk '{print $1 "  " $2 "  " $3}'
 	printf "\n"
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
