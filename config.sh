@@ -94,7 +94,7 @@ print_confirm() {
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\033[1A\033[K${ico_error} ${red}Opcion no valida${end}"
+				printf "\033[1A\033[K${ico_error} ${redl}Opcion no valida${end}"
 				sleep $T_ERR
 				printf "\r\033[K"
 				;;
