@@ -17,7 +17,7 @@ printf "${ico_star} ${yellow}Sincronizando la hora del sistema...${end}\n"
 timedatectl set-ntp true
 sleep $T_INFO
 printf "${ico_ok} ${green}Sincronizada la hora del sistema correctamente.${end}\n\n"
-printf "${blue}Estado actual del tiempo:${end}\n"
+printf "${purple}Estado actual del tiempo:${end}\n"
 timedatectl status | grep -E "Local time|Universal time|RTC time|System clock synchronized|NTP service"
 printf "\n"
 print_continue

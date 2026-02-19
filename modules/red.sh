@@ -11,8 +11,8 @@ while true; do
 			printf "${ico_error} ${red}No hay conexion a internet detectada.${end}\n"
 	fi
 
-	printf "\n${blue}Estado actual de las interfaces:${end}\n"
-	ip -brief address show scope global
+	printf "\n${purple}Estado actual de las interfaces:${end}\n"
+	ip -4 -brief address show scope global | awk '{print $1 "  [ $2 ]  " $3}'
 	printf "\n"
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
