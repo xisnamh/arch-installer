@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # COLORES ANSI
-export blue="\e[38;5;81m"	# Azul suave		(titulo)
+export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\e[38;5;255m"	# Blanco puro		(subtitulo)
 export red="\e[38;5;196m"	# Rojo			(alerta critica)
 export orange="\e[38;5;216m"	# Naranja		(aviso importante)
 export lime="\e[38;5;118m"	# Verde lima		(exito)
 export gold="\e[38;5;214m"	# Oro/Amarillo		(instrucciones)
-export blue="\e[38;5;33m"	# Azul eléctrico	(mensajes info)
+export cyan="\e[38;5;33m"	# Azul eléctrico	(mensajes info)
 
 export gray="\e[38;5;244m"	# Gris			(texto secundario)
 export silver="\e[38;5;250m"	# Gris platino
