@@ -39,9 +39,9 @@ menu_header() {
 	clear
 	printf "\n"
 	printf "\n"
-	printf "${purple}─────────────────────${end}\n"
-	printf "${purple} ARCH LINUX INSTALAR ${end}\n"
-	printf "${purple}─────────────────────${end}\n"
+	printf "${white}─────────────────────${end}\n"
+	printf "${white} ARCH LINUX INSTALAR ${end}\n"
+	printf "${white}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
