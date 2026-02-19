@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # COLORES ANSI
-export purple="\e[38;5;141m"	# Púrpura pastel (Encabezados)
-export cyan="\033[0;36m"	# Azul cielo/Cian (Títulos)
-export red="\e[38;5;196m"	# Rojo vibrante (Alertas críticas)
-export orange="\e[38;5;216m"	# Naranja claro (Avisos importantes)
-export lime="\e[38;5;118m"	# Verde lima (Éxitos)
-export gold="\e[38;5;214m"	# Oro/Amarillo (Instrucciones)
-export blue="\e[38;5;33m"	# Azul eléctrico (Mensajes info)
-export white="\e[38;5;255m"	# Blanco puro
-export gray="\e[38;5;244m"	# Gris (Texto secundario)
-export silver="\e[38;5;250m"	# Gris platino suave para tablas
+export blue="\e[38;5;81m"	# Azul suave		(titulo)
+export white="\e[38;5;255m"	# Blanco puro		(subtitulo)
+export red="\e[38;5;196m"	# Rojo			(alerta critica)
+export orange="\e[38;5;216m"	# Naranja		(aviso importante)
+export lime="\e[38;5;118m"	# Verde lima		(exito)
+export gold="\e[38;5;214m"	# Oro/Amarillo		(instrucciones)
+export blue="\e[38;5;33m"	# Azul eléctrico	(mensajes info)
+
+export gray="\e[38;5;244m"	# Gris			(texto secundario)
+export silver="\e[38;5;250m"	# Gris platino
 export end="\e[0m"
 
 # COMPATIBILIDAD COLORES CON TUS SCRIPTS ANTIGUOS
@@ -18,30 +18,30 @@ export green="$lime"
 export yellow="$gold"
 
 # ICONOS
-ico_ok="${lime}[\u221a]${end}"		# [√] Ok (verde)
-ico_error="${red}[\u00d7]${end}"	# [×] Error (rojo)
-ico_info="${blue}[\u2139]${end}"	# [ℹ] Informacion (azul)
-ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro (amarillo)
-ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar (naranja)
-ico_star="${gold}[\u002a]${end}"	# [*] Asterisco (oro)
-ico_plus="${lime}[\u002b]${end}"	# [+] Instalar (verde)
+ico_ok="${lime}[\u221a]${end}"		# [√] Ok 		(verde)
+ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
+ico_info="${blue}[\u2139]${end}"	# [ℹ] Informacion	(azul)
+ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
+ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
+ico_star="${gold}[\u002a]${end}"	# [*] Asterisco 	(oro)
+ico_plus="${lime}[\u002b]${end}"	# [+] Instalar		(verde)
 ico_input=">"				#  > Prompt
-ico_item="${white}\u2022${end}"		#  • Item (blanco)
+ico_item="${white}\u2022${end}"		#  • Item		(blanco)
 ico_line="${silver}\u2500${end}"	#  ─ Linea horizontal
 
 # VARIABLES TIEMPO
-T_ERR=1 	# Tiempo para errores (Opcion no valida)
+T_ERR=1 	# Tiempo para errores
 T_INFO=2	# Tiempo para mensajes informativos o de exito
-T_WAIT=5	# Tiempo para esperas de red/sincronizacion
+T_WAIT=5	# Tiempo para espera de red/sincronizacion
 
 # TITULO
 menu_header() {
 	clear
 	printf "\n"
 	printf "\n"
-	printf "${white}─────────────────────${end}\n"
-	printf "${white} ARCH LINUX INSTALAR ${end}\n"
-	printf "${white}─────────────────────${end}\n"
+	printf "${blue}─────────────────────${end}\n"
+	printf "${blue} ARCH LINUX INSTALAR ${end}\n"
+	printf "${blue}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
@@ -53,10 +53,10 @@ print_title() {
 	local linea_largo=$((len + 1))	# La línea será 1 carácter más larga
 
 	# Imprimimos el título con su espacio inicial
-	printf "${cyan}%s${end}\n" "$texto"
+	printf "${white}%s${end}\n" "$texto"
 	    
 	# Dibujamos la línea usando un truco de printf para repetir el carácter
-	printf "${cyan}%.0s─${end}" $(seq 1 $linea_largo)
+	printf "${white}%.0s─${end}" $(seq 1 $linea_largo)
 	    
 	printf "\n" # Espacio para que no se pegue al contenido
 }
