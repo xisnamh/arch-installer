@@ -24,9 +24,9 @@ while true; do
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
 
-	printf "${white}Selecciona como configurar el wifi:\n"
+	printf "${gray}Selecciona como configurar el wifi:\n"
 	if [ -z "$WIFI_DEVICES" ]; then
-		printf " ${orange}1) Modo Asistido (No se detectan tarjetas wifi)${end}\n"
+		printf " 1) Modo Asistido (No se detectan tarjetas wifi)\n"
 	else
 		printf " 1) Modo Asistido\n"
 	fi
@@ -158,7 +158,7 @@ while true; do
 			break
 			;;
 		*)
-			print_warning_box "Elige 1, 2 o 3"
+			print_warning_box "Opcion no valida"
 			sleep $T_ERR
 			;;
 	esac
