@@ -4,7 +4,7 @@
 export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\033[1;37m"	# Blanco		(subtitulo)
 export green="\033[1;32m"	# Verde			(exito)
-export red="\033[1,31m"		# Rojo			(alerta critica)
+export red="\033[1;31m"		# Rojo			(alerta critica)
 export orange="\033[0;33m"	# Naranja		(aviso importante)
 export yellow="\033[1;33m"	# Amarillo		(instrucciones)
 export gray="\033[1;30m"	# Gris			(texto secundario)
@@ -15,7 +15,7 @@ export end="\033[0m"
 # ICONOS
 ico_ok="${green}[\u221a]${end}"		# [√] Ok 		(verde)
 ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
-ico_info="${bluel}[\u2139]${end}"	# [ℹ] Informacion	(azul)
+ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
 ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${yellow}[\u002a]${end}"	# [*] Asterisco 	(oro)
@@ -45,13 +45,11 @@ menu_header() {
 print_title() {
 	local texto=" $1"		# Agregamos el espacio inicial al texto
 	local len=${#texto}		# Medimos el texto (incluyendo ese espacio)
-	local linea_largo=$((len + 1))	# La línea será 1 carácter más larga
+	local linea_largo=$((len + 1))	# La línea sera 1 caracter más larga
 
-	# Imprimimos el título con su espacio inicial
-	printf "${white}%s${end}\n" "$texto"
+	printf "${white}%s${end}\n" "$texto"	# Imprimimos el titulo con su espacio inicial
 	    
-	# Dibujamos la línea usando un truco de printf para repetir el carácter
-	printf "${white}%.0s─${end}" $(seq 1 $linea_largo)
+	printf "${white}%.0s─${end}" $(seq 1 $linea_largo)	# Dibujamos la línea usando un truco de printf para repetir el caracter
 	    
 	printf "\n" # Espacio para que no se pegue al contenido
 }
@@ -69,7 +67,7 @@ print_warning_end() {
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
 	local texto="$1"
-	printf "${orange}${ico_info} Info:${end} ${orange}${texto}${end}\n"
+	printf "${orange}${ico_info} Info:${end} ${white}${texto}${end}\n"
 }
 
 print_info_end() {
@@ -93,9 +91,9 @@ print_confirm() {
 			[Nn]) return 1 ;;
 			*)
 				# Sube una linea, borra el error y permite reintentar (Igual que antes)
-				printf "\e[1A\e[K${ico_error} ${red}Opcion no valida${end}"
+				printf "\033[1A\033[K${ico_error} ${red}Opcion no valida${end}"
 				sleep $T_ERR
-				printf "\r\e[K"
+				printf "\r\033[K"
 				;;
 		esac
 	done
