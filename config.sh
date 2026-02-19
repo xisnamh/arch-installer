@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # COLORES ANSI
-export_blue='\033[0;34m'     # Azul oscuro (serio, tipo IBM/Arch)
-arch_cyan='\033[0;36m'     # Cian mate (parecido al logo pero sin brillo)
-#export blue="\e[38;5;81m"	# Azul suave		(titulo)
+export blue="\e[38;5;81m"	# Azul suave		(titulo)
 export white="\e[38;5;255m"	# Blanco puro		(subtitulo)
 export red="\e[38;5;196m"	# Rojo			(alerta critica)
 export orange="\e[38;5;216m"	# Naranja		(aviso importante)

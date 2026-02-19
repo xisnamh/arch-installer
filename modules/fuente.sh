@@ -1,5 +1,9 @@
 #!/bin/bash
 
+printf "${arch_blue_low}Este es el Azul Mate (0;34)${end}\n"
+printf "${arch_blue_high}Este es el Azul Brillante (1;34)${end}\n"
+printf "${arch_cyan_low}Este es el Cian Mate (0;36)${end}\n"
+printf "${arch_cyan_high}Este es el Cian Brillante (1;36)${end}\n"
 # 0. LOCALES PARA LA SESION ACTUAL
 # Soporte para caracteres utf-8
 echo "es_ES.UTF-8 UTF-8" > /etc/locale.gen
