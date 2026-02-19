@@ -38,6 +38,21 @@ menu_header() {
 	printf "${blue}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
+	printf "\033[0;31m1. Opcion no valida. Reintente.${end}\n"
+printf "\033[1;31m2. ERROR CRITICO: No se detecto el disco /dev/nvme0n1.${end}\n"
+printf "\033[2;31m3. (Aviso) El repositorio multilib esta desactivado.${end}\n"
+printf "\033[3;31m4. La descarga de la mirrorlist ha fallado.${end}\n"
+printf "\033[1;4;31m5. ATENCION: El disco seleccionado tiene particiones activas.${end}\n"
+printf "\033[5;31m6. ¡PELIGRO! Se borraran todos los datos del disco.${end}\n"
+printf "\033[7;31m7. CONFIRMACION REQUERIDA: Escriba 'BORRAR' para continuar.${end}\n"
+printf "\033[0;91m8. La temperatura del procesador es demasiado elevada.${end}\n"
+printf "\033[41;1;37m9. ERROR DE HARDWARE: Fallo en la suma de comprobacion.${end}\n"
+printf "\033[41;30m10. MONTAJE FALLIDO: La particion /mnt/boot no existe.${end}\n"
+printf "\033[31;43m11. ADVERTENCIA: La firma PGP del paquete no es valida.${end}\n"
+printf "\033[31;44m12. Error de red: No se pudo conectar al servidor NTP.${end}\n"
+printf "\033[1;4;31m13. PERMISO DENEGADO: Ejecute el script como root.${end}\n"
+printf "\033[2;3;31m14. El usuario ha cancelado la instalacion de CachyOS.${end}\n"
+printf "\033[9;31m15. Instalacion previa de GRUB detectada y descartada.${end}\n"
 }
 
 # SUBTITULO
