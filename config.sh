@@ -8,8 +8,8 @@ export red="\033[1,31m"		# Rojo			(alerta critica)
 export orange="\033[0;33m"	# Naranja		(aviso importante)
 export yellow="\033[1;33m"	# Amarillo		(instrucciones)
 export gray="\033[1;30m"	# Gris			(texto secundario)
-export cyan="\033[1;36m"	# Azul fuerte		(mensajes info)
-export bluel="\033[1;34m"	# Azul electrico
+export purple="\033[1;34m"	# Morado		(mensajes info)
+export bluel="\033[1;36m"	# Azul electrico
 export end="\033[0m"
 
 # ICONOS
@@ -104,14 +104,14 @@ print_confirm() {
 # FUNCION CONTINUAR
 print_continue() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${bluel}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
+	printf "\n${purple}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
 print_back() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${bluel}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
+	printf "\n${purple}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
 
