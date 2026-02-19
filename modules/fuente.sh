@@ -36,7 +36,7 @@ while true; do
 	esac
 
 	# Aplicamos la fuente para que el usuario vea el cambio
-	setfont "$FONT" 2>/dev/null
+setfont "$FONT" -u8 2>/dev/null
 
 	if print_confirm "Te gusta este tamaño?"; then
 		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
