@@ -88,7 +88,7 @@ print_confirm() {
 	local pregunta="$1"
 	local respuesta
 	while true; do
-		printf "${ico_input} ${white}$pregunta (s/n): ${end}"
+		printf "${white}${ico_input} $pregunta (s/n): ${end}"
 		read -r respuesta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
