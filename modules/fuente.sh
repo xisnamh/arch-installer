@@ -24,9 +24,9 @@ while true; do
 	read -r font_opt
 
 	case $font_opt in
-		1) FONT="ter-u18n" ;;
-		2) FONT="ter-u24n" ;;
-		3) FONT="ter-u32n" ;;
+		1) FONT="ter-u18b" ;;
+		2) FONT="ter-u24b" ;;
+		3) FONT="ter-u32b" ;;
 		4) break ;;
 		*)
 			printf "${ico_error} ${red}Opcion no valida${end}\n"
@@ -37,7 +37,11 @@ while true; do
 
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
-printf "\033%%G"
+
+	clear
+	menu_header
+	print_title "FUENTE (TTY)"
+
 	if print_confirm "Te gusta este tamaño?"; then
 		printf "${ico_ok} ${green}Fuente configurada correctamente.${end}\n"
 		sleep $T_INFO
