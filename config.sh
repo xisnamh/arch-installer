@@ -44,10 +44,10 @@ menu_header() {
 	printf "${blue}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
-	printf "${arch_blue_low}Este es el Azul Mate (0;34)${end}\n"
-printf "${arch_blue_high}Este es el Azul Brillante (1;34)${end}\n"
-printf "${arch_cyan_low}Este es el Cian Mate (0;36)${end}\n"
-printf "${arch_cyan_high}Este es el Cian Brillante (1;36)${end}\n"
+	printf "Este es el \033[0;34mAzul Mate (0;34)\033[0m para el instalador\n"
+printf "Este es el \033[1;34mAzul Brillante (1;34)\033[0m para el instalador\n"
+printf "Este es el \033[0;36mCian Mate (0;36)\033[0m para el instalador\n"
+printf "Este es el \033[1;36mCian Brillante (1;36)\033[0m para el instalador\n"
 }
 
 # SUBTITULO
