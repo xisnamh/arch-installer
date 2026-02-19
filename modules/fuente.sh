@@ -25,9 +25,9 @@ while true; do
 	read -r font_opt
 
 	case $font_opt in
-		1) FONT="ter-u18b" ;;
-		2) FONT="ter-u24b" ;;
-		3) FONT="ter-u32b" ;;
+		1) FONT="ter-918b" ;;
+		2) FONT="ter-924b" ;;
+		3) FONT="ter-932b" ;;
 		4) break ;;
 		*)
 			printf "${ico_error} ${red}Opcion no valida${end}\n"
@@ -38,8 +38,6 @@ while true; do
 
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
-echo -ne "\033(K" 2>/dev/null 
-loadkeys es 2>/dev/null
 
 	# Volvemos a pintar todo el menu con la fuente nueva antes de lanzar el print_confirm
 	clear
