@@ -24,9 +24,9 @@ while true; do
 	read -r font_opt
 
 	case $font_opt in
-		1) FONT="ter-v18b" ;;
-		2) FONT="ter-v24b" ;;
-		3) FONT="ter-v32b" ;;
+		1) FONT="ter-u18n" ;;
+		2) FONT="ter-u24n" ;;
+		3) FONT="ter-u32n" ;;
 		4) break ;;
 		*)
 			printf "${ico_error} ${red}Opcion no valida${end}\n"
