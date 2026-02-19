@@ -45,11 +45,10 @@ menu_header() {
 	printf "\n"
 	printf "\n"
 	printf "Color \033[0;30mNegro (0;30)\033[0m - Casi invisible\n"
-printf "Rojo Basico:    \033[1;31mPrueba de color rojo\033[0m\n"
-printf "Rojo 256 (196): \033[38;5;196mPrueba de color rojo\033[0m\n"
-printf "\n"
-printf "Azul Basico:    \033[0;36mPrueba de color azul\033[0m\n"
-printf "Azul 256 (39):  \033[38;5;39mPrueba de color azul\033[0m\n"
+printf "1. Azul Arch Mate   (0;36): \033[0;36mEste es el de tu titulo\033[0m\n"
+printf "2. Azul Brillante    (1;34): \033[1;34mEste es el azul electrico puro\033[0m\n"
+printf "3. Azul Cian Vivo    (1;36): \033[1;36mEste es un azul neon muy claro\033[0m\n"
+printf "4. Azul Deep Sky     (38;5;39): \033[38;5;39mEste es el mas pro (256 colores)\033[0m\n"
 }
 
 # SUBTITULO
