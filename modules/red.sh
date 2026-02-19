@@ -6,22 +6,19 @@ while true; do
 	print_title "RED"
 
 	if ping -c 1 google.com > /dev/null 2>&1; then
-		printf "${ico_ok} ${green}Hay conexion a internet detectada.${end}\n"
+		printf "${ico_ok} ${greenl}Hay conexion a internet detectada.${end}\n"
 	else
-			printf "${ico_error} ${red}No hay conexion a internet detectada.${end}\n"
+			printf "${ico_error} ${redl}No hay conexion a internet detectada.${end}\n"
 	fi
 
-	printf "\n${purple}Estado actual de las interfaces:${end}\n"
-# Usamos un bucle para procesar linea por linea y aplicar tus colores
-	ip -4 -brief address show scope global | while read -r iface status ip_mask; do
+	printf "\n${gray}Estado actual de las interfaces:${end}\n"
+		# Procesamos la informacion pero imprimimos sin etiquetas de color
+		ip -4 -brief address show scope global | while read -r iface status ip_mask; do
 		# Limpiamos el /24 de la IP
 		clean_ip=$(echo $ip_mask | cut -d/ -f1)
 		
-		# Definimos el color del estado (UP verde, lo demas rojo)
-		[ "$status" == "UP" ] && col_status="${green}" || col_status="${red}"
-		
-		# Imprimimos con formato: Nombre (blanco), Estado (color), IP (bluel)
-		printf "${gray}%-10s${end}  ${col_status}%-8s${end}  ${gray}%s${end}\n" "$iface" "$status" "$clean_ip"
+		# El %-10s y %-8s mantienen las columnas alineadas
+		printf "%-10s  %-8s  %s\n" "$iface" "$status" "$clean_ip"
 	done
 	printf "\n"
 

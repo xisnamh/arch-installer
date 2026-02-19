@@ -17,12 +17,12 @@ export bluel="\033[1;36m"	# Azul electrico
 export end="\033[0m"
 
 # ICONOS
-ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde)
+ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde brillante)
 ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo)
 ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
 ico_warn="${gray}[\u0021]${end}"	# [!] Peligro		(gris)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
-ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde)
+ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
 ico_input=">"				#  > Prompt
 ico_item="${white}\u2022${end}"		#  • Item		(blanco)
 ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
