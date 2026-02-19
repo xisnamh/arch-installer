@@ -103,8 +103,7 @@ while true; do
 				printf " 2) Entrar a Iwctl \n"
 				printf " 3) Volver al menu de seleccion\n"
 				printf " 4) Salir y continuar la instalacion\n"
-				print_info_end
-
+				
 				print_ask
 				read -r manual_opt
 

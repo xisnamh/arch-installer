@@ -4,7 +4,7 @@
 export purple="\e[38;5;141m"	# Púrpura pastel (Encabezados)
 export cyan="\e[38;5;81m"	# Azul cielo/Cian (Títulos)
 export red="\e[38;5;196m"	# Rojo vibrante (Alertas críticas)
-export orange="\e[38;5;208m"	# Naranja puro (Avisos importantes)
+export orange="\e[38;5;216m"	# Naranja claro (Avisos importantes)
 export lime="\e[38;5;118m"	# Verde lima (Éxitos)
 export gold="\e[38;5;214m"	# Oro/Amarillo (Instrucciones)
 export blue="\e[38;5;33m"	# Azul eléctrico (Mensajes info)
@@ -35,14 +35,24 @@ T_INFO=2	# Tiempo para mensajes informativos o de exito
 T_WAIT=5	# Tiempo para esperas de red/sincronizacion
 
 # FUNCION ENCABEZADO
+#menu_header() {
+#	clear
+#	printf "\n"
+#	printf "${purple}===============================================${end}\n"
+#	printf "\n"
+#	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
+#	printf "\n"
+#	printf "${purple}===============================================${end}\n"
+#	printf "\n"
+#	printf "\n"
+#}
+
 menu_header() {
 	clear
 	printf "\n"
-	printf "${purple}===============================================${end}\n"
-	printf "\n"
-	printf "${purple}          INSTALADOR INTERACTIVO ARCH          ${end}\n"
-	printf "\n"
-	printf "${purple}===============================================${end}\n"
+	printf "${purple}───────────────────────────────────────────────${end}\n"
+	printf "${purple} INSTALADOR INTERACTIVO ARCH          ${end}\n"
+	printf "${purple}───────────────────────────────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
 }
@@ -70,7 +80,7 @@ print_title() {
 print_warning_box() {
 	local texto=" ${ico_error} $1 "
 	local ancho=47
-	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -c)
+	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -m)
 	
 	local total_guiones=$(( ancho - len ))
 	local guiones_izq=$(( total_guiones / 2 ))
@@ -94,7 +104,7 @@ print_warning_end() {
 print_info_box() {
 	local texto=" ${ico_info} $1 "
 	local ancho=47
-	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -c)
+	local len=$(echo -e "$texto" | sed "s/\x1B\[[0-9;]*[mK]//g" | wc -m)
 	
 	local total_guiones=$(( ancho - len ))
 	local guiones_izq=$(( total_guiones / 2 ))
