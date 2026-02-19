@@ -38,6 +38,8 @@ while true; do
 
 	# Aplicamos la fuente para que el usuario vea el cambio
 	setfont "$FONT" 2>/dev/null
+echo -ne "\033(K" 2>/dev/null 
+loadkeys es 2>/dev/null
 
 	# Volvemos a pintar todo el menu con la fuente nueva antes de lanzar el print_confirm
 	clear
