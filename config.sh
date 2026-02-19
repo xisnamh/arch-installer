@@ -15,7 +15,7 @@ export end="\033[0m"
 # ICONOS
 ico_ok="${green}[\u221a]${end}"		# [√] Ok 		(verde)
 ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
-ico_info="${cyan}[\u2139]${end}"	# [ℹ] Informacion	(azul)
+ico_info="${bluel}[\u2139]${end}"	# [ℹ] Informacion	(azul)
 ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${yellow}[\u002a]${end}"	# [*] Asterisco 	(oro)
@@ -104,14 +104,14 @@ print_confirm() {
 # FUNCION CONTINUAR
 print_continue() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${cyan}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
+	printf "\n${bluel}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
 print_back() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${cyan}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
+	printf "\n${bluel}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
 
