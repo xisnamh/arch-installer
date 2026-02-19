@@ -39,7 +39,6 @@ menu_header() {
 	printf "${blue}─────────────────────${end}\n"
 	printf "\n"
 	printf "\n"
-	printf "Color \033[0;30mNegro (0;30)\033[0m - Casi invisible\n"
 }
 
 # SUBTITULO
@@ -70,7 +69,7 @@ print_warning_end() {
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
 	local texto="$1"
-	printf "${blue}${ico_info} Info:${end} ${white}${texto}${end}\n"
+	printf "${orange}${ico_info} Info:${end} ${orange}${texto}${end}\n"
 }
 
 print_info_end() {
@@ -105,14 +104,14 @@ print_confirm() {
 # FUNCION CONTINUAR
 print_continue() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
+	printf "\n${cyan}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
 print_back() {
 	# Usar -r en read es buena practica para evitar que escape caracteres
-	printf "\n${blue}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
+	printf "\n${cyan}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }
 
