@@ -14,7 +14,7 @@ font_menu() {
 	clear
 	menu_header
 	print_title "FUENTE (TTY)"
-	printf "${purple}Selecciona un tamaño de letra para la consola:${end}\n"
+	printf "${gray}Selecciona un tamaño de letra para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
 	printf " 3) Grande   (Recomendado 2K/4K)\n"
