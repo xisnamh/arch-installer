@@ -1,5 +1,38 @@
 #!/bin/bash
 
+# Definiciones rápidas para la demostración
+R0="\033[0;31m"    # Rojo normal
+R1="\033[1;31m"    # Rojo brillante
+R2="\033[2;31m"    # Rojo oscuro/tenue
+R3="\033[3;31m"    # Rojo cursiva (si la TTY lo soporta)
+R4="\033[4;31m"    # Rojo subrayado
+R5="\033[5;31m"    # Rojo parpadeante
+R7="\033[7;31m"    # Rojo invertido
+R91="\033[0;91m"   # Rojo alta intensidad
+RBW="\033[41;1;37m" # Fondo rojo, letra blanca
+RBN="\033[41;30m"   # Fondo rojo, letra negra
+RBY="\033[31;43m"   # Letra roja, fondo amarillo
+RBB="\033[31;44m"   # Letra roja, fondo azul
+RSU="\033[1;4;31m"  # Rojo negrita y subrayado
+RIT="\033[2;3;31m"  # Rojo tenue y cursiva
+END="\033[0m"
+
+echo -e "${R0}1. Opcion no valida. Reintente.${END}"
+echo -e "${R1}2. ERROR CRITICO: No se detecto el disco /dev/sda.${END}"
+echo -e "${R2}3. (Aviso) El repositorio multilib esta desactivado.${END}"
+echo -e "${R3}4. La descarga de la mirrorlist ha fallado.${END}"
+echo -e "${R4}5. ATENCION: El disco seleccionado tiene particiones activas.${END}"
+echo -e "${R5}6. ¡PELIGRO! Se borraran todos los datos del NVMe.${END}"
+echo -e "${R7}7.  CONFIRMACION REQUERIDA: Escriba 'BORRAR'  ${END}"
+echo -e "${R91}8. La temperatura del procesador es muy elevada.${END}"
+echo -e "${RBW}9. ERROR DE HARDWARE: Fallo en la suma de comprobacion.${END}"
+echo -e "${RBN}10.  MONTAJE FALLIDO: La particion /mnt/boot no existe.  ${END}"
+echo -e "${RBY}11. ADVERTENCIA: La firma PGP del paquete no es valida.${END}"
+echo -e "${RBB}12. Error de red: No se pudo conectar al servidor NTP.${END}"
+echo -e "${RSU}13. PERMISO DENEGADO: Ejecute el script como root.${END}"
+echo -e "${RIT}14. El usuario ha cancelado la instalacion de CachyOS.${END}"
+echo -e "${R0}15. Fin del reporte de errores.${END}"
+
 # COLORES ANSI
 export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\033[1;37m"	# Blanco		(subtitulo)
@@ -13,13 +46,12 @@ export bluel="\033[1;36m"	# Azul electrico
 export end="\033[0m"
 
 # ICONOS
-ico_ok="${green}[\u221a]${end}"		# [√] Ok 		(verde)
+ico_ok="${green}[\u002b]${end}"		# [+] Ok 		(verde)
 ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
 ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(naranja)
 ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${yellow}[\u002a]${end}"	# [*] Asterisco 	(oro)
-ico_plus="${green}[\u002b]${end}"	# [+] Instalar		(verde)
 ico_input=">"				#  > Prompt
 ico_item="${white}\u2022${end}"		#  • Item		(blanco)
 ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
@@ -57,7 +89,7 @@ print_title() {
 # AVISO ERROR
 print_warning_box() {
 	local texto="$1"
-	printf "${red}${ico_error} Error:${end} ${white}${texto}${end}\n"
+	printf "${red}${ico_error} Error: ${texto}${end}\n"
 }
 
 print_warning_end() {
@@ -67,7 +99,7 @@ print_warning_end() {
 # FUNCION AVISO INFORMATIVO
 print_info_box() {
 	local texto="$1"
-	printf "${orange}${ico_info} Info:${end} ${white}${texto}${end}\n"
+	printf "${orange}${ico_info} Info: ${texto}${end}\n"
 }
 
 print_info_end() {
@@ -76,7 +108,7 @@ print_info_end() {
 
 # FUNCION OPCIONES
 print_ask() {
-	printf "\n${white}${ico_input} Elige una opcion:${end} "
+	printf "\n${gray}${ico_input} Elige una opcion:${end} "
 }
 
 # FUNCION VALIDACION

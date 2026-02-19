@@ -20,8 +20,8 @@ while true; do
 		# Definimos el color del estado (UP verde, lo demas rojo)
 		[ "$status" == "UP" ] && col_status="${green}" || col_status="${red}"
 		
-		# Imprimimos con formato: Nombre (blanco), Estado (color), IP (cian/bluel)
-		printf "${white}%-10s${end}  ${col_status}%-8s${end}  ${bluel}%s${end}\n" "$iface" "$status" "$clean_ip"
+		# Imprimimos con formato: Nombre (blanco), Estado (color), IP (bluel)
+		printf "${gray}%-10s${end}  ${col_status}%-8s${end}  ${gray}%s${end}\n" "$iface" "$status" "$clean_ip"
 	done
 	printf "\n"
 
@@ -109,7 +109,7 @@ while true; do
 			while true; do
 				menu_header
 				print_title "MENU MANUAL DE RED"
-				printf " 1) Ver Guia Completa de comandos\n"
+				printf " 1) Ver comandos de Iwctl\n"
 				printf " 2) Entrar a Iwctl \n"
 				printf " 3) Volver al menu de seleccion\n"
 				printf " 4) Salir y continuar la instalacion\n"
