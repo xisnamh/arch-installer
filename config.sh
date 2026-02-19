@@ -2,32 +2,27 @@
 
 # COLORES ANSI
 export blue="\033[0;36m"	# Azul suave		(titulo)
-export white="\e[38;5;255m"	# Blanco puro		(subtitulo)
-export red="\e[38;5;196m"	# Rojo			(alerta critica)
-export orange="\e[38;5;216m"	# Naranja		(aviso importante)
-export lime="\e[38;5;118m"	# Verde lima		(exito)
-export gold="\e[38;5;214m"	# Oro/Amarillo		(instrucciones)
-export cyan="\e[38;5;33m"	# Azul eléctrico	(mensajes info)
-
-export gray="\e[38;5;244m"	# Gris			(texto secundario)
-export silver="\e[38;5;250m"	# Gris platino
-export end="\e[0m"
-
-# COMPATIBILIDAD COLORES CON TUS SCRIPTS ANTIGUOS
-export green="$lime"
-export yellow="$gold"
+export white="\033[1;37m"	# Blanco		(subtitulo)
+export green="\033[1;32m"	# Verde			(exito)
+export red="\033[1,31m"		# Rojo			(alerta critica)
+export orange="\033[0;33m"	# Naranja		(aviso importante)
+export yellow="\033[1;33m"	# Amarillo		(instrucciones)
+export gray="\033[1;30m"	# Gris			(texto secundario)
+export cyan="\033[1;36m"	# Azul fuerte		(mensajes info)
+export bluel="\033[1;34m"	# Azul electrico
+export end="\033[0m"
 
 # ICONOS
-ico_ok="${lime}[\u221a]${end}"		# [√] Ok 		(verde)
+ico_ok="${green}[\u221a]${end}"		# [√] Ok 		(verde)
 ico_error="${red}[\u00d7]${end}"	# [×] Error		(rojo)
-ico_info="${blue}[\u2139]${end}"	# [ℹ] Informacion	(azul)
+ico_info="${cyan}[\u2139]${end}"	# [ℹ] Informacion	(azul)
 ico_warn="${yellow}[\u0021]${end}"	# [!] Peligro		(amarillo)
 ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
-ico_star="${gold}[\u002a]${end}"	# [*] Asterisco 	(oro)
-ico_plus="${lime}[\u002b]${end}"	# [+] Instalar		(verde)
+ico_star="${yellow}[\u002a]${end}"	# [*] Asterisco 	(oro)
+ico_plus="${green}[\u002b]${end}"	# [+] Instalar		(verde)
 ico_input=">"				#  > Prompt
 ico_item="${white}\u2022${end}"		#  • Item		(blanco)
-ico_line="${silver}\u2500${end}"	#  ─ Linea horizontal
+ico_line="${gray}\u2500${end}"		#  ─ Linea horizontal
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores
@@ -45,10 +40,6 @@ menu_header() {
 	printf "\n"
 	printf "\n"
 	printf "Color \033[0;30mNegro (0;30)\033[0m - Casi invisible\n"
-printf "1. Azul Arch Mate   (0;36): \033[0;36mEste es el de tu titulo\033[0m\n"
-printf "2. Azul Brillante    (1;34): \033[1;34mEste es el azul electrico puro\033[0m\n"
-printf "3. Azul Cian Vivo    (1;36): \033[1;36mEste es un azul neon muy claro\033[0m\n"
-printf "4. Azul Deep Sky     (38;5;39): \033[38;5;39mEste es el mas pro (256 colores)\033[0m\n"
 }
 
 # SUBTITULO
