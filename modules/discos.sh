@@ -2,7 +2,7 @@ while true; do
 	# --- PASO 1 Y 2: SELECCION DE DISCO ---
 	while true; do
 		menu_header
-		print_title "DISCOS"
+		print_title "PRE-INSTALACION: DISCOS"
 
 		printf "${gray}Discos detectados en el sistema:${end}\n"
 		lsblk -p -n -l -o NAME,SIZE,TYPE | grep "disk"
@@ -29,7 +29,7 @@ while true; do
 
 	while true; do
 		menu_header
-		print_title "DISCOS"
+		print_title "PRE-INSTALACION: DISCOS"
 
 		printf "${gray}Detalles del dispositivo seleccionado:${end}\n"
 		if [ "$IS_VM" = true ]; then
@@ -100,7 +100,7 @@ while true; do
 			5)
 				menu_header
 				print_title "DISCO"
-				printf "${ico_warn}${redd} Entrando en shell interactiva.${end}\n"
+				printf "${ico_warn}${redd} Entrando a la shell.${end}\n"
 				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n\n"
 				
 				# Abrimos shell.
@@ -112,8 +112,7 @@ while true; do
 				;;
 			7)
 				menu_header
-				print_title "DISCOS"
-				lsblk "$DISCO"
+				print_title "PRE-INSTALACION: DISCOS"
 				
 				if [ "$IS_VM" = true ]; then
 					lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '

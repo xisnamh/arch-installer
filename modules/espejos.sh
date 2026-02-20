@@ -4,7 +4,7 @@
 while true; do
 	clear
 	menu_header
-	print_title "ESPEJOS"
+	print_title "PRE-INSTALACION: ESPEJOS"
 	printf "${ico_star} ${greend}Optimizando los espejos...${end}\n"
 
 	if reflector --verbose --country France --latest 10 --protocol https --age 12 --sort rate --save /etc/pacman.d/mirrorlist; then

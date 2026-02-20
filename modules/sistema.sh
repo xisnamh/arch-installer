@@ -2,7 +2,7 @@
 
 # 2. DISTRIBUCION DEL TECLADO
 menu_header
-print_title "PRE-CONFIGURAR"
+print_title "PRE-INSTALACION: SISTEMA"
 
 printf "${ico_star} ${greend}Configurando el teclado en español...${end}\n"
 loadkeys es
@@ -11,7 +11,7 @@ print_continue
 
 # 3. SERVICIO NTP
 menu_header
-print_title "PRE-CONFIGURAR"
+print_title "PRE-INSTALACION: SISTEMA"
 
 printf "${ico_star} ${greend}Sincronizando la hora del sistema...${end}\n"
 timedatectl set-ntp true
@@ -24,7 +24,7 @@ print_continue
 
 # 4. VERIFICAR EL MODO DE ARRANQUE
 menu_header
-print_title "PRE-CONFIGURAR"
+print_title "PRE-INSTALACION: SISTEMA"
 
 printf "${ico_star} ${greend}Verificando el modo de arranque...${end}\n"
 if [ -d "/sys/firmware/efi" ]; then

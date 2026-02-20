@@ -3,7 +3,7 @@
 # 5. RED
 while true; do
 	menu_header
-	print_title "RED"
+	print_title "PRE-INSTALACION: RED"
 
 	if ping -c 1 google.com > /dev/null 2>&1; then
 		printf "${ico_ok} ${greenl}Hay conexion a internet detectada.${end}\n"
@@ -34,7 +34,7 @@ while true; do
 	printf " 3) Saltar / Ya tengo internet\n"
 
 	print_ask
-	read wifi_opt
+	read -r wifi_opt
 
 	case $wifi_opt in
 		1)
@@ -44,7 +44,7 @@ while true; do
 				continue
 			fi
 			menu_header
-			print_title "MODO ASISTIDO"
+			print_title "PRE-INSTALACION: RED"
 			iwctl device list
 			printf "\n"
 
@@ -104,7 +104,7 @@ while true; do
 		2)
 			while true; do
 				menu_header
-				print_title "MENU MANUAL DE RED"
+				print_title "PRE-INSTALACION: RED"
 				printf " 1) Ver comandos de Iwctl\n"
 				printf " 2) Entrar a Iwctl\n"
 				printf " 3) Volver al menu de seleccion\n"
@@ -116,7 +116,7 @@ while true; do
 				case $manual_opt in
 					1)
 						menu_header
-						print_title "GUIA DE COMANDOS IWCTL"
+						print_title "PRE-INSTALACION: RED"
 						printf " ${ico_item} Dispositivos${end}\n"
 						printf "  device list                                     - Lista tarjetas\n"
 						printf "  device <wlan> set-property Powered on | off     - ON/OFF tarjeta\n"
@@ -137,7 +137,8 @@ while true; do
 						;;
 					2)
 						printf "\n"
-						printf "${ico_info} ${redd}Entrando a iwctl... Escribe 'exit' para volver.${end}\n"
+						printf "${ico_warn} ${redd}Entrando a iwctl.${end}\n"
+						printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n\n"
 						iwctl
 						;;
 					3)

@@ -12,13 +12,13 @@ source ./modules/fuente.sh
 
 #source ./modules/discos.sh
 
-source ./modules/preconfigurar.sh
+source ./modules/sistema.sh
 
 source ./modules/red.sh
 
 source ./modules/espejos.sh
 
-source ./modules/cachyos.sh
+source ./modules/repositorioscachyos.sh
 
 source ./modules/llaves.sh
 

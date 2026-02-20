@@ -2,7 +2,7 @@
 
 # 7. INSTALACION DE REPOSITORIOS CACHYOS
 menu_header
-print_title "REPOSITORIOS CACHYOS"
+print_title "PRE-INSTALACION: REPOSITORIOS CACHYOS"
 
 if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; then
 	
@@ -51,7 +51,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 	cd ..
 
 	menu_header
-	print_title "CONFIGURACION DE CACHYOS"
+	print_title "PRE-INSTALACION: REPOSITORIOS CACHYOS"
 
 	printf "${ico_star} ${greend}Preparando edicion de /etc/pacman.conf...${end}\n"
 	printf "\n"

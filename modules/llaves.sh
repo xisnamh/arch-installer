@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# 8. CONFIGURACION DE LLAVEROS
+# 8. CONFIGURACION DE LLAVES
 menu_header
-print_title "LLAVES"
+print_title "PRE-INSTALACION: LLAVES"
 
 printf "${ico_star} ${greend}Iniciando el llavero local...${end}\n"
 pacman-key --init

@@ -13,7 +13,7 @@ export LC_ALL=es_ES.UTF-8
 font_menu() {
 	clear
 	menu_header
-	print_title "FUENTE (TTY)"
+	print_title "PRE-INSTALACION: FUENTE (TTY)"
 	printf "${gray}Selecciona un tamaño de fuente para la consola:${end}\n"
 	printf " 1) Normal   (Tamaño estandar)\n"
 	printf " 2) Mediana  (Recomendado 1080p)\n"
