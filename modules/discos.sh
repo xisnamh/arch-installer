@@ -4,7 +4,7 @@ while true; do
 		menu_header
 		print_title "DISCOS"
 
-		printf "${blue}Discos detectados en el sistema:${end}\n"
+		printf "${gray}Discos detectados en el sistema:${end}\n"
 		lsblk -p -n -l -o NAME,SIZE,TYPE | grep "disk"
 		printf "\n"
 
@@ -12,14 +12,14 @@ while true; do
 		read -r DISCO
 
 		if [ -z "$DISCO" ]; then
-			printf "${red}[${ico_error}] No has escrito nada.${end}\n"
+			printf "${ico_error}${redd} No has escrito nada.${end}\n"
 			sleep $T_ERR
 		elif [ -b "$DISCO" ]; then
-			printf "${green}[${ico_ok}] Disco seleccionado correctamente: $DISCO${end}\n"
+			printf "${ico_ok}${greenl} Disco seleccionado correctamente: $DISCO${end}\n"
 			sleep $T_INFO
 			break
 		else
-			printf "${red}[${ico_error}] El dispositivo '$DISCO' no existe o no es valido.${end}\n"
+			printf "${ico_error}${redd} El dispositivo '$DISCO' no existe o no es valido.${end}\n"
 			sleep $T_ERR
 		fi
 	done
@@ -31,7 +31,7 @@ while true; do
 		menu_header
 		print_title "DISCO SELECCIONADO: $DISCO"
 
-		printf "${blue}Detalles del dispositivo:${end}\n"
+		printf "${gray}Detalles del dispositivo:${end}\n"
 		if [ "$IS_VM" = true ]; then
 			lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		else
@@ -58,7 +58,7 @@ while true; do
 					menu_header
 					print_title "SALUD NVME: $DISCO"
 					if ! nvme smart-log "$DISCO" >/dev/null 2>&1; then
-						printf "${orange}[${ico_info}] Nota: Log de salud NVMe no disponible.${end}\n"
+						printf "${ico_info}${redd} Nota: Log de salud NVMe no disponible.${end}\n"
 					else
 						nvme smart-log "$DISCO"
 					fi
@@ -67,7 +67,7 @@ while true; do
 					menu_header
 					print_title "SALUD SMART: $DISCO"
 					if ! smartctl -H "$DISCO" >/dev/null 2>&1; then
-						printf "${orange}[${ico_info}] Nota: SMART no disponible o no soportado.${end}\n"
+						printf "${ico_info}${redd} Nota: SMART no disponible o no soportado.${end}\n"
 					else
 						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
 					fi
@@ -76,10 +76,9 @@ while true; do
 				;;
 			2)
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					print_warning_box "BORRADO FISICO: $DISCO"
-					printf "${white}Escribe ${red}BORRAR${white} para confirmar:${end} "
+					print_error "BORRADO FISICO: $DISCO"
+					printf "${white}Escribe ${redd}BORRAR${white} para confirmar:${end} "
 					read -r confirm
-					print_warning_end
 					if [ "$confirm" == "BORRAR" ]; then
 						pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
 						nvme sanitize "$DISCO" --sanact=3
@@ -88,11 +87,11 @@ while true; do
 				print_continue
 				;;
 			3)
-				printf "${red}[${ico_warn}] Limpiando tablas de particiones en $DISCO...${end}\n"
+				printf "${ico_warn}${redd} Limpiando tablas de particiones en $DISCO...${end}\n"
 				pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
-				printf "${green}[${ico_ok}] Disco limpiado con exito.${end}\n"
+				printf "${ico_ok}${greenl} Disco limpiado con exito.${end}\n"
 				print_continue
 				;;
 			4)
@@ -101,8 +100,8 @@ while true; do
 			5)
 				menu_header
 				print_title "MODO MANUAL: TERMINAL"
-				printf "${red}[${ico_warn}] Entrando en shell interactiva.${end}\n"
-				printf "${silver}[${ico_info}] Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
+				printf "${ico_warn}${redd} Entrando en shell interactiva.${end}\n"
+				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
 				
 				# Abrimos shell.
 				/bin/bash --norc
@@ -121,8 +120,7 @@ while true; do
 				fi
 				;;
 			*)
-				printf "${red}[${ico_error}] Opcion no valida.${end}\n"
-				sleep $T_ERR
+				print_novalid
 				;;
 		esac
 	done

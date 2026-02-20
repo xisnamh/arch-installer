@@ -2,26 +2,26 @@
 
 # 7. INSTALACION DE REPOSITORIOS CACHYOS
 menu_header
-print_title "CACHYOS REPOSITORIOS"
+print_title "REPOSITORIOS CACHYOS"
 
 if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; then
 	
 	# BUCLE DE DESCARGA CON REINTENTO
 	while true; do
-		printf "${ico_star} ${greend}Descargando instalador...${end}\n"
+		printf "${ico_star} ${greend}Descargando el instalador de los repositorios de CachyOS...${end}\n"
 		
 		# Intentamos la descarga
 		if curl -L https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz; then
-			printf "${ico_ok} ${greenl}Descarga completada correctamente.${end}\n"
+			printf "${ico_ok} ${greenl}Instalador de los repositorios de CachyOS descargado correctamente.${end}\n"
 			break # Sale del bucle si funciona
 		else
-			print_error "Error al descargar el repositorio de CachyOS."
+			print_error "Instalador de los repositorios de CachyOS finalizado con error."
 			
 			# Pregunta si quiere reintentar
-			if print_confirm "La descarga fallo. ¿Quieres volver a intentarlo?"; then
+			if print_confirm "¿Deseas reintentar el instalador de los repositorios de CachyOS?"; then
 				continue # Vuelve al principio del while para reintentar
 			else
-				printf "\n${ico_error} ${redl}Instalacion de CachyOS cancelada por el usuario.${end}\n"
+				printf "\n${ico_error} ${redl}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
 				print_continue
 				return 1 # Sale del módulo y vuelve al script principal
 			fi
@@ -61,8 +61,7 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 	printf " ${ico_item} Descomenta #color, #prettyprogressbar y #ilovecandy.\n"
 	printf " ${ico_item} Mueve los repositorios [cachyos-v3] y [cachyos-core-v3] al principio de la lista.\n"
 	printf " ${ico_item} Deshabilita los repositorios [cachyos-extra-v3] y [cachyos] (comenta con #).\n"
-	print_info_end
-	
+		
 	print_continue
 
 	# Bucle de edicion manual
@@ -77,11 +76,11 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 		fi
 	done
 
-	printf "\n${ico_ok} ${greenl}Configuracion de CachyOS finalizada con exito.${end}\n"
+	printf "\n${ico_ok} ${greenl}Instalacion de los repositorios de CachyOS finalizada correctamente.${end}\n"
 	print_continue
 
 else
 	# Opcion si se responde NO al principio
-	printf "\n${ico_warn} ${redd}Configuracion de CachyOS omitida por el usuario.${end}\n"
+	printf "\n${ico_warn} ${redd}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
 	print_continue
 fi

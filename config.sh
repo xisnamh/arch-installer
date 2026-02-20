@@ -71,18 +71,10 @@ print_novalid() {
 	printf "\r\033[K\033[1A\r\033[K"
 }
 
-print_novalid_end() {
-	printf "\n"
-}
-
 # FUNCION AVISO INFORMATIVO
 print_info() {
 	local texto="$1"
 	printf "${ico_info} ${redd}${texto}${end}\n"
-}
-
-print_info_end() {
-	printf "\n"
 }
 
 # FUNCION OPCIONES

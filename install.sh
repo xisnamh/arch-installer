@@ -7,17 +7,16 @@ cd "$(dirname "$0")"
 source ./config.sh
 
 # EJECUTAR MODULOS EN ORDEN
-menu_header
+
 source ./modules/fuente.sh
 
-menu_header
-#source ./modules/discos_particiones.sh
+#source ./modules/discos.sh
 
 source ./modules/preconfigurar.sh
 
 source ./modules/red.sh
 
-source ./modules/mirrorlist.sh
+source ./modules/espejos.sh
 
 source ./modules/cachyos.sh
 

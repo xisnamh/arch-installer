@@ -15,7 +15,7 @@ while true; do
 		# Procesamos la informacion pero imprimimos sin etiquetas de color
 		ip -4 -brief address show scope global | while read -r iface status ip_mask; do
 		# Limpiamos el /24 de la IP
-		clean_ip=$(echo $ip_mask | cut -d/ -f1)
+		clean_ip=$(echo "$ip_mask" | cut -d/ -f1)
 		
 		# El %-10s y %-8s mantienen las columnas alineadas
 		printf "%-10s  %-8s  %s\n" "$iface" "$status" "$clean_ip"
@@ -83,7 +83,7 @@ while true; do
 
 				if [[ "$WIFI_STATE" == "connected" ]]; then
 					if ping -I "$ADAPTADOR" -c 1 8.8.8.8 > /dev/null 2>&1; then
-						printf "${ico_ok} ${green}Conexión establecida en $ADAPTADOR.${end}\n"
+						printf "${ico_ok} ${greenl}Conexión establecida en $ADAPTADOR.${end}\n"
 						sleep $T_INFO
 						break 2
 					else

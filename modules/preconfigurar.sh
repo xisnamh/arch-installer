@@ -4,7 +4,7 @@
 menu_header
 print_title "PRE-CONFIGURAR"
 
-printf "${ico_star} ${greend}Configurando el teclado...${end}\n"
+printf "${ico_star} ${greend}Configurando el teclado en español...${end}\n"
 loadkeys es
 printf "${ico_ok} ${greenl}Configurado el teclado en español correctamente.${end}\n"
 print_continue
@@ -32,7 +32,7 @@ if [ -d "/sys/firmware/efi" ]; then
 else
 	printf "${ico_warn} ${redd}El modo de arranque es BIOS/Legacy.${end}\n"
 	if ! print_confirm "Deseas continuar de todas formas?"; then
-		printf "${ico_error} ${redl}Abortando por eleccion del usuario.${end}\n"
+		printf "${ico_error} ${redl}Instalacion de Arch Linux cancelada. Saliendo del instalador...${end}\n"
 		exit 1
 	fi
 fi
