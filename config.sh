@@ -95,7 +95,7 @@ print_confirm() {
 			*)
 				printf "${ico_error} ${redl}Opcion no valida${end}"
 				sleep $T_ERR
-				printf "\r\033[K"
+printf "\r\033[K\033[1A\r\033[K"
 				;;
 		esac
 	done
