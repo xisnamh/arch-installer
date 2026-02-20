@@ -123,6 +123,7 @@ while true; do
 					fi
 				else
 					printf "${gray}Se borraran todos los datos de forma irreversible.${end}\n"
+					printf "\n"
 
 					if print_confirm "¿Estas seguro?"; then
 						# Detectar si es SSD (0) o HDD (1)
@@ -137,9 +138,11 @@ while true; do
 								dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
 							fi
 						else
-							printf "${ico_warn}${redd} Detectado HDD. Iniciando borrado con ceros...${end}\n"
+							printf "\n"
+							printf "${ico_warn}${redd} Detectado HDD.${end}\n"
+							printf "${ico_info}${redd} Iniciando borrado con ceros...${end}\n"
 							dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
-							printf "\n${ico_ok}${greenl} Borrado con ceros finalizado correctamente.${end}\n"
+							printf "${ico_ok}${greenl} Borrado con ceros finalizado correctamente.${end}\n"
 						fi
 					fi
 				fi
