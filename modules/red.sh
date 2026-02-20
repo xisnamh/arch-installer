@@ -24,9 +24,9 @@ while true; do
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
 
-	printf "${white}Selecciona como configurar el wifi:${end}\n"
+	printf "${gray}Selecciona como configurar el wifi:${end}\n"
 	if [ -z "$WIFI_DEVICES" ]; then
-		printf " 1) Modo Asistido (No se detectan tarjetas wifi)\n"
+		printf " 1) Modo Asistido (No se detecta adaptador wifi)\n"
 	else
 		printf " 1) Modo Asistido\n"
 	fi
@@ -39,7 +39,7 @@ while true; do
 	case $wifi_opt in
 		1)
 			if [ -z "$WIFI_DEVICES" ]; then
-				printf "${ico_error} ${redl}Error: No se detecto hardware wifi${end}\n"
+				printf "${ico_error} ${redl}Error: No se detecta adaptador wifi${end}\n"
 				sleep "$T_ERR"
 				continue
 			fi
