@@ -10,16 +10,16 @@ source ./config.sh
 
 source ./modules/fuente.sh
 
-#source ./modules/discos.sh
-
-source ./modules/sistema.sh
-
-source ./modules/red.sh
-
-source ./modules/espejos.sh
-
-source ./modules/repositorioscachyos.sh
-
-source ./modules/llaves.sh
-
 source ./modules/discos.sh
+
+#source ./modules/sistema.sh
+
+#source ./modules/red.sh
+
+#source ./modules/espejos.sh
+
+#source ./modules/repositorioscachyos.sh
+
+#source ./modules/llaves.sh
+
+#source ./modules/discos.sh

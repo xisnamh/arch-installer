@@ -56,7 +56,7 @@ while true; do
 				if [[ "$DISCO" == *"nvme"* ]]; then
 					pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
 					menu_header
-					print_title "SALUD NVME: $DISCO"
+					print_title "PRE-INSTALACION: DISCOS"
 					if ! nvme smart-log "$DISCO" >/dev/null 2>&1; then
 						printf "${ico_info}${redd} Nota: Log de salud NVMe no disponible.${end}\n"
 					else
@@ -65,33 +65,99 @@ while true; do
 				else
 					pacman -S --needed smartmontools --noconfirm >/dev/null 2>&1
 					menu_header
-					print_title "SALUD SMART: $DISCO"
-					if ! smartctl -H "$DISCO" >/dev/null 2>&1; then
-						printf "${ico_info}${redd} Nota: SMART no disponible o no soportado.${end}\n"
-					else
+					print_title "PRE-INSTALACION: DISCOS"
+					
+					# Comprobacion estandar
+					if smartctl -H "$DISCO" >/dev/null 2>&1; then
 						smartctl -H "$DISCO" | grep -E "result|status" || smartctl -H "$DISCO"
+					
+					# Comprobacion adaptador usb-sata
+					elif smartctl -d sat -H "$DISCO" >/dev/null 2>&1; then
+						printf "${ico_info}${greenl} Adaptador USB detectado.${end}\n"
+						smartctl -d sat -H "$DISCO" | grep -E "result|status" || smartctl -d sat -H "$DISCO"				
+					else
+						printf "${ico_info}${redd} Nota: SMART no disponible o no soportado.${end}\n"
 					fi
 				fi
 				print_continue
 				;;
 			2)
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					print_error "BORRADO FISICO: $DISCO"
-					printf "${white}Escribe ${redd}BORRAR${white} para confirmar:${end} "
-					read -r confirm
-					if [ "$confirm" == "BORRAR" ]; then
+					print_title "PRE-INSTALACION: DISCOS"
+					printf "${gray}Este proceso limpia las celdas de memoria a nivel hardware.${end}\n"
+
+					if print_confirm "¿Deseas realizar un borrado de fabrica?"; then
 						pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
-						nvme sanitize "$DISCO" --sanact=3
+						
+						# Iniciamos el borrado
+						if nvme sanitize "$DISCO" --sanact=3>/dev/null 2>&1; then
+							printf "${ico_info} Borrado iniciado. Mostrando progreso...\n"
+						
+							# Bucle de progreso
+							while true; do
+								# Extraemos el porcentaje del log de sanitize
+								progreso=$(nvme sanitize-log "$DISCO" | grep "Progress" | awk '{print $NF}' | tr -d '()%')
+								status=$(nvme sanitize-log "$DISCO" | grep "Status" | awk '{print $NF}')
+						
+								# Si el status es 0x0 es que finalizo correctamente
+								if [[ "$status" == "0x0" || "$status" == "0" ]]; then
+									printf "\r${ico_ok}${greenl} Borrado fisico completado al 100%%.          ${end}\n"
+									break
+								fi
+								
+								# Validar que $progreso sea un número entero (0-100)
+								if [[ "$progreso" =~ ^[0-9]+$ ]]; then
+									printf "\r\033[K${ico_info} Progreso: ${redd}${progreso}%%${end} "
+								else
+									# Si el firmware aun no devuelve un numero, evitamos que el script de un error visual
+									printf "\r\033[K${ico_info} Progreso: ${gray}Esperando respuesta del disco...${end} "
+								fi
+								sleep 2
+							done
+                    				else
+							printf "${ico_error}${redd} El disco no soporta Sanitize Overwrite.${end}\n"
+						fi
+					fi
+				else
+					print_title "PRE-INSTALACION: DISCOS"
+					printf "${gray}Se eliminaran todos los datos de forma irreversible.${end}\n"
+
+					if print_confirm "¿Estas seguro de borrar este dispositivo?"; then
+						# Detectar si es SSD (0) o HDD (1)
+						ROTA=$(cat "/sys/block/$(basename $DISCO)/queue/rotational" 2>/dev/null)
+
+						if [ "$ROTA" == "0" ]; then
+							printf "${ico_info} Ejecutando blkdiscard (SSD/Trim)... "
+							if blkdiscard -f "$DISCO"; then
+								printf "${greenl}Hecho.${end}\n"
+							else
+								printf "${redl}Fallo.${end} Intentando borrado con ceros...\n"
+								dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
+							fi
+						else
+							printf "${ico_warn} Detectado HDD. Iniciando borrado con ceros (esto tardara)...${end}\n"
+							dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
+						fi
 					fi
 				fi
 				print_continue
 				;;
 			3)
-				printf "${ico_warn}${redd} Eliminando firmas y tablas de particiones...${end}\n"
-				pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
-				wipefs -a "$DISCO"
-				sgdisk --zap-all "$DISCO"
-				printf "${ico_ok}${greenl} Firmas y tablas de particiones eliminadas correctamente.${end}\n"
+				menu_header
+				print_title "PRE-INSTALACION: DISCOS"
+				printf "${ico_warn}${redd} Se eliminaran las firmas y las tablas de particiones.${end}\n"
+
+				if print_confirm "¿Estas seguro?"; then
+					pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
+					
+					printf "${ico_star} Eliminando firmas... "
+					wipefs -a "$DISCO"
+					
+					printf "\n${ico_star} Eliminando tablas de particiones... "
+					sgdisk --zap-all "$DISCO"
+					
+					printf "\n${ico_ok}${greenl} Firmas y tablas de particiones eliminadas correctamente.${end}\n"
+				fi
 				print_continue
 				;;
 			4)
@@ -99,12 +165,13 @@ while true; do
 				;;
 			5)
 				menu_header
-				print_title "DISCO"
+				print_title "PRE-INSTALACION: DISCOS"
 				printf "${ico_warn}${redd} Entrando a la shell.${end}\n"
 				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n\n"
 				
 				# Abrimos shell.
 				/bin/bash --norc
+				clear
 				;;
 			6)
 				VOLVER_AL_PASO_1=true
