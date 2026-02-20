@@ -33,8 +33,7 @@ while true; do
 		3) FONT="ter-932b" ;;
 		4) break ;;
 		*)
-			printf "${ico_error} ${redl}Opcion no valida${end}\n"
-			sleep $T_ERR
+			print_novalid
 			continue
 			;;
 	esac

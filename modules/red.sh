@@ -148,7 +148,7 @@ while true; do
 						break 2
 						;;
 					*)
-						print_warning_box "Opcion no valida"
+						print_warning_box
 						sleep $T_ERR
 						;;
 				esac
@@ -158,7 +158,7 @@ while true; do
 			break
 			;;
 		*)
-			print_warning_box "Opcion no valida"
+			print_warning_box
 			sleep $T_ERR
 			;;
 	esac

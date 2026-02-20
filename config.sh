@@ -58,17 +58,29 @@ print_title() {
 }
 
 # AVISO ERROR
-print_warning_box() {
+print_error() {
 	local texto="$1"
-	printf "${redl}${ico_error} Error: ${texto}${end}\n"
+	printf "${ico_error} ${redl} Error: ${texto}${end}\n"
 }
 
-print_warning_end() {
+print_error_end() {
+	printf "\n"
+}
+
+# AVISO OPCION NO VALIDA
+print_novalid() {
+	local texto="$1"
+	printf "${ico_error} ${redl}Opcion no valida${end}"
+	sleep $T_ERR
+	printf "\r\033[K\033[1A\r\033[K"
+}
+
+print_novalid_end() {
 	printf "\n"
 }
 
 # FUNCION AVISO INFORMATIVO
-print_info_box() {
+print_info() {
 	local texto="$1"
 	printf "${redd}${ico_info} ${texto}${end}\n"
 }
@@ -93,9 +105,7 @@ print_confirm() {
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
 			*)
-				printf "${ico_error} ${redl}Opcion no valida${end}"
-				sleep $T_ERR
-printf "\r\033[K\033[1A\r\033[K"
+				print_novalid
 				;;
 		esac
 	done
