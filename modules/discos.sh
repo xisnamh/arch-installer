@@ -87,14 +87,13 @@ while true; do
 				menu_header
 				print_title "PRE-INSTALACION: DISCOS"
 				if [[ "$DISCO" == *"nvme"* ]]; then
-					print_title "PRE-INSTALACION: DISCOS"
 					printf "${gray}Este proceso limpia las celdas de memoria a nivel hardware.${end}\n"
 
 					if print_confirm "¿Deseas realizar un borrado de fabrica?"; then
 						pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
 						
 						# Iniciamos el borrado
-						if nvme sanitize "$DISCO" --sanact=3>/dev/null 2>&1; then
+						if nvme sanitize "$DISCO" --sanact=3 >/dev/null 2>&1; then
 							printf "${ico_info} Borrado iniciado. Mostrando progreso...\n"
 						
 							# Bucle de progreso
@@ -139,8 +138,9 @@ while true; do
 								dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
 							fi
 						else
-							printf "${ico_warn} Detectado HDD. Iniciando borrado con ceros (esto tardara)...${end}\n"
+							printf "${ico_warn}${redd} Detectado HDD. Iniciando borrado con ceros...${end}\n"
 							dd if=/dev/zero of="$DISCO" bs=1M status=progress conv=fdatasync
+							printf "\n${ico_ok}${greenl} Borrado con ceros finalizado correctamente.${end}\n"
 						fi
 					fi
 				fi
