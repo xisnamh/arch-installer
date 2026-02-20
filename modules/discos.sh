@@ -42,7 +42,7 @@ while true; do
 		printf "Selecciona la operacion:\n"
 		printf " 1) Ver salud/informacion\n"
 		printf " 2) Borrado de fabrica\n"
-		printf " 3) Limpiar firmas y tablas\n"
+		printf " 3) Eliminar firmas y tablas\n"
 		printf " 4) Particionar con cfdisk\n"
 		printf " 5) Modo Manual\n"
 		printf " 6) Volver a seleccionar disco\n"
@@ -53,6 +53,8 @@ while true; do
 
 		case $disco_opt in
 			1)
+				menu_header
+				print_title "PRE-INSTALACION: DISCOS"
 				if [[ "$DISCO" == *"nvme"* ]]; then
 					pacman -S --needed nvme-cli --noconfirm >/dev/null 2>&1
 					menu_header
@@ -82,6 +84,8 @@ while true; do
 				print_continue
 				;;
 			2)
+				menu_header
+				print_title "PRE-INSTALACION: DISCOS"
 				if [[ "$DISCO" == *"nvme"* ]]; then
 					print_title "PRE-INSTALACION: DISCOS"
 					printf "${gray}Este proceso limpia las celdas de memoria a nivel hardware.${end}\n"
@@ -120,9 +124,9 @@ while true; do
 					fi
 				else
 					print_title "PRE-INSTALACION: DISCOS"
-					printf "${gray}Se eliminaran todos los datos de forma irreversible.${end}\n"
+					printf "${gray}Se borraran todos los datos de forma irreversible.${end}\n"
 
-					if print_confirm "¿Estas seguro de borrar este dispositivo?"; then
+					if print_confirm "¿Estas seguro?"; then
 						# Detectar si es SSD (0) o HDD (1)
 						ROTA=$(cat "/sys/block/$(basename $DISCO)/queue/rotational" 2>/dev/null)
 
