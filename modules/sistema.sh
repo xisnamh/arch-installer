@@ -18,8 +18,7 @@ timedatectl set-ntp true
 sleep $T_INFO
 printf "${ico_ok} ${greenl}Sincronizada la hora del sistema correctamente.${end}\n\n"
 printf "${gray}Estado actual del tiempo:${end}\n"
-timedatectl status | grep -E "Local time|Universal time|RTC time|System clock synchronized|NTP service"
-printf "\n"
+timedatectl status
 print_continue
 
 # 4. VERIFICAR EL MODO DE ARRANQUE

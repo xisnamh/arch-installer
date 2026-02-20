@@ -24,5 +24,5 @@ pacman -Syy
 printf "${ico_ok} ${greenl}Bases de datos sincronizadas correctamente.${end}\n"
 print_continue
 
-printf "\n${ico_ok} ${greenl}Configuracion de llaves finalizada correctamente.${end}\n"
+printf "${ico_ok} ${greenl}Configuracion de llaves finalizada correctamente.${end}\n"
 print_continue

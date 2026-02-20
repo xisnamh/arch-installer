@@ -33,7 +33,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 	cd cachyos-repo
 
 	# Mensajes visuales
-	printf "\n\n"
+	printf "\n"
 	print_info "Aviso Importante"
 	printf " ${ico_item} Repositorios CachyOS: Añadir para instalar kernels y librerias.\n"
 	printf " ${ico_item} Libreria zlib-ng-compat: No instalar, estamos fuera de chroot.\n"
@@ -75,7 +75,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 		fi
 	done
 
-	printf "\n${ico_ok} ${greenl}Instalacion de los repositorios de CachyOS finalizada correctamente.${end}\n"
+	printf "${ico_ok} ${greenl}Instalacion de los repositorios de CachyOS finalizada correctamente.${end}\n"
 	print_continue
 
 else
