@@ -152,6 +152,7 @@ while true; do
 				menu_header
 				print_title "PRE-INSTALACION: DISCOS"
 				printf "${ico_warn}${redd} Se eliminaran las firmas y las tablas de particiones.${end}\n"
+				printf "\n"
 
 				if print_confirm "¿Estas seguro?"; then
 					pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
