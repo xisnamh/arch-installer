@@ -87,7 +87,7 @@ print_info_end() {
 
 # FUNCION OPCIONES
 print_ask() {
-	printf "\n${ico_input} Elige una opcion:${end}"
+	printf "\n${ico_input} Elige una opcion: ${end}"
 }
 
 # FUNCION VALIDACION
