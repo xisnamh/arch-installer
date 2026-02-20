@@ -56,8 +56,7 @@ while true; do
 				if ip link show "$ADAPTADOR" > /dev/null 2>&1; then
 					break
 				else
-					print_warning_box "Adaptador no valido"
-					sleep $T_ERR
+					print_error "Adaptador no valido"
 				fi
 			done
 			[[ "$ADAPTADOR" == "q" ]] && continue
@@ -88,11 +87,11 @@ while true; do
 						sleep $T_INFO
 						break 2
 					else
-						print_warning_box "Conectado al wifi, pero sin internet"
+						print_error "Conectado al wifi, pero sin internet"
 						iwctl station "$ADAPTADOR" disconnect > /dev/null 2>&1
 					fi
 				else
-					print_warning_box "Error de autenticacion"
+					print_error "Error de autenticacion"
 					iwctl station "$ADAPTADOR" disconnect > /dev/null 2>&1
 				fi
 
@@ -148,8 +147,7 @@ while true; do
 						break 2
 						;;
 					*)
-						print_warning_box
-						sleep $T_ERR
+						print_novalid
 						;;
 				esac
 			done
@@ -158,8 +156,7 @@ while true; do
 			break
 			;;
 		*)
-			print_warning_box
-			sleep $T_ERR
+			print_novalid
 			;;
 	esac
 done

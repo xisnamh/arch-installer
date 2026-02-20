@@ -61,6 +61,8 @@ print_title() {
 print_error() {
 	local texto="$1"
 	printf "${ico_error} ${redl} Error: ${texto}${end}\n"
+	sleep $T_ERR
+	printf "\r\033[K\033[1A\r\033[K"
 }
 
 print_error_end() {
