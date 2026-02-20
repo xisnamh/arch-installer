@@ -18,7 +18,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 			print_error "Instalador de los repositorios de CachyOS finalizado con error."
 			
 			# Pregunta si quiere reintentar
-			if print_confirm "¿Deseas reintentar el instalador de los repositorios de CachyOS?"; then
+			if print_confirm "¿Deseas reintentar descargar el instalador de los repositorios de CachyOS?"; then
 				continue # Vuelve al principio del while para reintentar
 			else
 				printf "\n${ico_error} ${redl}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
@@ -68,7 +68,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 	while true; do
 		nano /etc/pacman.conf
 
-		if print_confirm "Has editado el archivo correctamente?"; then
+		if print_confirm "¿Has editado el archivo correctamente?"; then
 			break
 		else
 			printf "${ico_warn} ${redd}Reabriendo el archivo para editar...${end}\n"

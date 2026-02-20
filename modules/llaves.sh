@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 8. CONFIGURACION DE LLAVEROS Y LLAVES MAESTRAS
+# 8. CONFIGURACION DE LLAVEROS
 menu_header
 print_title "LLAVES"
 
@@ -9,14 +9,14 @@ pacman-key --init
 printf "${ico_ok} ${greenl}Llavero local iniciado correctamente.${end}\n"
 print_continue
 
-printf "${ico_star} ${greend}Cargando las llaves maestras de Arch Linux...${end}\n"
+printf "${ico_star} ${greend}Cargando las llaves maestras...${end}\n"
 pacman-key --populate archlinux
-printf "${ico_ok} ${greenl}Llaves maestras de Arch Linux cargadas correctamente.${end}\n"
+printf "${ico_ok} ${greenl}Llaves maestras cargadas correctamente.${end}\n"
 print_continue
 
-printf "${ico_star} ${greend}Actualizando el llavero de Arch Linux...${end}\n"
+printf "${ico_star} ${greend}Actualizando el llavero...${end}\n"
 pacman -Sy archlinux-keyring --noconfirm
-printf "${ico_ok} ${greenl}Llavero de Arch Linux actualizado correctamente.${end}\n"
+printf "${ico_ok} ${greenl}Llavero actualizado correctamente.${end}\n"
 print_continue
 
 printf "${ico_star} ${greend}Sincronizando las bases de datos...${end}\n"
@@ -24,5 +24,5 @@ pacman -Syy
 printf "${ico_ok} ${greenl}Bases de datos sincronizadas correctamente.${end}\n"
 print_continue
 
-printf "\n${ico_ok} ${greenl}Configuracion de Llaveros finalizada con exito.${end}\n"
+printf "\n${ico_ok} ${greenl}Configuracion de llaves finalizada correctamente.${end}\n"
 print_continue

@@ -7,19 +7,18 @@ export gray="\033[1;30m"	# Gris			(pregunta principal)
 export greend="\033[0;32m"	# Verde	oscuro		(configurando)
 export greenl="\033[1;32m"	# Verde	brillante	(configurado)
 export redl="\033[1;31m"	# Rojo brillante	(error)
-export redd="\033[0;31m"	# Rojo oscuro		(aviso importante/intrucciones/info)
+export redd="\033[0;31m"	# Rojo oscuro		(aviso importante/informacion/intrucciones)
 export end="\033[0m"
 
 # ICONOS
-ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde brillante)
+ico_ok="${greenl}[\u002b]${end}"	# [+] Ok		(verde brillante)
 ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo brillante)
 ico_info="${redd}[\u2139]${end}"	# [ℹ] Informacion	(rojo oscuro)
-ico_warn="${redd}[\u0021]${end}"	# [!] Peligro		(blanco)
-ico_ques="${redd}[\u003f]${end}"	# [?] Confirmar		(naranja)
-ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
+ico_warn="${redd}[\u0021]${end}"	# [!] Importante	(rojo oscuro)
+ico_ques="${redd}[\u003f]${end}"	# [?] Confirmar		(rojo oscuro)
+ico_star="${greend}[\u002a]${end}"	# [*] Configurando 	(verde oscuro)
 ico_input=">"				#  >  Input		(sin color)
 ico_item="•"				#  •  Item		(sin color)
-ico_line="${gray}\u2500${end}"		#  ─  Linea horizontal
 
 # VARIABLES TIEMPO
 T_ERR=1 	# Tiempo para errores
@@ -40,15 +39,15 @@ menu_header() {
 
 # SUBTITULO
 print_title() {
-	local texto=" $1"		# Agregamos el espacio inicial al texto
-	local len=${#texto}		# Medimos el texto (incluyendo ese espacio)
-	local linea_largo=$((len + 1))	# La línea sera 1 caracter más larga
+	local texto=" $1"					# Agregamos el espacio inicial al texto
+	local len=${#texto}					# Medimos el texto (incluyendo ese espacio)
+	local linea_largo=$((len + 1))				# La línea sera 1 caracter más larga
 
-	printf "${white}%s${end}\n" "$texto"	# Imprimimos el titulo con su espacio inicial
+	printf "${white}%s${end}\n" "$texto"			# Imprimimos el titulo con su espacio inicial
 	    
 	printf "${white}%.0s─${end}" $(seq 1 $linea_largo)	# Dibujamos la línea usando un truco de printf para repetir el caracter
 	    
-	printf "\n" # Espacio para que no se pegue al contenido
+	printf "\n" 						# Espacio para que no se pegue al contenido
 }
 
 # AVISO ERROR
