@@ -122,7 +122,6 @@ while true; do
 						fi
 					fi
 				else
-					print_title "PRE-INSTALACION: DISCOS"
 					printf "${gray}Se borraran todos los datos de forma irreversible.${end}\n"
 
 					if print_confirm "¿Estas seguro?"; then
