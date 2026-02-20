@@ -4,7 +4,7 @@
 menu_header
 print_title "REPOSITORIOS CACHYOS"
 
-if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; then
+if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; then
 	
 	# BUCLE DE DESCARGA CON REINTENTO
 	while true; do
@@ -68,10 +68,10 @@ if print_confirm "Deseas descargar e instalar los repositorios de CachyOS?"; the
 	while true; do
 		nano /etc/pacman.conf
 
-		if print_confirm "Has terminado de modificar el archivo correctamente?"; then
+		if print_confirm "Has editado el archivo correctamente?"; then
 			break
 		else
-			printf "${ico_warn} ${redd}Reabriendo el archivo para correcciones...${end}\n"
+			printf "${ico_warn} ${redd}Reabriendo el archivo para editar...${end}\n"
 			sleep $T_INFO
 		fi
 	done

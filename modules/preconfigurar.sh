@@ -31,7 +31,7 @@ if [ -d "/sys/firmware/efi" ]; then
 	printf "${ico_ok} ${greenl}El modo de arranque es UEFI.${end}\n"
 else
 	printf "${ico_warn} ${redd}El modo de arranque es BIOS/Legacy.${end}\n"
-	if ! print_confirm "Deseas continuar de todas formas?"; then
+	if ! print_confirm "¿Deseas continuar de todas formas?"; then
 		printf "${ico_error} ${redl}Instalacion de Arch Linux cancelada. Saliendo del instalador...${end}\n"
 		exit 1
 	fi
