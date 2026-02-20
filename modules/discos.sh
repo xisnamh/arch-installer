@@ -8,17 +8,18 @@ while true; do
 		lsblk -p -n -l -o NAME,SIZE,TYPE | grep "disk"
 		printf "\n"
 
-		printf "${ico_input} Escribe la ruta del disco (ej: /dev/nvme0n1): ${end}"
+		printf "${ico_input} Escribe la ruta del disco: ${end}"
 		read -r DISCO
 
 		if [ -z "$DISCO" ]; then
-			print_novalid
+			printf "${ico_error}${redl} Ruta del disco seleccionada no valida.${end}\n"
+			sleep $T_ERR
 		elif [ -b "$DISCO" ]; then
-			printf "${ico_ok}${greenl} Disco seleccionado correctamente: $DISCO${end}\n"
+			printf "${ico_ok}${greenl} Ruta del disco seleccionada correctamente.${end}\n"
 			sleep $T_INFO
 			break
 		else
-			printf "${ico_error}${redd} El dispositivo '$DISCO' no existe o no es valido.${end}\n"
+			printf "${ico_error}${redl} Ruta del disco seleccionada no valida.${end}\n"
 			sleep $T_ERR
 		fi
 	done
@@ -39,12 +40,12 @@ while true; do
 		printf "\n"
 		
 		printf "Selecciona la operacion:\n"
-		printf " 1) Ver salud/info\n"
+		printf " 1) Ver salud/informacion\n"
 		printf " 2) Borrado de fabrica\n"
 		printf " 3) Limpiar firmas y tablas\n"
 		printf " 4) Particionar con cfdisk\n"
 		printf " 5) Modo Manual\n"
-		printf " 6) Volver atras\n"
+		printf " 6) Volver a seleccionar disco\n"
 		printf " 7) Finalizar y continuar\n"
 
 		print_ask
@@ -86,7 +87,7 @@ while true; do
 				print_continue
 				;;
 			3)
-				printf "${ico_warn}${redd} Eliminando firmas y tablas de particiones en $DISCO...${end}\n"
+				printf "${ico_warn}${redd} Eliminando firmas y tablas de particiones...${end}\n"
 				pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
@@ -98,9 +99,9 @@ while true; do
 				;;
 			5)
 				menu_header
-				print_title "MODO MANUAL: TERMINAL"
+				print_title "DISCO"
 				printf "${ico_warn}${redd} Entrando en shell interactiva.${end}\n"
-				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver al instalador.${end}\n\n"
+				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n\n"
 				
 				# Abrimos shell.
 				/bin/bash --norc
@@ -111,10 +112,17 @@ while true; do
 				;;
 			7)
 				menu_header
-				print_title "RESUMEN FINAL"
+				print_title "DISCOS"
 				lsblk "$DISCO"
+				
+				if [ "$IS_VM" = true ]; then
+					lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
+				else
+					lsblk -p -o NAME,SIZE,TYPE,TRAN,ROTA,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
+				fi
 				printf "\n"
-				if print_confirm "¿Todo listo para continuar con el particionado actual?"; then
+				
+				if print_confirm "¿Estas seguro de continuar con el particionado actual?"; then
 					break 2
 				fi
 				;;

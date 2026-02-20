@@ -106,7 +106,7 @@ while true; do
 				menu_header
 				print_title "MENU MANUAL DE RED"
 				printf " 1) Ver comandos de Iwctl\n"
-				printf " 2) Entrar a Iwctl \n"
+				printf " 2) Entrar a Iwctl\n"
 				printf " 3) Volver al menu de seleccion\n"
 				printf " 4) Salir y continuar la instalacion\n"
 				
