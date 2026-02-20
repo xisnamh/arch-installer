@@ -87,11 +87,11 @@ while true; do
 				print_continue
 				;;
 			3)
-				printf "${ico_warn}${redd} Limpiando tablas de particiones en $DISCO...${end}\n"
+				printf "${ico_warn}${redd} Eliminando firmas y tablas de particiones en $DISCO...${end}\n"
 				pacman -S --needed gptfdisk --noconfirm >/dev/null 2>&1
 				wipefs -a "$DISCO"
 				sgdisk --zap-all "$DISCO"
-				printf "${ico_ok}${greenl} Disco limpiado con exito.${end}\n"
+				printf "${ico_ok}${greenl} Firmas y tablas de particiones eliminadas correctamente.${end}\n"
 				print_continue
 				;;
 			4)

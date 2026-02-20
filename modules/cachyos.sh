@@ -38,7 +38,6 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 	printf " ${ico_item} Repositorios CachyOS: Añadir para instalar kernels y librerias.\n"
 	printf " ${ico_item} Libreria zlib-ng-compat: No instalar, estamos fuera de chroot.\n"
 	printf " ${ico_item} Paquetes restantes: No instalar, estamos fuera de chroot.\n"
-	print_info_end
 	printf "\n"
 
 	printf "${ico_warn} ${redd}A continuacion se ejecutara el script oficial de CachyOS.${end}\n"
@@ -55,12 +54,12 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 	print_title "CONFIGURACION DE CACHYOS"
 
 	printf "${ico_star} ${greend}Preparando edicion de /etc/pacman.conf...${end}\n"
-	printf "\n\n"
+	printf "\n"
 	
 	print_info "Instrucciones"
-	printf " ${ico_item} Descomenta #color, #prettyprogressbar y #ilovecandy.\n"
-	printf " ${ico_item} Mueve los repositorios [cachyos-v3] y [cachyos-core-v3] al principio de la lista.\n"
-	printf " ${ico_item} Deshabilita los repositorios [cachyos-extra-v3] y [cachyos] (comenta con #).\n"
+	printf " ${ico_item} Habilita las opciones #Color, #PrettyProgressBar y #ILoveCandy.\n"
+	printf " ${ico_item} Prioriza los repositorios [cachyos-v3] y [cachyos-core-v3].\n"
+	printf " ${ico_item} Deshabilita los repositorios [cachyos-extra-v3] y [cachyos].\n"
 		
 	print_continue
 

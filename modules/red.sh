@@ -137,7 +137,7 @@ while true; do
 						;;
 					2)
 						printf "\n"
-						printf "${ico_info} ${redd}Entrando en iwctl... Escribe 'exit' para volver.${end}\n"
+						printf "${ico_info} ${redd}Entrando a iwctl... Escribe 'exit' para volver.${end}\n"
 						iwctl
 						;;
 					3)
