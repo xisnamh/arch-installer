@@ -3,25 +3,19 @@
 # COLORES ANSI
 export blue="\033[0;36m"	# Azul suave		(titulo)
 export white="\033[1;37m"	# Blanco		(subtitulo)
-export gray="\033[1;30m"	# Gris			(texto secundario)
-export greenl="\033[1;32m"	# Verde	brillante	(exito)
-export greend="\033[0;32m"	# Verde	oscuro		(exito)
-
-export redl="\033[1;31m"	# Rojo brillante	(alerta critica)
-export redd="\033[0;31m"	# Rojo oscuro		(alerta critica)
-
-export orange="\033[0;33m"	# Naranja		(aviso importante)
-export yellow="\033[1;33m"	# Amarillo		(instrucciones)
-				# color ?		(mensajes info)
-export bluel="\033[1;36m"	# Azul electrico
+export gray="\033[1;30m"	# Gris			(pregunta principal)
+export greend="\033[0;32m"	# Verde	oscuro		(configurando)
+export greenl="\033[1;32m"	# Verde	brillante	(configurado)
+export redl="\033[1;31m"	# Rojo brillante	(error)
+export redd="\033[0;31m"	# Rojo oscuro		(aviso importante/intrucciones/info)
 export end="\033[0m"
 
 # ICONOS
 ico_ok="${greenl}[\u002b]${end}"	# [+] Ok 		(verde brillante)
 ico_error="${redl}[\u00d7]${end}"	# [×] Error		(rojo brillante)
-ico_info="${orange}[\u2139]${end}"	# [ℹ] Informacion	(rojo oscuro)
-ico_warn="${white}[\u0021]${end}"	# [!] Peligro		(blanco)
-ico_ques="${orange}[\u003f]${end}"	# [?] Confirmar		(naranja)
+ico_info="${redd}[\u2139]${end}"	# [ℹ] Informacion	(rojo oscuro)
+ico_warn="${redd}[\u0021]${end}"	# [!] Peligro		(blanco)
+ico_ques="${redd}[\u003f]${end}"	# [?] Confirmar		(naranja)
 ico_star="${greend}[\u002a]${end}"	# [*] Asterisco 	(verde oscuro)
 ico_input=">"				#  >  Input		(sin color)
 ico_item="•"				#  •  Item		(sin color)
@@ -60,7 +54,7 @@ print_title() {
 # AVISO ERROR
 print_error() {
 	local texto="$1"
-	printf "${ico_error} ${redl} Error: ${texto}${end}\n"
+	printf "${ico_error} ${redl} Error: ${texto}${end}"
 	sleep $T_ERR
 	printf "\r\033[K\033[1A\r\033[K"
 }
@@ -84,7 +78,7 @@ print_novalid_end() {
 # FUNCION AVISO INFORMATIVO
 print_info() {
 	local texto="$1"
-	printf "${redd}${ico_info} ${texto}${end}\n"
+	printf "${ico_info} ${redd}${texto}${end}\n"
 }
 
 print_info_end() {
@@ -93,7 +87,7 @@ print_info_end() {
 
 # FUNCION OPCIONES
 print_ask() {
-	printf "\n${ico_input} Elige una opcion:${end} "
+	printf "\n${ico_input} Elige una opcion:${end}"
 }
 
 # FUNCION VALIDACION
