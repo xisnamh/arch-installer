@@ -8,12 +8,11 @@ while true; do
 		lsblk -p -n -l -o NAME,SIZE,TYPE | grep "disk"
 		printf "\n"
 
-		printf "${yellow}Escribe la ruta del disco (ej: /dev/nvme0n1): ${end}"
+		printf "${ico_input} Escribe la ruta del disco (ej: /dev/nvme0n1): ${end}"
 		read -r DISCO
 
 		if [ -z "$DISCO" ]; then
-			printf "${ico_error}${redd} No has escrito nada.${end}\n"
-			sleep $T_ERR
+			print_novalid
 		elif [ -b "$DISCO" ]; then
 			printf "${ico_ok}${greenl} Disco seleccionado correctamente: $DISCO${end}\n"
 			sleep $T_INFO
@@ -29,9 +28,9 @@ while true; do
 
 	while true; do
 		menu_header
-		print_title "DISCO SELECCIONADO: $DISCO"
+		print_title "DISCOS"
 
-		printf "${gray}Detalles del dispositivo:${end}\n"
+		printf "${gray}Detalles del dispositivo seleccionado:${end}\n"
 		if [ "$IS_VM" = true ]; then
 			lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		else
