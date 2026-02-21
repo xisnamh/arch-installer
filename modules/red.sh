@@ -138,7 +138,7 @@ while true; do
 					2)
 						printf "\n"
 						printf "${ico_warn} ${redd}Entrando a iwctl.${end}\n"
-						printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n"
+						printf "${ico_info} ${redd}Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n"
 						iwctl
 						;;
 					3)
@@ -154,6 +154,7 @@ while true; do
 			done
 			;;
 		3)
+			printf "${ico_warn} ${redd}Configuracion de red omitida por el usuario.${end}\n"
 			break
 			;;
 		*)
