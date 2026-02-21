@@ -47,7 +47,6 @@ while true; do
 
 	if print_confirm "¿Te gusta este tamaño de fuente?"; then
 		printf "${ico_ok} ${greenl}Tamaño de fuente configurado correctamente.${end}\n"
-		sleep $T_INFO
 		print_continue
 		break
 	else
