@@ -19,7 +19,7 @@ exec_format() {
 		printf "\n"
 		
 		printf "${ico_input} Escribe la ruta de la particion: ${end}"
-		read -r PARTICION
+		read -r PARTICION || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 		# Validacion de ruta (si esta vacio o no es un dispositivo de bloque)
 		if [ -z "$PARTICION" ] || [ ! -b "$PARTICION" ]; then
@@ -70,7 +70,7 @@ while true; do
 	printf " 6) Finalizar y continuar\n"
 	
 	print_ask
-	read -r opt_part
+	read -r opt_part || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 	case $opt_part in
 		1)

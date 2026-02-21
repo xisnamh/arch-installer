@@ -12,7 +12,7 @@ while true; do
 		printf "\n"
 
 		printf "${ico_input} Escribe la ruta del disco: ${end}"
-		read -r DISCO
+		read -r DISCO || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 		if [ -z "$DISCO" ]; then
 			printf "${ico_error}${redl} Ruta del disco seleccionada no valida.${end}\n"
@@ -60,7 +60,7 @@ while true; do
 		printf " 7) Finalizar y continuar\n"
 
 		print_ask
-		read -r disco_opt || { printf "\n"; print_novalid; continue; }
+		read -r disco_opt || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 		case $disco_opt in
 			1)

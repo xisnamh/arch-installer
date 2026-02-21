@@ -34,7 +34,7 @@ while true; do
 	printf " 3) Saltar / Ya tengo internet\n"
 
 	print_ask
-	read -r wifi_opt
+	read -r wifi_opt || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 	case $wifi_opt in
 		1)
@@ -51,7 +51,7 @@ while true; do
 			# BUCLE ADAPTADOR
 			while true; do
 				printf "${ico_input} Escribe tu adaptador o 'q' para volver: "
-				read -r ADAPTADOR
+				read -r ADAPTADOR || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 				[[ "$ADAPTADOR" == "q" ]] && break
 				if ip link show "$ADAPTADOR" > /dev/null 2>&1; then
 					break
@@ -69,7 +69,7 @@ while true; do
 				iwctl station "$ADAPTADOR" get-networks
 				
 				printf "\n${white}${ico_input} SSID ('r' re-escanear, 'q' volver): ${end}"
-				read -r SSID
+				read -r SSID || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 				[[ "$SSID" == "q" ]] && break
 				[[ "$SSID" == "r" ]] && continue
 
@@ -96,7 +96,7 @@ while true; do
 				fi
 
 				printf "\n${ico_warn} ${white}Presiona una tecla para reintentar... ${end}"
-				read -n 1
+				read -n 1 || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 				menu_header
 				iwctl station "$ADAPTADOR" get-networks
 			done
@@ -111,7 +111,7 @@ while true; do
 				printf " 4) Salir y continuar la instalacion\n"
 				
 				print_ask
-				read -r manual_opt
+				read -r manual_opt  || { printf "\r"; continue; }  # Si se pulsa ctrl+d, refresa la pregunta
 
 				case $manual_opt in
 					1)

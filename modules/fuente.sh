@@ -25,7 +25,7 @@ font_menu() {
 while true; do
 	font_menu
 	print_ask
-	read -r font_opt || { printf "\n"; print_novalid; continue; }
+	read -r font_opt || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 
 	case $font_opt in
 		1) FONT="ter-918b" ;;

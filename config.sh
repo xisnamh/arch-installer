@@ -87,7 +87,7 @@ print_confirm() {
 	local respuesta
 	while true; do
 		printf "${ico_input} $pregunta (s/n): ${end}"
-		read -r respuesta || { printf "\r"; continue; }  # Si se pulsa ctrl+d, refresa la pregunta
+		read -r respuesta || { printf "\r\033[K"; continue; } # Si se pulsa ctrl+d, refresa la pregunta
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
