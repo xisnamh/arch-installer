@@ -16,6 +16,7 @@ exec_format() {
 		printf "\n"
 		
 		printf "${ico_star}${greend} $TAREA"
+		printf "\n"
 		printf "${ico_input} Escribe la ruta EFI: ${end}"
 		read -r PARTICION
 
