@@ -53,4 +53,5 @@ while true; do
 		# Si no le gusta, restauramos la fuente por defecto y vuelve al inicio del bucle
 		setfont lat9w-16 2>/dev/null
 	fi
+	print_continue
 done
