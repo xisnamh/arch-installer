@@ -10,6 +10,8 @@ source ./config.sh
 
 source ./modules/fuente.sh #1
 
+source ./modules/discos.sh
+
 source ./modules/particiones.sh #8
 
 #source ./modules/sistema.sh #2
