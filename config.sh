@@ -87,7 +87,7 @@ print_confirm() {
 	local respuesta
 	while true; do
 		printf "${ico_input} $pregunta (s/n): ${end}"
-		read -r respuesta
+		read -r respuesta || printf "\n"  # Si se pulsa ctrl+d, fuerza el salto de linea
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;
@@ -100,14 +100,14 @@ print_confirm() {
 
 # FUNCION CONTINUAR
 print_continue() {
-	# Usar -r en read es buena practica para evitar que escape caracteres
+	# Usar -r en read para evitar que escape caracteres
 	printf "\n${white}${ico_input}${ico_input} Presiona [Intro] para continuar...${end}\n"
 	read -r
 }
 
 # FUNCION VOLVER
 print_back() {
-	# Usar -r en read es buena practica para evitar que escape caracteres
+	# Usar -r en read para evitar que escape caracteres
 	printf "\n${white}${ico_input}${ico_input} Presiona [Intro] para volver...${end}\n"
 	read -r
 }

@@ -18,7 +18,6 @@ exec_format() {
 		lsblk -p -o NAME,SIZE,TYPE,FSTYPE
 		printf "\n"
 		
-		printf "${ico_star}${greend} Formateando particion $TAREA${end}\n"
 		printf "${ico_input} Escribe la ruta de la particion: ${end}"
 		read -r PARTICION
 
@@ -62,7 +61,7 @@ while true; do
 	lsblk -p -o NAME,SIZE,TYPE,FSTYPE
 	printf "\n"
 
-	printf "Selecciona una opcion para formatear la particion:\n"
+	printf "${gray}Selecciona una opcion para formatear la particion:${end}\n"
 	printf " 1) Formatear EFI\n"
 	printf " 2) Formatear ROOT\n"
 	printf " 3) Formatear JUEGOS\n"

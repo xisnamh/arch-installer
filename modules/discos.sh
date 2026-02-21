@@ -50,7 +50,7 @@ while true; do
 		fi
 		printf "\n"
 		
-		printf "Selecciona una opcion para configurar el disco:\n"
+		printf "${gray}Selecciona una opcion para configurar el disco:${end}\n"
 		printf " 1) Ver salud/informacion\n"
 		printf " 2) Borrado de fabrica\n"
 		printf " 3) Eliminar firmas y tablas\n"
