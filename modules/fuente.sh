@@ -49,9 +49,9 @@ while true; do
 		printf "${ico_ok} ${greenl}Tamaño de fuente configurado correctamente.${end}\n"
 		sleep $T_INFO
 		break
+		print_continue
 	else
 		# Si no le gusta, restauramos la fuente por defecto y vuelve al inicio del bucle
 		setfont lat9w-16 2>/dev/null
 	fi
-	print_continue
 done
