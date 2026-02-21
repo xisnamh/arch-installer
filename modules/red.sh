@@ -24,7 +24,7 @@ while true; do
 
 	WIFI_DEVICES=$(iwctl device list | grep -E "wlan|p2p")
 
-	printf "${gray}Selecciona como configurar el wifi:${end}\n"
+	printf "${gray}Selecciona una opcion para configurar el wifi:${end}\n"
 	if [ -z "$WIFI_DEVICES" ]; then
 		printf " 1) Modo Asistido (No se detecta adaptador wifi)\n"
 	else
@@ -50,7 +50,7 @@ while true; do
 
 			# BUCLE ADAPTADOR
 			while true; do
-				printf "${white}${ico_input} Escribe tu adaptador (ej: wlan0) o 'q' para volver: ${end}"
+				printf "${ico_input} Escribe tu adaptador o 'q' para volver: "
 				read -r ADAPTADOR
 				[[ "$ADAPTADOR" == "q" ]] && break
 				if ip link show "$ADAPTADOR" > /dev/null 2>&1; then

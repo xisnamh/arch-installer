@@ -42,7 +42,7 @@ while true; do
 		menu_header
 		print_title "PRE-INSTALACION: DISCOS"
 
-		printf "${gray}Detalles del dispositivo seleccionado:${end}\n"
+		printf "${gray}Detalles del disco seleccionado:${end}\n"
 		if [ "$IS_VM" = true ]; then
 			lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 		else
@@ -50,7 +50,7 @@ while true; do
 		fi
 		printf "\n"
 		
-		printf "Selecciona la operacion:\n"
+		printf "Selecciona una opcion para configurar el disco:\n"
 		printf " 1) Ver salud/informacion\n"
 		printf " 2) Borrado de fabrica\n"
 		printf " 3) Eliminar firmas y tablas\n"
@@ -186,8 +186,7 @@ while true; do
 				print_title "PRE-INSTALACION: DISCOS"
 				printf "${ico_warn}${redd} Entrando a la shell.${end}\n"
 				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n"
-				
-				# Abrimos shell.
+
 				/bin/bash --norc
 				clear
 				;;

@@ -53,22 +53,22 @@ exec_format() {
 	done
 }
 
-# --- MENU PRINCIPAL DE FORMATEO ---
+# MENU DE ACCIONES
 while true; do
 	menu_header
 	print_title "PARTICIONES: FORMATEAR"
 
-	printf "${gray}Discos y particiones detectados:${end}\n"
-	printf "\n"
+	printf "${gray}Detalles del disco seleccionado:${end}\n"
 	lsblk -p -o NAME,SIZE,TYPE,FSTYPE
 	printf "\n"
 
-	printf "${gray}Selecciona que particion deseas formatear:${end}\n"
-	printf " 1) Formatear EFI    (FAT32)\n"
-	printf " 2) Formatear ROOT   (EXT4)\n"
-	printf " 3) Formatear JUEGOS (F2FS)\n"
-	printf " 4) Formatear HDD    (EXT4)\n"
-	printf " 5) Finalizar y continuar\n"
+	printf "Selecciona una opcion para formatear la particion:\n"
+	printf " 1) Formatear EFI\n"
+	printf " 2) Formatear ROOT\n"
+	printf " 3) Formatear JUEGOS\n"
+	printf " 4) Formatear HDD\n"
+	printf " 5) Modo Manual\n"
+	printf " 6) Finalizar y continuar\n"
 	
 	print_ask
 	read -r opt_part
@@ -87,6 +87,15 @@ while true; do
 			exec_format "HDD" "mkfs.ext4 -F"
 			;;
 		5)
+			menu_header
+			print_title "PARTICIONES: FORMATEAR"
+			printf "${ico_warn}${redd} Entrando a la shell.${end}\n"
+			printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n"
+
+			/bin/bash --norc
+			clear
+			;;
+		6)
 			# Sale del bucle del menu para seguir con el script
 			break
 			;;
