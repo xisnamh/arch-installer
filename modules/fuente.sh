@@ -25,7 +25,7 @@ font_menu() {
 while true; do
 	font_menu
 	print_ask
-	read -r font_opt
+	read -r font_opt || { printf "\n"; print_novalid; continue; }
 
 	case $font_opt in
 		1) FONT="ter-918b" ;;
