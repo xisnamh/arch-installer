@@ -11,54 +11,93 @@ exec_format() {
 	while true; do
 		menu_header
 		print_title "PARTICIONES: FORMATEAR"
+		
 		printf "${gray}Configurando las particiones:${end}\n"
+		# lsblk con espaciado para que no se vea junto
+		printf "\n"
 		lsblk -p -o NAME,SIZE,TYPE,FSTYPE
 		printf "\n"
 		
-		printf "${ico_star}${greend} $TAREA${end}"
-		printf "\n"
-		printf "${ico_input} Escribe la ruta EFI: ${end}"
+		printf "${ico_star}${greend} Formateando particion $TAREA${end}\n"
+		printf "${ico_input} Escribe la ruta de la particion: ${end}"
 		read -r PARTICION
 
+		# Validacion de ruta (si esta vacio o no es un dispositivo de bloque)
 		if [ -z "$PARTICION" ] || [ ! -b "$PARTICION" ]; then
 			printf "${ico_error}${redl} Ruta de la particion seleccionada no valida.${end}\n"
 			sleep $T_ERR
+			# Al hacer continue, vuelve al inicio del while y refresca con menu_header
 			continue
 		fi
 
-		if print_confirm "¿Estas seguro de formatear la particion?"; then #(ESTE MENSAJE SE VA A REPETIR 4 VECES, ALGO PARA NO REPETIRLO 4 VECES??)
-			printf "\n${ico_star} ${greend}${TAREA}...${end}\n"
+		# Pregunta de confirmacion
+		printf "\n"
+		if print_confirm "¿Estas seguro de formatear la particion?"; then
+			printf "\n${ico_star} ${greend}Formateando $TAREA...${end}\n"
 			
-			# Ejecucion del comando
-			if $COMANDO_BASE "$PARTICION"; then
-				printf "${ico_ok} ${greenl}Completado.${end}\n"
+			# Ejecucion del comando (redirigido para mantener limpieza)
+			if $COMANDO_BASE "$PARTICION" >/dev/null 2>&1; then
+				printf "${ico_ok} ${greenl}La particion se formateo correctamente.${end}\n"
+				sleep $T_INFO
+				break # Sale del bucle de esta particion y vuelve al menu
+			else
+				printf "${ico_error} ${redl}Error al ejecutar el formateo.${end}\n"
 				print_continue
 				break
-			else
-				printf "${ico_error} ${redl}Error al ejecutar el comando.${end}\n"
-				print_continue
 			fi
 		else
 			printf "${ico_warn} ${redd}Operacion cancelada por el usuario.${end}\n"
 			sleep $T_INFO
-			break
+			break # Vuelve al menu principal
 		fi
 	done
 }
 
-# PROCESO DE FORMATEO
-# Particion efi
-exec_format "Formateando la particion EFI." "mkfs.fat -F32"
+# --- MENU PRINCIPAL DE FORMATEO ---
+while true; do
+	menu_header
+	print_title "PARTICIONES: FORMATEAR"
 
-# Particion root
-exec_format "Formateando la particion ROOT." "mkfs.ext4 -F"
+	printf "${gray}Discos y particiones detectados:${end}\n"
+	printf "\n"
+	lsblk -p -o NAME,SIZE,TYPE,FSTYPE
+	printf "\n"
 
-# Particion juegos
-exec_format "Formateando la particion JUEGOS." "mkfs.f2fs -f -O extra_attr,inode_checksum,sb_checksum,compression"
+	printf "${gray}Selecciona que particion deseas formatear:${end}\n"
+	printf " 1) Formatear EFI    (FAT32)\n"
+	printf " 2) Formatear ROOT   (EXT4)\n"
+	printf " 3) Formatear JUEGOS (F2FS)\n"
+	printf " 4) Formatear HDD    (EXT4)\n"
+	printf " 5) Finalizar y continuar\n"
+	
+	print_ask
+	read -r opt_part
 
-# Particion hdd
-exec_format "Formateando la particion HDD." "mkfs.ext4 -F"
+	case $opt_part in
+		1)
+			exec_format "EFI" "mkfs.fat -F32"
+			;;
+		2)
+			exec_format "ROOT" "mkfs.ext4 -F"
+			;;
+		3)
+			exec_format "JUEGOS" "mkfs.f2fs -f -O extra_attr,inode_checksum,sb_checksum,compression"
+			;;
+		4)
+			exec_format "HDD" "mkfs.ext4 -F"
+			;;
+		5)
+			# Sale del bucle del menu para seguir con el script
+			break
+			;;
+		*)
+			print_novalid
+			;;
+	esac
+done
 
+# MENSAJE FINAL AL SALIR DEL MENU
 menu_header
-print_title "PARTICIONES: FORMATEAR."
+print_title "PARTICIONES: FORMATEAR"
+printf "${ico_ok} ${greenl}Proceso de formateo finalizado.${end}\n"
 print_continue
