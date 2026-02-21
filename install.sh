@@ -8,18 +8,18 @@ source ./config.sh
 
 # EJECUTAR MODULOS EN ORDEN
 
-source ./modules/fuente.sh
+source ./modules/fuente.sh #1
 
-source ./modules/discos.sh
+source ./modules/particiones.sh
 
-source ./modules/sistema.sh
+source ./modules/sistema.sh #2
 
-source ./modules/red.sh
+source ./modules/red.sh #3
 
-source ./modules/espejos.sh
+source ./modules/espejos.sh #4
 
-source ./modules/repositorioscachyos.sh
+source ./modules/repositorioscachyos.sh #5
 
-source ./modules/llaves.sh
+source ./modules/llaves.sh #6
 
-#source ./modules/discos.sh
+source ./modules/discos.sh #7

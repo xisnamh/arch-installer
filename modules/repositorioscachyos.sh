@@ -4,6 +4,10 @@
 menu_header
 print_title "PRE-INSTALACION: REPOSITORIOS CACHYOS"
 
+printf "${gray}Compatibilidad de la cpu:${end}\n"
+/lib/ld-linux-x86-64.so.2 --help | grep supported
+printf "\n"
+
 if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; then
 	
 	# BUCLE DE DESCARGA CON REINTENTO

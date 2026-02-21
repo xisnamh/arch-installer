@@ -1,5 +1,8 @@
+#!/bin/bash
+
+# 7. PARTICIONAR DISCOS
 while true; do
-	# --- PASO 1 Y 2: SELECCION DE DISCO ---
+	# SELECCION DE DISCO
 	while true; do
 		menu_header
 		print_title "PRE-INSTALACION: DISCOS"
@@ -24,8 +27,16 @@ while true; do
 		fi
 	done
 
-	# --- PASO 3: MENU DE ACCIONES ---
+	# MENU DE ACCIONES
 	VOLVER_AL_PASO_1=false
+
+	# DETECCION DE SSD/HDD
+	ROTA_VAL=$(cat "/sys/block/$(basename "$DISCO")/queue/rotational" 2>/dev/null)
+	if [ "$ROTA_VAL" == "0" ]; then
+		TIPO_DISCO="SSD"
+	else
+		TIPO_DISCO="HDD"
+	fi
 
 	while true; do
 		menu_header
@@ -163,7 +174,7 @@ while true; do
 					printf "\n${ico_star} Eliminando tablas de particiones... "
 					sgdisk --zap-all "$DISCO"
 					
-					printf "\n${ico_ok}${greenl} Firmas y tablas de particiones eliminadas correctamente.${end}\n"
+					printf "${ico_ok}${greenl} Firmas y tablas de particiones eliminadas correctamente.${end}\n"
 				fi
 				print_continue
 				;;
@@ -174,7 +185,7 @@ while true; do
 				menu_header
 				print_title "PRE-INSTALACION: DISCOS"
 				printf "${ico_warn}${redd} Entrando a la shell.${end}\n"
-				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n\n"
+				printf "${ico_info}${redd} Escribe 'exit' o pulsa Ctrl+D para volver.${end}\n"
 				
 				# Abrimos shell.
 				/bin/bash --norc
@@ -188,6 +199,7 @@ while true; do
 				menu_header
 				print_title "PRE-INSTALACION: DISCOS"
 				
+				printf "${gray}Detalles del dispositivo seleccionado:${end}\n"
 				if [ "$IS_VM" = true ]; then
 					lsblk -p -o NAME,SIZE,TYPE,TRAN,VENDOR,FSTYPE,MOUNTPOINTS | grep -E "NAME|$DISCO" | column -t -o '    '
 				else
@@ -195,7 +207,7 @@ while true; do
 				fi
 				printf "\n"
 				
-				if print_confirm "¿Estas seguro de continuar con el particionado actual?"; then
+				if print_confirm "¿Finalizar la configuracion de discos?"; then
 					break 2
 				fi
 				;;
