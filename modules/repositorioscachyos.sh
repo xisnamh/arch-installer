@@ -84,6 +84,6 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 
 else
 	# Opcion si se responde NO al principio
-	printf "\n${ico_warn} ${redd}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
+	printf "${ico_warn} ${redd}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
 	print_continue
 fi

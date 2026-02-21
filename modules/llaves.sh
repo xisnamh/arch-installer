@@ -22,7 +22,6 @@ print_continue
 printf "${ico_star} ${greend}Sincronizando las bases de datos...${end}\n"
 pacman -Syy
 printf "${ico_ok} ${greenl}Bases de datos sincronizadas correctamente.${end}\n"
-print_continue
 
 printf "${ico_ok} ${greenl}Configuracion de llaves finalizada correctamente.${end}\n"
 print_continue
