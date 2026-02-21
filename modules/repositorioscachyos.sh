@@ -25,7 +25,7 @@ if print_confirm "¿Deseas descargar e instalar los repositorios de CachyOS?"; t
 			if print_confirm "¿Deseas reintentar descargar el instalador de los repositorios de CachyOS?"; then
 				continue # Vuelve al principio del while para reintentar
 			else
-				printf "\n${ico_error} ${redl}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
+				printf "${ico_warn} ${redd}Instalacion de los repositorios de CachyOS omitida por el usuario.${end}\n"
 				print_continue
 				return 1 # Sale del módulo y vuelve al script principal
 			fi

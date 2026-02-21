@@ -10,16 +10,16 @@ source ./config.sh
 
 source ./modules/fuente.sh #1
 
-source ./modules/particiones.sh
+source ./modules/particiones.sh #8
 
-source ./modules/sistema.sh #2
+#source ./modules/sistema.sh #2
 
-source ./modules/red.sh #3
+#source ./modules/red.sh #3
 
-source ./modules/espejos.sh #4
+#source ./modules/espejos.sh #4
 
-source ./modules/repositorioscachyos.sh #5
+#source ./modules/repositorioscachyos.sh #5
 
-source ./modules/llaves.sh #6
+#source ./modules/llaves.sh #6
 
-source ./modules/discos.sh #7
+#source ./modules/discos.sh #7
