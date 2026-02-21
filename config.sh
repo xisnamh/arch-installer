@@ -87,7 +87,7 @@ print_confirm() {
 	local respuesta
 	while true; do
 		printf "${ico_input} $pregunta (s/n): ${end}"
-		read -r respuesta || printf "\n"  # Si se pulsa ctrl+d, fuerza el salto de linea
+		read -r respuesta || { printf "\n"; continue; }  # Si se pulsa ctrl+d, imprime el salto de linea
 		case "$respuesta" in
 			[Ss]) return 0 ;;
 			[Nn]) return 1 ;;

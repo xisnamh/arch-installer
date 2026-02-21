@@ -60,7 +60,7 @@ while true; do
 		printf " 7) Finalizar y continuar\n"
 
 		print_ask
-		read -r disco_opt
+		read -r disco_opt || { printf "\n"; print_novalid; continue; }
 
 		case $disco_opt in
 			1)
