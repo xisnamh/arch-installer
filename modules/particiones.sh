@@ -15,7 +15,7 @@ exec_format() {
 		lsblk -p -o NAME,SIZE,TYPE,FSTYPE
 		printf "\n"
 		
-		printf "${ico_star}${greend} $TAREA"
+		printf "${ico_star}${greend} $TAREA${end}"
 		printf "\n"
 		printf "${ico_input} Escribe la ruta EFI: ${end}"
 		read -r PARTICION
